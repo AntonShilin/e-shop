@@ -1,0 +1,75 @@
+$main-menu-color: #494949;
+$color_grey: #b2bbc4;
+$height-submenu: 3.4375rem;
+
+@mixin pure-btn {
+  outline: none !important;
+  background: transparent;
+  border: 0;
+}
+
+@mixin custom-btn {
+  font-size: 2.5rem;
+  color: $color_grey;
+  transform: rotate(-37deg);
+}
+
+@mixin centered-item {
+  display: flex;
+  align-items: center;
+}
+
+
+/* Main menu */
+.main_menu {
+  height: $height-submenu;
+  background-color: #f7f7f8;
+    border-bottom: 2px solid #f4f4f6;
+  .logo_lg_deivices {
+    font-size: 2.2rem;
+    color: $main-menu-color;
+    text-decoration: none;
+    font-weight: 800;
+  }
+  .logo_small_devices {
+    font-size: 3rem;
+    line-height: 1;
+    color: $main-menu-color;
+    text-decoration: none;
+    font-weight: 800;
+    svg {
+      margin-left: 1rem;
+      font-size: 1.5rem;
+      color: $color_grey;
+    }
+  }
+  div:nth-of-type(2) {
+    @include centered-item();
+    svg {
+      margin: 0 auto;
+      font-size: 1.5rem;
+      color: $color_grey;
+      cursor: pointer;
+    }
+  }
+  div:nth-of-type(3) {
+    @include centered-item();
+    a {
+      color: $main-menu-color;
+      margin: 0 auto;
+    }
+    svg {
+      font-size: 1.5rem;
+      color: $color_grey;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+  }
+  div:nth-of-type(4) {
+    @include centered-item();
+    a {
+      color: $main-menu-color;
+      margin: 0 auto;
+    }
+  }
+}
