@@ -1,0 +1,29 @@
+.rootmenu {
+  font-weight: bold;
+  height: 48px;
+  background-color: #fdfdfd;
+  box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
+  -webkit-box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
+  div {
+    div {
+      a {
+        color: #b2bbc4;
+        line-height: 48px;
+        font-size: 13px;
+        text-decoration: none;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        text-transform: uppercase;
+        font-weight: 500;
+        &:hover {
+          color: #494949;
+        }
+        svg {
+          color: #b2bbc4;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
