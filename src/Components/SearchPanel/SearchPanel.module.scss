@@ -1,0 +1,37 @@
+.search_sm_devices {
+    position: absolute;
+    top: 0rem;
+    right: 0.1rem;
+    z-index: 0;
+    width: 4rem;
+  input {
+    width: 100%;
+    height: 48px;
+    border: none;
+    padding-left: 2.1rem;
+    color: #ffffff;
+    background-color: transparent;
+  }
+  span:nth-of-type(1) {
+    svg {
+      position: absolute;
+      font-size: 1.5rem;
+      left: 0.5rem;
+      top: 0.7rem;
+      color: #ffffff;
+      cursor: pointer;
+    }
+  }
+  span:nth-of-type(2) {
+    svg {
+      position: absolute;
+      font-size: 1.5rem;
+      right: 2rem;
+      top: 0.7rem;
+      color: #b2bbc4;
+      cursor: pointer;
+    }
+  }
+}
+
+

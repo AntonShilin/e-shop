@@ -1,7 +1,7 @@
 import * as React from "react";
 import submenu from "./Submenu.module.scss";
-import { FiSearch } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
+import SearchPanel from "../SearchPanel/SearchPanel";
 
 export interface ISubmenuProps {}
 
@@ -40,9 +40,7 @@ class Submenu extends React.Component<ISubmenuProps, State> {
             <NavLink to="#">shop all</NavLink>
           </div>
           <div className="col">
-            <NavLink to="#">
-              <FiSearch />
-            </NavLink>
+            <SearchPanel />
           </div>
         </div>
       </div>

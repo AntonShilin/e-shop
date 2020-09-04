@@ -1,26 +1,70 @@
 import * as React from "react";
+import searchpanel from "./SearchPanel.module.scss";
+import { MdClose } from "react-icons/md";
+import { FiSearch } from "react-icons/fi";
 
 export interface ISearchPanelProps {}
 
-export interface State {}
+export interface ISearchPanelState {
+  isOpen: boolean;
+}
 
-class SearchPanel extends React.Component<ISearchPanelProps, State> {
-    
+class SearchPanel extends React.Component<
+  ISearchPanelProps,
+  ISearchPanelState
+> {
+  searchInput: React.RefObject<HTMLDivElement>;
+  constructor(props: ISearchPanelProps) {
+    super(props);
+    this.state = {
+      isOpen: false,
+    };
+    this.searchInput = React.createRef();
+  }
+
+  private toggleSearchInput = (
+    elem: HTMLDivElement,
+    w: number,
+    color: string
+  ) => {
+    elem.style.transition = "width 1s";
+    elem.style.width = w + "rem";
+    if (color === "transparent") {
+      setTimeout(() => {
+        elem.style.backgroundColor = color;
+      }, 1000);
+    } else {
+      elem.style.backgroundColor = color;
+    }
+  };
+
+  public openSearchInput = () => {
+    this.toggleSearchInput(this.searchInput.current!, 30, "#494949");
+    this.setState({ isOpen: true });
+  };
+
+  public closeSearchInput = () => {
+    this.toggleSearchInput(this.searchInput.current!, 4, "transparent");
+    this.setState({ isOpen: false });
+  };
+
   render() {
     return (
-      <div className="row">
-        <div id="search_on_sm_devices" className="col-12 d-none d-lg-none">
-          <input
-            autoFocus={true}
-            type="text"
-            className="d-none d-lg-none search_on_sm_devices_input"
-          />
-          <button
-            className="d-none d-lg-none  search_on_sm_devices_btn"
-          >
-            &times;
-          </button>
-        </div>
+      <div className={searchpanel.search_sm_devices} ref={this.searchInput}>
+        <span
+          className={this.state.isOpen ? "d-block" : "d-none"}
+          onClick={this.closeSearchInput}
+        >
+          <MdClose />
+        </span>
+        <input
+          autoFocus={false}
+          type="text"
+          className="search_sm_devices_input"
+        />
+        <span onClick={this.openSearchInput}>
+          <FiSearch />
+        </span>
       </div>
     );
   }
