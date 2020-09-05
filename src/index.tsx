@@ -3,26 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { Store } from "redux";
-import configureStore, { IApplicationState } from "./Store/Store";
 import { Provider } from "react-redux";
-
-interface IProps {
-  store: Store<IApplicationState>
-}
-
-export const Root: React.SFC<IProps> = (props) => {
-  return (
-    <Provider store={props.store}>
-      <App />
-    </Provider>
-  );
-};
+import configureStore from "./Store/Store";
 
 const store = configureStore();
 
 ReactDOM.render(
-    <Root store={store} />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 );
 

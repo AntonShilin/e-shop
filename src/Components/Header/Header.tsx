@@ -6,16 +6,23 @@ import { NavLink } from "react-router-dom";
 import HeaderSearchPanel from "./HeaderSearchPanel/HeaderSearchPanel";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
-import { openHeaderSearchPanel } from "../../Actions/HeaderSearchPanelActions";
+import {
+  openHeaderSearchPanel,
+  toggleSmallScreenSubmenu,
+} from "../../Actions/HeaderSearchPanelActions";
+import SmallScreenSubmenu from "../SmallScreenSubmenu/SmallScreenSubmenu";
 
 export interface IHeaderProps {
-  isOpen: boolean;
+  isToggle: boolean;
+  openHeaderSearchPanel: typeof openHeaderSearchPanel;
+  toggleSmallScreenSubmenu: typeof toggleSmallScreenSubmenu;
 }
 
 export interface IHeaderState {}
 
 class Header extends React.Component<IHeaderProps, IHeaderState> {
   render() {
+    const {isToggle } = this.props;
     return (
       <>
         <div className="container-xl">
@@ -32,11 +39,17 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                 className={`${header.logo_small_devices} d-lg-none d-block`}
               >
                 R
-                <FaBars className="d-lg-none" />
               </NavLink>
+              <FaBars
+                className="d-lg-none"
+                onClick={()=>this.props.toggleSmallScreenSubmenu(isToggle)}
+              />
             </div>
             <div className="col-2">
-              <FiSearch className="d-lg-none d-block " />
+              <FiSearch
+                className="d-lg-none d-block"
+                onClick={this.props.openHeaderSearchPanel}
+              />
             </div>
             <div className="col-2">
               <NavLink to="#" className="d-none d-lg-block">
@@ -52,19 +65,21 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
           </nav>
         </div>
         <HeaderSearchPanel />
+       <SmallScreenSubmenu />
       </>
     );
   }
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
-  isOpen: state.headerSearchPanel.isOpen
+  isToggle: state.headerSearchPanel.isToggle,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    openHeaderSearchPanel: () => dispatch(openHeaderSearchPanel())
+    openHeaderSearchPanel: () => dispatch(openHeaderSearchPanel()),
+    toggleSmallScreenSubmenu: (value:boolean) => dispatch(toggleSmallScreenSubmenu(value)),
   };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

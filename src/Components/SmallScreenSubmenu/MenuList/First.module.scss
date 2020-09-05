@@ -1,0 +1,24 @@
+.item{
+    border-bottom: solid 1px #b2bbc4;
+    height: 6rem;
+    cursor: pointer;
+    &:hover{
+        background-color: #b2bbc4 !important;
+    }
+    span{
+        display: block;
+        text-align: end;
+        padding-right: 1rem;
+        padding-top: .5rem;
+        svg{
+            font-size: 1.3rem;
+        }
+    }
+    a{
+        display: block;
+        color: #494949;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+    }
+}
