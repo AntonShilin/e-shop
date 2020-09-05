@@ -27,7 +27,7 @@ class SearchPanel extends React.Component<
     w: number,
     color: string
   ) => {
-    elem.style.transition = "width 1s";
+    elem.style.transition = "width .7s";
     elem.style.width = w + "rem";
     if (color === "transparent") {
       setTimeout(() => {
@@ -39,7 +39,7 @@ class SearchPanel extends React.Component<
   };
 
   public openSearchInput = () => {
-    this.toggleSearchInput(this.searchInput.current!, 30, "#494949");
+    this.toggleSearchInput(this.searchInput.current!, 28, "#494949");
     this.setState({ isOpen: true });
   };
 

@@ -41,6 +41,9 @@ $height-submenu: 3.4375rem;
       margin-left: 1rem;
       font-size: 1.5rem;
       color: $color_grey;
+      &:hover{
+        color: black;
+      }
     }
   }
   div:nth-of-type(2) {
@@ -50,6 +53,9 @@ $height-submenu: 3.4375rem;
       font-size: 1.5rem;
       color: $color_grey;
       cursor: pointer;
+      &:hover{
+        color: black;
+      }
     }
   }
   div:nth-of-type(3) {
@@ -63,6 +69,9 @@ $height-submenu: 3.4375rem;
       color: $color_grey;
       margin: 0 auto;
       cursor: pointer;
+      &:hover{
+        color: black;
+      }
     }
   }
   div:nth-of-type(4) {

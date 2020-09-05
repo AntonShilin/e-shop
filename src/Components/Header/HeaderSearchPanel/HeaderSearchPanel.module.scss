@@ -1,0 +1,21 @@
+.header_search_panel_bg {
+  font-size: 16px !important;
+  position: relative;
+  input {
+    padding: 0 18px !important;
+    width: 100% !important;
+    background-color: #494949;
+    height: 54px;
+    border: none;
+  }
+  span {
+      position: absolute;
+      top: 0.8rem;
+      right: 1rem;
+      cursor: pointer;
+    svg {
+      fill: #ffffff;
+      font-size: 1.5rem;
+    }
+  }
+}

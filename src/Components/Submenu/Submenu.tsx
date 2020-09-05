@@ -1,7 +1,7 @@
 import * as React from "react";
 import submenu from "./Submenu.module.scss";
 import { NavLink } from "react-router-dom";
-import SearchPanel from "../SearchPanel/SearchPanel";
+import SearchPanel from "./SearchPanel/SearchPanel";
 
 export interface ISubmenuProps {}
 
