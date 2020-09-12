@@ -3,13 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.module.scss';
 import Header from "./Components/Header/Header";
 import { BrowserRouter } from 'react-router-dom';
-import Submenu from './Components/Submenu/Submenu';
+import LargeScreenSubmenu from './Components/LargeScreenSubmenu/LargeScreenSubmenu';
 
 function App() {
   return (
     <BrowserRouter>
     <Header/>
-      <Submenu />
+      <LargeScreenSubmenu />
     </BrowserRouter>
   );
 }

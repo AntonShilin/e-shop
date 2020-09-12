@@ -1,5 +1,5 @@
 import * as React from "react";
-import submenu from "./Submenu.module.scss";
+import submenu from "./LargeScreenSubmenu.module.scss";
 import { NavLink } from "react-router-dom";
 import SearchPanel from "./SearchPanel/SearchPanel";
 
@@ -7,7 +7,7 @@ export interface ISubmenuProps {}
 
 export interface State {}
 
-class Submenu extends React.Component<ISubmenuProps, State> {
+class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
   render() {
     return (
       <div className={`container-xl ${submenu.rootmenu} d-none d-lg-block`}>
@@ -48,4 +48,4 @@ class Submenu extends React.Component<ISubmenuProps, State> {
   }
 }
 
-export default Submenu;
+export default LargeScreenSubmenu;

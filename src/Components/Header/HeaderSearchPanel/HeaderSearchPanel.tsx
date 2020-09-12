@@ -19,11 +19,13 @@ class HeaderSearchPanel extends React.Component<
   render() {
     return (
       this.props.isOpen && (
-        <div className={searchpanel.header_search_panel_bg}>
-          <input autoFocus={true} type="text" />
-          <span onClick={this.props.closeHeaderSearchPanel}>
-            <MdClose />
-          </span>
+        <div className={searchpanel.header_search_panel_item}>
+          <div className={searchpanel.header_search_panel_bg}>
+            <input autoFocus={true} type="text" />
+            <span onClick={this.props.closeHeaderSearchPanel}>
+              <MdClose />
+            </span>
+          </div>
         </div>
       )
     );
