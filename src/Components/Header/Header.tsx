@@ -32,13 +32,13 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                 to="/home"
                 className={`${header.logo_lg_deivices} d-none d-lg-block`}
               >
-                Restock
+                Books Store
               </NavLink>
               <NavLink
                 to="/home"
                 className={`${header.logo_small_devices} d-lg-none d-block`}
               >
-                R
+                B
               </NavLink>
               <FaBars
                 className="d-lg-none"

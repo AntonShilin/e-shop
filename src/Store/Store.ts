@@ -1,10 +1,12 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import { headerSearchPanelReducer } from "../Reducers/HeaderSearchPanelReducer";
+import { mainStateReducer } from "../Reducers/MainStateReducer";
 
 
 const rootReducer = combineReducers({
-  headerSearchPanel: headerSearchPanelReducer
+  headerSearchPanel: headerSearchPanelReducer,
+  data:mainStateReducer
 });
 
 export type IApplicationState = ReturnType<typeof rootReducer>
