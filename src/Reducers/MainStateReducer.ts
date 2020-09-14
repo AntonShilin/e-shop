@@ -1,26 +1,28 @@
-import { IMainState, MainStateActions, GetDataResultsTypes } from "../Types/MainStateTypes";
+import {
+  IMainState,
+  MainStateActions,
+  GetDataResultsTypes,
+} from "../Types/MainStateTypes";
 
-  
-  const mainState: IMainState = {
-      data: null,
-      isLoading: false,
-      genres:["fairy tales"]
-  };
-  
-  export const mainStateReducer = (
-    state: IMainState = mainState,
-    action: MainStateActions
-  ) => {
-    switch (action.type) {
-        case GetDataResultsTypes.GETDATARESULTS: {
-            return {
-              ...state,
-              data: action.results,
-            };
-          }
-            
-      default:
-        return state;
+const mainState: IMainState = {
+  fable:  null,
+  isLoading: false,
+  genres: ["fable"],
+};
+
+export const mainStateReducer = (
+  state: IMainState = mainState,
+  action: MainStateActions
+): IMainState => {
+  switch (action.type) {
+    case GetDataResultsTypes.GETDATARESULTS: {
+      return {
+        ...state,
+          fable: action.results
+      };
     }
-  };
-  
+
+    default:
+      return state;
+  }
+};

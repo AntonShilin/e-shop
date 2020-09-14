@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
-import Genres from "./MenuList/Genres";
+import Genres from "./MenuList/Fable/Fable";
 import rootmenu from "./SmallScreenSubmenu.module.scss";
 
 export interface ISmallScreenSubmenuProps {

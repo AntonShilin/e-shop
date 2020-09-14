@@ -6,7 +6,7 @@ import { mainStateReducer } from "../Reducers/MainStateReducer";
 
 const rootReducer = combineReducers({
   headerSearchPanel: headerSearchPanelReducer,
-  data:mainStateReducer
+  allData:mainStateReducer
 });
 
 export type IApplicationState = ReturnType<typeof rootReducer>

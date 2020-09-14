@@ -1,26 +1,26 @@
 import * as React from "react";
-import first from "./Genres.module.scss";
+import f from "./Fable.module.scss";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import { IApplicationState } from "../../../Store/Store";
-import { getData } from "../../../Actions/MainStateActions";
+import { IApplicationState } from "../../../../Store/Store";
+import { getData } from "../../../../Actions/MainStateActions";
 import { connect } from "react-redux";
-import fairy from "../../../Media/Images/fairytales.jpg";
+import fableImg from "../../../../Media/Images/fable.jpg";
 
-export interface IFirstProps {
-  data: any | null;
+export interface IFableProps {
+  fable: any | null;
   isLoading: boolean;
   getData: typeof getData;
   genres: string[];
 }
 
-export interface IFirstState {
+export interface IFableState {
   isClose: boolean;
 }
 
-class Genres extends React.Component<IFirstProps, IFirstState> {
+class Fable extends React.Component<IFableProps, IFableState> {
   item: React.RefObject<HTMLDivElement>;
-  constructor(props: IFirstProps) {
+  constructor(props: IFableProps) {
     super(props);
     this.state = { isClose: true };
     this.item = React.createRef();
@@ -34,39 +34,38 @@ class Genres extends React.Component<IFirstProps, IFirstState> {
   showMoreInfo = () => {
     const node = this.item.current;
     this.state.isClose
-      ? (node!.style.height = "20rem")
+      ? (node!.style.height = "auto")
       : (node!.style.height = "0rem");
   };
 
   componentDidMount() {
-    if (this.props.data === null) {
+    if (this.props.fable === null) {
       this.props.getData();
     }
   }
 
   render() {
     const { isClose } = this.state;
-    const { genres, data } = this.props;
-
+    const { genres, fable } = this.props;
     return (
       <>
-        <div className={first.item}>
-          <span onClick={this.toggleBtn}>
+        <div className={f.item} onClick={this.toggleBtn}>
+          <span>
             {isClose ? <MdKeyboardArrowDown /> : <MdKeyboardArrowUp />}
           </span>
           <NavLink to="#">{genres[0]}</NavLink>
         </div>
-        <div className={first.item_more_info} ref={this.item}>
-          {data !== null && (
+        <div className={f.item_more_info} ref={this.item}>
+          {fable !== null && (
             <>
-              <div className={first.item_more_info_img}>
-                <img src={fairy} alt="img" />
+              <div className={f.item_more_info_img}>
+                <img src={fableImg} alt="img" />
+                <span>{`Shop ${genres[0]}`}</span>
+                <NavLink to="#">Shop All</NavLink>
               </div>
-              <div className={first.item_more_info_list}>
-                {data.items.map((book: any, i: number) => (
-                  <span key={i}>
-                    {book.volumeInfo.title}
-                  </span>
+              <div className={f.item_more_info_list}>
+                {fable.items.map((book: any, i: number) => (
+                  <span key={i}>{book.volumeInfo.title}</span>
                 ))}
               </div>
             </>
@@ -78,9 +77,9 @@ class Genres extends React.Component<IFirstProps, IFirstState> {
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
-  data: state.data.data,
-  isLoading: state.data.isLoading,
-  genres: state.data.genres,
+  fable: state.allData.fable,
+  isLoading: state.allData.isLoading,
+  genres: state.allData.genres,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -89,4 +88,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Genres);
+export default connect(mapStateToProps, mapDispatchToProps)(Fable);

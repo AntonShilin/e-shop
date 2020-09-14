@@ -34,11 +34,32 @@
   flex-direction: row;
   overflow: hidden;
   height: 0rem;
-  transition: height 0.7s;
   .item_more_info_img {
     margin: 0.5rem;
     width: 30%;
     overflow: hidden;
+    position: relative;
+     span {
+      width: 100%;
+      display: block;
+      position: absolute;
+      top: 30%;
+      text-align: center;
+      font-size: 2rem;
+    }
+    a {
+      width: 100%;
+      display: block;
+      position: absolute;
+      bottom: 30%;
+      text-align: center;
+      color: #b2bbc4;
+      font-size: 1.3rem;
+      text-decoration: none;
+      &:hover{
+        color: #323233 !important;
+      }
+    } 
   }
   .item_more_info_list {
     margin: 0.5rem;
@@ -47,8 +68,10 @@
       border: 1px solid #b2bbc4;
       margin: 0.25rem;
       display: inline-block;
+      padding: 0rem .1rem 0rem .1rem;
       &:hover {
         cursor: pointer;
+        background-color: #f1f5f8;
       }
     }
   }
@@ -60,6 +83,9 @@
     .item_more_info_img {
       margin: 0;
       width: 100%;
+      img{
+        width: 100%;
+      }
     }
     .item_more_info_list {
       margin: 0;

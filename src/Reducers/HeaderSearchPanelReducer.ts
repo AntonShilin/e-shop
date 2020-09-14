@@ -14,7 +14,7 @@ const headerSearchPanelState: IHeaderSearchPanelState = {
 export const headerSearchPanelReducer = (
   state: IHeaderSearchPanelState = headerSearchPanelState,
   action: HeaderSearchPanelActions
-) => {
+):IHeaderSearchPanelState => {
   switch (action.type) {
     case OpenHeaderSearchPanelTypes.OPENHEADERSEARCHPANEL: {
       return {

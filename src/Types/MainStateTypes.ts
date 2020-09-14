@@ -20,7 +20,7 @@ export interface IGetDataResultsAction {
 export type MainStateActions = IGetDataResultsAction | ILoadingAction;
 
 export interface IMainState {
-  data: any | null;
-    isLoading: boolean;
-    genres:string[]
+    fable: any | null;
+  isLoading: boolean;
+  genres: string[];
 }
