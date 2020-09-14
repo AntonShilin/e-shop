@@ -1,5 +1,8 @@
-export enum GetDataResultsTypes {
-  GETDATARESULTS = "GETDATARESULTS",
+export enum GetFableResultsTypes {
+  GETFABLERESULTS = "GETFABLERESULTS",
+}
+export enum GetBiographyResultsTypes {
+  GETBIOGRAPHYRESULTS = "GETBIOGRAPHYRESULTS",
 }
 
 export enum isLoadingTypes {
@@ -12,15 +15,23 @@ export interface ILoadingAction {
   type: isLoadingTypes.LOADING;
 }
 
-export interface IGetDataResultsAction {
-  type: GetDataResultsTypes.GETDATARESULTS;
+export interface IGetBiographyResultsAction {
+  type: GetBiographyResultsTypes.GETBIOGRAPHYRESULTS;
   results: null;
 }
 
-export type MainStateActions = IGetDataResultsAction | ILoadingAction;
+export interface IGetFableResultsAction {
+  type: GetFableResultsTypes.GETFABLERESULTS;
+  results: null;
+}
+
+export type MainStateActions =
+| IGetBiographyResultsAction
+  | IGetFableResultsAction
+  | ILoadingAction;
 
 export interface IMainState {
-    fable: any | null;
+  fable: any | null;
+  biography: any | null;
   isLoading: boolean;
-  genres: string[];
 }

@@ -1,25 +1,25 @@
 import * as React from "react";
-import f from "./Fable.module.scss";
+import b from "./Biography.module.scss";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../../../Store/Store";
-import { getFableBooks } from "../../../../Actions/MainStateActions";
+import { getBiographyBooks } from "../../../../Actions/MainStateActions";
 import { connect } from "react-redux";
-import fableImg from "../../../../Media/Images/fable.jpg";
+import biographyImg from "../../../../Media/Images/biography.jpg";
 
-export interface IFableProps {
-  fable: any | null;
+export interface IBiographyProps {
+    biography: any | null;
   isLoading: boolean;
-  getFableBooks: typeof getFableBooks;
+  getBiographyBooks: typeof getBiographyBooks;
 }
 
-export interface IFableState {
+export interface IBiographyState {
   isClose: boolean;
 }
 
-class Fable extends React.Component<IFableProps, IFableState> {
+class Biography extends React.Component<IBiographyProps, IBiographyState> {
   item: React.RefObject<HTMLDivElement>;
-  constructor(props: IFableProps) {
+  constructor(props: IBiographyProps) {
     super(props);
     this.state = { isClose: true };
     this.item = React.createRef();
@@ -38,32 +38,32 @@ class Fable extends React.Component<IFableProps, IFableState> {
   };
 
   componentDidMount() {
-    if (this.props.fable === null) {
-      this.props.getFableBooks();
+    if (this.props.biography === null) {
+      this.props.getBiographyBooks();
     }
   }
 
   render() {
     const { isClose } = this.state;
-    const {fable } = this.props;
+    const {  biography } = this.props;
     return (
       <>
-        <div className={f.item} onClick={this.toggleBtn}>
+        <div className={b.item} onClick={this.toggleBtn}>
           <span>
             {isClose ? <MdKeyboardArrowDown /> : <MdKeyboardArrowUp />}
           </span>
-          <NavLink to="#">Fable</NavLink>
+          <NavLink to="#">Biography</NavLink>
         </div>
-        <div className={f.item_more_info} ref={this.item}>
-          {fable !== null && (
+        <div className={b.item_more_info} ref={this.item}>
+          {biography !== null && (
             <>
-              <div className={f.item_more_info_img}>
-                <img src={fableImg} alt="img" />
-                <span>Shop Fable</span>
+              <div className={b.item_more_info_img}>
+                <img src={biographyImg} alt="img" />
+                <span>Shop Biography</span>
                 <NavLink to="#">Shop All</NavLink>
               </div>
-              <div className={f.item_more_info_list}>
-                {fable.items.map((book: any, i: number) => (
+              <div className={b.item_more_info_list}>
+                {biography.items.map((book: any, i: number) => (
                   <span key={i}>{book.volumeInfo.title}</span>
                 ))}
               </div>
@@ -76,14 +76,14 @@ class Fable extends React.Component<IFableProps, IFableState> {
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
-  fable: state.allGenres.fable,
+  biography: state.allGenres.biography,
   isLoading: state.allGenres.isLoading,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getFableBooks: () => dispatch(getFableBooks()),
+    getBiographyBooks: () => dispatch(getBiographyBooks()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Fable);
+export default connect(mapStateToProps, mapDispatchToProps)(Biography);

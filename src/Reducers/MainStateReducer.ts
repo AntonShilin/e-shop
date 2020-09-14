@@ -1,13 +1,14 @@
 import {
   IMainState,
   MainStateActions,
-  GetDataResultsTypes,
+  GetFableResultsTypes,
+  GetBiographyResultsTypes,
 } from "../Types/MainStateTypes";
 
 const mainState: IMainState = {
   fable:  null,
+  biography:  null,
   isLoading: false,
-  genres: ["fable"],
 };
 
 export const mainStateReducer = (
@@ -15,10 +16,17 @@ export const mainStateReducer = (
   action: MainStateActions
 ): IMainState => {
   switch (action.type) {
-    case GetDataResultsTypes.GETDATARESULTS: {
+    case GetFableResultsTypes.GETFABLERESULTS: {
       return {
         ...state,
           fable: action.results
+      };
+    }
+      
+    case GetBiographyResultsTypes.GETBIOGRAPHYRESULTS: {
+      return {
+        ...state,
+        biography: action.results
       };
     }
 

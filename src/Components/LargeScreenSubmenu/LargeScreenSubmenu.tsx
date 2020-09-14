@@ -13,10 +13,10 @@ class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
       <div className={`container-xl ${submenu.rootmenu} d-none d-lg-block`}>
         <div className="row">
           <div className="col">
-            <NavLink to="#">a</NavLink>
+            <NavLink to="#">Fable</NavLink>
           </div>
           <div className="col">
-            <NavLink to="#">b</NavLink>
+            <NavLink to="#">Biography</NavLink>
           </div>
           <div className="col">
             <NavLink to="#">c</NavLink>
