@@ -1,9 +1,8 @@
 import * as React from "react";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
-import Genres from "./MenuList/Fable/Fable";
-import rootmenu from "./SmallScreenSubmenu.module.scss";
-import Biography from "./MenuList/Biography/Biography";
+import Genres from "./MenuList/Genres/Genres";
+import s from "./SmallScreenSubmenu.module.scss";
 
 export interface ISmallScreenSubmenuProps {
   isToggle: boolean;
@@ -18,9 +17,8 @@ class SmallScreenSubmenu extends React.Component<
   render() {
     return (
       this.props.isToggle && (
-        <div className={rootmenu.menu_list}>
+        <div className={s.menu_list}>
           <Genres />
-          <Biography />
         </div>
       )
     );

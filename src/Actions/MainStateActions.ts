@@ -1,13 +1,14 @@
-import { Dispatch } from "redux";
 import {
   GetFableResultsTypes,
   ILoadingAction,
   isLoadingTypes,
   GetBiographyResultsTypes,
+  IGetFableResultsAction,
+  IGetBiographyResultsAction,
 } from "../Types/MainStateTypes";
 
 export const getFableBooks = () => {
-  return (dispatch: Dispatch) => {
+  return (dispatch: (arg0: ILoadingAction|IGetFableResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
       "https://www.googleapis.com/books/v1/volumes?q=fairytales&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
@@ -29,10 +30,10 @@ export const getFableBooks = () => {
 };
 
 export const getBiographyBooks = () => {
-  return (dispatch: Dispatch) => {
+  return (dispatch: (arg0: ILoadingAction|IGetBiographyResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=biography&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
+      "https://www.googleapis.com/books/v1/volumes?q=country&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
     )
       .then((response) => {
         if (!response.ok) {
@@ -49,6 +50,8 @@ export const getBiographyBooks = () => {
       );
   };
 };
+
+
 
 /* preload page */
 const waitingFewMinutes = (): ILoadingAction => {

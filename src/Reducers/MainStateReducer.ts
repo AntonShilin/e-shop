@@ -6,9 +6,11 @@ import {
 } from "../Types/MainStateTypes";
 
 const mainState: IMainState = {
-  fable:  null,
-  biography:  null,
+  allGenresData:[],
+  fable: null,
+  biography: null,
   isLoading: false,
+  genresName:["fable","biography"]
 };
 
 export const mainStateReducer = (
@@ -17,16 +19,26 @@ export const mainStateReducer = (
 ): IMainState => {
   switch (action.type) {
     case GetFableResultsTypes.GETFABLERESULTS: {
+      console.log('1')
+      let newarr: any[] = [];
+      if (action.results!==null) {
+        newarr = [...state.allGenresData, action.results];
+      }
       return {
         ...state,
-          fable: action.results
+        allGenresData: newarr
       };
     }
-      
+
     case GetBiographyResultsTypes.GETBIOGRAPHYRESULTS: {
+      console.log('2')
+      let newarr: any[] = [];
+      if (action.results !== null) {
+        newarr = [...state.allGenresData, action.results];
+      }
       return {
         ...state,
-        biography: action.results
+        allGenresData:newarr
       };
     }
 

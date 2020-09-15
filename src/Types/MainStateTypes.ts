@@ -17,21 +17,23 @@ export interface ILoadingAction {
 
 export interface IGetBiographyResultsAction {
   type: GetBiographyResultsTypes.GETBIOGRAPHYRESULTS;
-  results: null;
+  results: null | any;
 }
 
 export interface IGetFableResultsAction {
   type: GetFableResultsTypes.GETFABLERESULTS;
-  results: null;
+  results: null | any;
 }
 
 export type MainStateActions =
-| IGetBiographyResultsAction
+  | IGetBiographyResultsAction
   | IGetFableResultsAction
   | ILoadingAction;
 
 export interface IMainState {
-  fable: any | null;
-  biography: any | null;
+  allGenresData: any[];
+  fable: null | any;
+  biography: null | any;
   isLoading: boolean;
+  genresName:string[]
 }

@@ -2,6 +2,7 @@
   border-bottom: solid 1px #b2bbc4;
   height: 6rem;
   cursor: pointer;
+  position: relative;
   &:hover {
     background-color: #b2bbc4 !important;
     a {
@@ -9,7 +10,8 @@
     }
   }
   span {
-    display: block;
+    width: 100%;
+    display: inline-block;
     text-align: end;
     padding-right: 1rem;
     padding-top: 0.5rem;
@@ -39,7 +41,11 @@
     width: 30%;
     overflow: hidden;
     position: relative;
-     span {
+    img{
+      width: 100%;
+      height: 100%;
+    }
+    span {
       width: 100%;
       display: block;
       position: absolute;
@@ -57,10 +63,10 @@
       color: #b2bbc4;
       font-size: 1.3rem;
       text-decoration: none;
-      &:hover{
+      &:hover {
         color: #323233 !important;
       }
-    } 
+    }
   }
   .item_more_info_list {
     margin: 0.5rem;
@@ -69,7 +75,7 @@
       border: 1px solid #b2bbc4;
       margin: 0.25rem;
       display: inline-block;
-      padding: 0rem .1rem 0rem .1rem;
+      padding: 0rem 0.1rem 0rem 0.1rem;
       &:hover {
         cursor: pointer;
         background-color: #f1f5f8;
@@ -84,7 +90,7 @@
     .item_more_info_img {
       margin: 0;
       width: 100%;
-      img{
+      img {
         width: 100%;
       }
     }
