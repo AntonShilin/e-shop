@@ -19,7 +19,6 @@ export const mainStateReducer = (
 ): IMainState => {
   switch (action.type) {
     case GetFableResultsTypes.GETFABLERESULTS: {
-      console.log('1')
       let newarr: any[] = [];
       if (action.results!==null) {
         newarr = [...state.allGenresData, action.results];
@@ -31,7 +30,6 @@ export const mainStateReducer = (
     }
 
     case GetBiographyResultsTypes.GETBIOGRAPHYRESULTS: {
-      console.log('2')
       let newarr: any[] = [];
       if (action.results !== null) {
         newarr = [...state.allGenresData, action.results];

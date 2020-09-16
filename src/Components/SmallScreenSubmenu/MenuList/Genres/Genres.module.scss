@@ -37,12 +37,11 @@
   overflow: hidden;
   height: 0rem;
   .item_more_info_img {
-    margin: 0.5rem;
+    padding: 0.5rem;
     width: 30%;
     overflow: hidden;
     position: relative;
     img{
-      width: 100%;
       height: 100%;
     }
     span {
@@ -52,7 +51,8 @@
       top: 30%;
       text-align: center;
       font-size: 2rem;
-      color: #ffffff;
+      color: #494949;
+      font-weight: 500;
     }
     a {
       width: 100%;
@@ -84,7 +84,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .item_more_info {
     flex-direction: column;
     .item_more_info_img {
