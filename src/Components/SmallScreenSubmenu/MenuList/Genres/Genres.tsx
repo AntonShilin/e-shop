@@ -6,19 +6,29 @@ import { connect } from "react-redux";
 import {
   getBiographyBooks,
   getFableBooks,
+  getStoryBooks,
+  getBestSellersBooks,
+  getFictionBooks,
+  getArtBooks,
+  getLifestyleBooks,
 } from "../../../../Actions/MainStateActions";
 import Arrow from "../../../Arrow/Arrow";
-import defaultImg from "../../../../Media/Images/default.jpg";
 
 export interface IGenresProps {
   allGenresData: null | any;
   isLoading: boolean;
+  genresName: string[];
   getBiographyBooks: typeof getBiographyBooks;
   getFableBooks: typeof getFableBooks;
-  genresName: string[];
+  getStoryBooks: typeof getStoryBooks;
+  getBestSellersBooks: typeof getBestSellersBooks;
+  getFictionBooks: typeof getFictionBooks;
+  getArtBooks: typeof getArtBooks;
+  getLifestyleBooks: typeof getLifestyleBooks;
 }
 
-export interface IGenresState {}
+export interface IGenresState {
+}
 
 class Genres extends React.Component<IGenresProps, IGenresState> {
   arrItem: HTMLDivElement[];
@@ -43,6 +53,11 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
   componentDidMount() {
     this.props.getBiographyBooks();
     this.props.getFableBooks();
+    this.props.getStoryBooks();
+    this.props.getBestSellersBooks();
+    this.props.getFictionBooks();
+    this.props.getArtBooks();
+    this.props.getLifestyleBooks();
   }
 
   render() {
@@ -53,7 +68,7 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
         {genresName.map((item, i: number) => (
           <div key={i}>
             <div className={b.item} onClick={() => this.toggleGenreBooks(i)}>
-              <Arrow />
+             <Arrow />
               <NavLink to="#">{genresName[i]}</NavLink>
             </div>
             <div className={b.item_more_info} ref={this.setArrElem}>
@@ -89,6 +104,11 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     getBiographyBooks: () => dispatch(getBiographyBooks()),
     getFableBooks: () => dispatch(getFableBooks()),
+    getStoryBooks: () => dispatch(getStoryBooks()),
+    getBestSellersBooks: () => dispatch(getBestSellersBooks()),
+    getFictionBooks: () => dispatch(getFictionBooks()),
+    getArtBooks: () => dispatch(getArtBooks()),
+    getLifestyleBooks: () => dispatch(getLifestyleBooks()),
   };
 };
 

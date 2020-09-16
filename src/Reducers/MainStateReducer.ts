@@ -3,14 +3,17 @@ import {
   MainStateActions,
   GetFableResultsTypes,
   GetBiographyResultsTypes,
+  GetStoryResultsTypes,
+  GetBestsellersResultsTypes,
+  GetFictionResultsTypes,
+  GetArtResultsTypes,
+  GetLifestyleResultsTypes,
 } from "../Types/MainStateTypes";
 
 const mainState: IMainState = {
-  allGenresData:[],
-  fable: null,
-  biography: null,
+  allGenresData: [],
   isLoading: false,
-  genresName:["fable","biography"]
+  genresName: ["fable", "biography", "story", "bestsellers", "fiction", "art","lifestyle"],
 };
 
 export const mainStateReducer = (
@@ -20,12 +23,12 @@ export const mainStateReducer = (
   switch (action.type) {
     case GetFableResultsTypes.GETFABLERESULTS: {
       let newarr: any[] = [];
-      if (action.results!==null) {
+      if (action.results !== null) {
         newarr = [...state.allGenresData, action.results];
       }
       return {
         ...state,
-        allGenresData: newarr
+        allGenresData: newarr,
       };
     }
 
@@ -36,7 +39,62 @@ export const mainStateReducer = (
       }
       return {
         ...state,
-        allGenresData:newarr
+        allGenresData: newarr,
+      };
+    }
+
+    case GetStoryResultsTypes.GETSTORYRESULTS: {
+      let newarr: any[] = [];
+      if (action.results !== null) {
+        newarr = [...state.allGenresData, action.results];
+      }
+      return {
+        ...state,
+        allGenresData: newarr,
+      };
+    }
+
+    case GetBestsellersResultsTypes.GETBESTSELLERSRESULTS: {
+      let newarr: any[] = [];
+      if (action.results !== null) {
+        newarr = [...state.allGenresData, action.results];
+      }
+      return {
+        ...state,
+        allGenresData: newarr,
+      };
+    }
+
+    case GetFictionResultsTypes.GETFICTIONRESULTS: {
+      let newarr: any[] = [];
+      if (action.results !== null) {
+        newarr = [...state.allGenresData, action.results];
+      }
+      return {
+        ...state,
+        allGenresData: newarr,
+      };
+    }
+
+    case GetArtResultsTypes.GETARTRESULTS: {
+      let newarr: any[] = [];
+      if (action.results !== null) {
+        newarr = [...state.allGenresData, action.results];
+      }
+      return {
+        ...state,
+        allGenresData: newarr,
+      };
+    }
+      
+    case GetLifestyleResultsTypes.GETLIFESTYLERESULTS: {
+      let newarr: any[] = [];
+      if (action.results !== null) {
+        newarr = [...state.allGenresData, action.results];
+      }
+      return {
+        ...state,
+        allGenresData: newarr,
       };
     }
 

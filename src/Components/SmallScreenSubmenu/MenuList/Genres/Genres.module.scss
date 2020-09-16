@@ -25,7 +25,7 @@
     text-decoration: none;
     text-align: center;
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     line-height: 2rem;
   }
@@ -69,13 +69,13 @@
     }
   }
   .item_more_info_list {
-    margin: 0.5rem;
+    padding: 0.5rem;
     width: 70%;
     span {
       border: 1px solid #b2bbc4;
       margin: 0.25rem;
       display: inline-block;
-      padding: 0rem 0.1rem 0rem 0.1rem;
+      padding: 0rem 0.25rem 0rem 0.25rem;
       &:hover {
         cursor: pointer;
         background-color: #f1f5f8;

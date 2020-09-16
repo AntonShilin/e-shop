@@ -19,22 +19,19 @@ class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
             <NavLink to="#">Biography</NavLink>
           </div>
           <div className="col">
-            <NavLink to="#">c</NavLink>
+            <NavLink to="#">Story</NavLink>
           </div>
           <div className="col">
-            <NavLink to="#">supreme</NavLink>
+            <NavLink to="#">Bestsellers</NavLink>
           </div>
           <div className="col">
-            <NavLink to="#">apparel</NavLink>
+            <NavLink to="#">Fiction</NavLink>
           </div>
           <div className="col">
-            <NavLink to="#">accessories</NavLink>
+            <NavLink to="#">Art</NavLink>
           </div>
           <div className="col">
-            <NavLink to="#">new arival</NavLink>
-          </div>
-          <div className="col">
-            <NavLink to="#">gift cards</NavLink>
+            <NavLink to="#">Lifestyle</NavLink>
           </div>
           <div className="col">
             <NavLink to="#">shop all</NavLink>
