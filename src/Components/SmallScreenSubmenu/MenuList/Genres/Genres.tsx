@@ -3,32 +3,15 @@ import b from "./Genres.module.scss";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../../../Store/Store";
 import { connect } from "react-redux";
-import {
-  getBiographyBooks,
-  getFableBooks,
-  getStoryBooks,
-  getBestSellersBooks,
-  getFictionBooks,
-  getArtBooks,
-  getLifestyleBooks,
-} from "../../../../Actions/MainStateActions";
 import Arrow from "../../../Arrow/Arrow";
 
 export interface IGenresProps {
   allGenresData: null | any;
   isLoading: boolean;
   genresName: string[];
-  getBiographyBooks: typeof getBiographyBooks;
-  getFableBooks: typeof getFableBooks;
-  getStoryBooks: typeof getStoryBooks;
-  getBestSellersBooks: typeof getBestSellersBooks;
-  getFictionBooks: typeof getFictionBooks;
-  getArtBooks: typeof getArtBooks;
-  getLifestyleBooks: typeof getLifestyleBooks;
 }
 
-export interface IGenresState {
-}
+export interface IGenresState {}
 
 class Genres extends React.Component<IGenresProps, IGenresState> {
   arrItem: HTMLDivElement[];
@@ -39,26 +22,16 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
 
   toggleGenreBooks = (i: number) => {
     const node = this.arrItem[i];
-    if (node.style.height === "auto") {
-      node.style.height = "0rem";
-    } else {
-      node.style.height = "auto";
-    }
+    node.style.height === "auto"
+      ? (node.style.height = "0rem")
+      : (node.style.height = "auto")
   };
 
-  private setArrElem = (node: HTMLDivElement) => {
+  private getArrayOfGenres = (node: HTMLDivElement) => {
     this.arrItem.push(node);
   };
 
-  componentDidMount() {
-    this.props.getBiographyBooks();
-    this.props.getFableBooks();
-    this.props.getStoryBooks();
-    this.props.getBestSellersBooks();
-    this.props.getFictionBooks();
-    this.props.getArtBooks();
-    this.props.getLifestyleBooks();
-  }
+ 
 
   render() {
     const { allGenresData, genresName } = this.props;
@@ -68,10 +41,10 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
         {genresName.map((item, i: number) => (
           <div key={i}>
             <div className={b.item} onClick={() => this.toggleGenreBooks(i)}>
-             <Arrow />
+              <Arrow />
               <NavLink to="#">{genresName[i]}</NavLink>
             </div>
-            <div className={b.item_more_info} ref={this.setArrElem}>
+            <div className={b.item_more_info} ref={this.getArrayOfGenres}>
               <div className={b.item_more_info_img}>
                 <img
                   src={require(`../../../../Media/Images/${genresName[i]}.jpg`)}
@@ -102,13 +75,7 @@ const mapStateToProps = (state: IApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getBiographyBooks: () => dispatch(getBiographyBooks()),
-    getFableBooks: () => dispatch(getFableBooks()),
-    getStoryBooks: () => dispatch(getStoryBooks()),
-    getBestSellersBooks: () => dispatch(getBestSellersBooks()),
-    getFictionBooks: () => dispatch(getFictionBooks()),
-    getArtBooks: () => dispatch(getArtBooks()),
-    getLifestyleBooks: () => dispatch(getLifestyleBooks()),
+
   };
 };
 
