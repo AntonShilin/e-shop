@@ -1,6 +1,5 @@
 import * as React from "react";
 import s from "./Slideshow.module.scss";
-import letter from "../../Media/Images/letter.png";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
 
@@ -8,9 +7,59 @@ export interface ISlideshowProps {
   genresName: string[];
 }
 
-export interface State {}
+export interface ISlideshowState {
+  matrix: number[][][];
+}
 
-class Slideshow extends React.Component<ISlideshowProps, State> {
+class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
+  images: HTMLImageElement[];
+  constructor(props: ISlideshowProps) {
+    super(props);
+    this.state = {
+      matrix: [
+        [[1, 1, -1], [-105, 0, 105], [3000]],
+        [[-1, 1, 1], [105, -105, 0], [6000]],
+        [[1, -1, 1], [0, 105, -105], [9000]],
+      ],
+    };
+    this.images = [];
+  }
+
+  private getArrayOfImages = (node: HTMLImageElement) => {
+    this.images.push(node);
+  };
+
+  public settingSliderValues = (
+    arr0: number[],
+    arr1: number[],
+    arr2: number[]
+  ) => {
+    this.images.map((img, i) => {
+      this.images[i].style.zIndex = arr0[i].toString();
+      this.images[i].style.left = `${arr1[i]}%`;
+    });
+  };
+
+  public movingImages = () => {
+    const { matrix } = this.state;
+    setTimeout(() => {
+      this.settingSliderValues(matrix[0][0], matrix[0][1], matrix[0][2]);
+    }, 3000);
+    setTimeout(() => {
+      this.settingSliderValues(matrix[1][0], matrix[1][1], matrix[1][2]);
+    }, 6000);
+    setTimeout(() => {
+      this.settingSliderValues(matrix[2][0], matrix[2][1], matrix[2][2]);
+    }, 9000);
+    setTimeout(() => {
+      this.movingImages();
+    }, 9100);
+  };
+
+  componentDidMount() {
+    this.movingImages();
+  }
+
   render() {
     const { genresName } = this.props;
 
@@ -18,17 +67,20 @@ class Slideshow extends React.Component<ISlideshowProps, State> {
       <div className={`container-xl ${s.slider_bg}`}>
         <div className="row">
           <div className="col">
-              {genresName.map(
-                (name: any, k: number) =>
-                  k < 3 && (
-                      <img key={k}
-                        src={require(`../../Media/Images/${name}.jpg`)}
-                        alt="name"
-                      />
-                  )
-              )}
+            {genresName.map(
+              (name: any, k: number) =>
+                k < 3 && (
+                  <img
+                    key={k}
+                    ref={this.getArrayOfImages}
+                    src={require(`../../Media/Images/${name}.jpg`)}
+                    alt="name"
+                  />
+                )
+            )}
           </div>
         </div>
+        <div className="row">dsadsadss</div>
       </div>
     );
   }
