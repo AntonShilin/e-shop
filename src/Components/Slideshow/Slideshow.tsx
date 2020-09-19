@@ -17,9 +17,18 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
     super(props);
     this.state = {
       matrix: [
-        [[1, 1, -1], [-105, 0, 105], [3000]],
-        [[-1, 1, 1], [105, -105, 0], [6000]],
-        [[1, -1, 1], [0, 105, -105], [9000]],
+        [
+          [1, 1, -1],
+          [-105, 0, 105],
+        ],
+        [
+          [-1, 1, 1],
+          [105, -105, 0],
+        ],
+        [
+          [1, -1, 1],
+          [0, 105, -105],
+        ],
       ],
     };
     this.images = [];
@@ -29,11 +38,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
     this.images.push(node);
   };
 
-  public settingSliderValues = (
-    arr0: number[],
-    arr1: number[],
-    arr2: number[]
-  ) => {
+  public settingSliderValues = (arr0: number[], arr1: number[]) => {
     this.images.map((img, i) => {
       this.images[i].style.zIndex = arr0[i].toString();
       this.images[i].style.left = `${arr1[i]}%`;
@@ -43,13 +48,13 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
   public movingImages = () => {
     const { matrix } = this.state;
     setTimeout(() => {
-      this.settingSliderValues(matrix[0][0], matrix[0][1], matrix[0][2]);
+      this.settingSliderValues(matrix[0][0], matrix[0][1]);
     }, 3000);
     setTimeout(() => {
-      this.settingSliderValues(matrix[1][0], matrix[1][1], matrix[1][2]);
+      this.settingSliderValues(matrix[1][0], matrix[1][1]);
     }, 6000);
     setTimeout(() => {
-      this.settingSliderValues(matrix[2][0], matrix[2][1], matrix[2][2]);
+      this.settingSliderValues(matrix[2][0], matrix[2][1]);
     }, 9000);
     setTimeout(() => {
       this.movingImages();
