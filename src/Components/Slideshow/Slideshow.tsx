@@ -72,6 +72,8 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
       <div className={`container-xl ${s.slider_bg}`}>
         <div className="row">
           <div className="col">
+            <div>
+            <span>B</span>
             {genresName.map(
               (name: any, k: number) =>
                 k < 3 && (
@@ -82,10 +84,10 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
                     alt="name"
                   />
                 )
-            )}
+              )}
+              </div>
           </div>
         </div>
-        <div className="row">dsadsadss</div>
       </div>
     );
   }

@@ -3,34 +3,40 @@
   div {
     div {
       padding-top: 5rem;
-      height: 100vh;
-      border: 1px solid green;
-      position: relative;
-      background-color: rgb(152, 209, 45);
-      img:nth-of-type(1) {
-        padding: 1rem;
-        width: 100%;
-        height: auto;
-        position: absolute;
-        transition: left 1s;
-        left: 0%;
-      }
-      img:nth-of-type(2) {
-        padding: 1rem;
-        position: absolute;
-        width: 100%;
-        height: auto;
-        transition: left 1s;
-        left: 105%;
-      }
-
-      img:nth-of-type(3) {
-        padding: 1rem;
-        position: absolute;
-        width: 100%;
-        height: auto;
-        transition: left 1s;
-        left: 215%;
+      div {
+        span {
+          position: absolute;
+          top: 0%;
+          left: 15%;
+          font-size: 100vw;
+          font-weight: 800;
+          color: #f7f7f8;
+        }
+        padding-top: 0rem;
+        height: 100vh;
+        position: relative;
+        background-color: white;
+        img:nth-of-type(1) {
+          width: 100%;
+          height: auto;
+          position: absolute;
+          transition: left 1s;
+          left: 0%;
+        }
+        img:nth-of-type(2) {
+          position: absolute;
+          width: 100%;
+          height: auto;
+          transition: left 1s;
+          left: 105%;
+        }
+        img:nth-of-type(3) {
+          position: absolute;
+          width: 100%;
+          height: auto;
+          transition: left 1s;
+          left: 215%;
+        }
       }
     }
   }
