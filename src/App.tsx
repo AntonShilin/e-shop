@@ -5,6 +5,7 @@ import Header from "./Components/Header/Header";
 import { BrowserRouter } from "react-router-dom";
 import LargeScreenSubmenu from "./Components/LargeScreenSubmenu/LargeScreenSubmenu";
 import Slideshow from "./Components/Slideshow/Slideshow";
+import Centerband from "./Components/Centerband/Centerband";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <LargeScreenSubmenu />
       <Slideshow />
+      <Centerband/>
     </BrowserRouter>
   );
 }

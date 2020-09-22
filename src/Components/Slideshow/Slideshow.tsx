@@ -62,7 +62,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
   };
 
   componentDidMount() {
-    this.movingImages();
+    // this.movingImages();
   }
 
   render() {
@@ -73,7 +73,6 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
         <div className="row">
           <div className="col">
             <div>
-            <span>B</span>
             {genresName.map(
               (name: any, k: number) =>
                 k < 3 && (
