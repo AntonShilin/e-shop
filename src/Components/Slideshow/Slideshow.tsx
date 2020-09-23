@@ -2,6 +2,7 @@ import * as React from "react";
 import s from "./Slideshow.module.scss";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 export interface ISlideshowProps {
   genresName: string[];
@@ -52,17 +53,17 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
     }, 3000);
     setTimeout(() => {
       this.settingSliderValues(matrix[1][0], matrix[1][1]);
-    }, 6000);
+    }, 8000);
     setTimeout(() => {
       this.settingSliderValues(matrix[2][0], matrix[2][1]);
-    }, 9000);
+    }, 12000);
     setTimeout(() => {
       this.movingImages();
-    }, 9100);
+    }, 12100);
   };
 
   componentDidMount() {
-    // this.movingImages();
+    this.movingImages();
   }
 
   render() {
@@ -72,19 +73,22 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
       <div className={`container-xl ${s.slider_bg}`}>
         <div className="row">
           <div className="col">
-            <div>
-            {genresName.map(
-              (name: any, k: number) =>
-                k < 3 && (
-                  <img
-                    key={k}
-                    ref={this.getArrayOfImages}
-                    src={require(`../../Media/Images/${name}.jpg`)}
-                    alt="name"
-                  />
-                )
+           
+              {genresName.map(
+                (name: any, k: number) =>
+                  k < 3 && (
+                    <div ref={this.getArrayOfImages}>
+                      <img
+                        key={k}
+                        src={require(`../../Media/Images/${name}.png`)}
+                        alt="name"
+                      />
+                      <h1>{`${name} books`}</h1>
+                      <NavLink to="#">Shop now</NavLink>
+                    </div>
+                  )
               )}
-              </div>
+        
           </div>
         </div>
       </div>

@@ -1,33 +1,151 @@
 .slider_bg {
-  overflow: hidden;
   div {
+    overflow: hidden;
+
     div {
       padding-top: 5rem;
-      div {
+      height: 45rem;
+      position: relative;
+      background-color: white;
+      div:nth-of-type(1) {
         padding-top: 0rem;
-        height: 100vh;
-        position: relative;
-        background-color: white;
-        img:nth-of-type(1) {
-          width: 100%;
-          max-height: 39rem;
-          position: absolute;
-          transition: left 1s;
-          left: 0%;
+        position: absolute;
+        transition: left 1s;
+        left: 0%;
+        width: 100%;
+        img {
+          max-width: 100%;
         }
-        img:nth-of-type(2) {
+        h1{
+          right: 15%;
+          bottom: 37%;
           position: absolute;
-          width: 100%;
-          max-height: 39rem;
-          transition: left 1s;
-          left: 105%;
+          text-align: center;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #494949;
+          background-color: white;
         }
-        img:nth-of-type(3) {
+        a {
+          right: 20%;
+          bottom: 25%;
           position: absolute;
-          width: 100%;
+          display: block;
+          border: 1px solid #494949;
+          color: #494949;
+          font-size: 1rem;
+          height: 48px;
+          line-height: 46px !important;
+          width: 156px;
+          text-align: center;
+          font-weight: 500;
+          text-decoration: none;
+          text-transform: uppercase;
+          background-color: rgba(255, 255, 255, 0.7);
+          &:hover{
+            color: white !important;
+            background-color:  #494949 !important;
+          }
+        }
+      }
+      div:nth-of-type(2) {
+        padding-top: 0rem;
+        width: 100%;
+        transition: left 1s;
+        left: 105%;
+        position: absolute;
+        img {
+          max-width: 100%;
           max-height: 39rem;
-          transition: left 1s;
-          left: 215%;
+        }
+        h1{
+          right: 15%;
+          bottom: 37%;
+          position: absolute;
+          text-align: center;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #494949;
+          background-color: white;
+        }
+        a {
+          right: 20%;
+          bottom: 25%;
+          position: absolute;
+          display: block;
+          border: 1px solid #494949;
+          color: #494949;
+          font-size: 1rem;
+          height: 48px;
+          line-height: 46px !important;
+          width: 156px;
+          text-align: center;
+          font-weight: 500;
+          text-decoration: none;
+          text-transform: uppercase;
+          background-color: rgba(255, 255, 255, 0.7);
+          &:hover{
+            color: white !important;
+            background-color:  #494949 !important;
+          }
+        }
+      }
+      div:nth-of-type(3) {
+        padding-top: 0rem;
+        width: 100%;
+        position: absolute;
+        left: 215%;
+        transition: left 1s;
+        img {
+          max-width: 100%;
+          max-height: 39rem;
+        }
+        h1{
+          right: 15%;
+          bottom: 37%;
+          position: absolute;
+          text-align: center;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #494949;
+          background-color: white;
+        }
+        a {
+          right: 20%;
+          bottom: 25%;
+          position: absolute;
+          display: block;
+          border: 1px solid #494949;
+          color: #494949;
+          font-size: 1rem;
+          height: 48px;
+          line-height: 46px !important;
+          width: 156px;
+          text-align: center;
+          font-weight: 500;
+          text-decoration: none;
+          text-transform: uppercase;
+          background-color: rgba(255, 255, 255, 0.7);
+          &:hover{
+            color: white !important;
+            background-color:  #494949 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .slider_bg {
+    div {
+      div {
+        div {
+          //  height: 70vh !important;
+          div {
+            a {
+            }
+          }
         }
       }
     }

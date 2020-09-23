@@ -47,7 +47,7 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
             <div className={b.item_more_info} ref={this.getArrayOfGenres}>
               <div className={b.item_more_info_img}>
                 <img
-                  src={require(`../../../../Media/Images/${genresName[i]}.jpg`)}
+                  src={require(`../../../../Media/Images/${genresName[i]}.png`)}
                   alt="img"
                 />
                 <span>Shop {genresName[i]}</span>

@@ -15,10 +15,10 @@ class Centerband extends React.Component<ICenterbandProps, State> {
     return (
       <div className="container-xl">
         <div className={`row ${c.center_band}`}>
-          <div className="col-lg-6 col-md-12 col-sm-12">
+          <div className="col-lg-5 col-md-12 col-sm-12">
             <h1>Find your book</h1>
           </div>
-          <div className="col-lg-6 col-md-12 col-sm-12">
+          <div className="col-lg-7 col-md-12 col-sm-12">
             <div className="row">
               {genresName.map(
                 (name: any, k: number) =>
@@ -26,7 +26,7 @@ class Centerband extends React.Component<ICenterbandProps, State> {
                     <div className="col-6">
                       <img
                         key={k}
-                        src={require(`../../Media/Images/${name}.jpg`)}
+                        src={require(`../../Media/Images/${name}.png`)}
                         alt="name"
                       />
                     </div>
