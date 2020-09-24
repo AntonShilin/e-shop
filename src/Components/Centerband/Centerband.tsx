@@ -2,6 +2,7 @@ import * as React from "react";
 import c from "./Centerband.module.scss";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 export interface ICenterbandProps {
   genresName: string[];
@@ -15,20 +16,21 @@ class Centerband extends React.Component<ICenterbandProps, State> {
     return (
       <div className="container-xl">
         <div className={`row ${c.center_band}`}>
-          <div className="col-lg-5 col-md-12 col-sm-12">
+          <div className="col-lg-5 col-md-5 col-sm-12">
             <h1>Find your book</h1>
           </div>
-          <div className="col-lg-7 col-md-12 col-sm-12">
+          <div className="col-lg-7 col-md-7 col-sm-12">
             <div className="row">
               {genresName.map(
                 (name: any, k: number) =>
                   k>4 && k< 7  && (
-                    <div className="col-6">
+                    <div className="col-lg-6 col-md-6 col-sm-12">
                       <img
                         key={k}
                         src={require(`../../Media/Images/${name}.png`)}
                         alt="name"
                       />
+                      <NavLink to="#">Shop {name}</NavLink>
                     </div>
                   )
               )}

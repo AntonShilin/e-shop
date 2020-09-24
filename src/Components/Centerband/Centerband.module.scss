@@ -1,12 +1,9 @@
 .center_band {
   min-height: 26.5rem;
-  max-height: auto;
   background-color: #f7f7f8;
   div:nth-of-type(1) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
     h1 {
+      margin-top: 186px;
       color: #494949;
       text-align: center;
     }
@@ -15,36 +12,94 @@
     div {
       height: 100%;
       div {
-        display: flex;
-        align-items: flex-start;
+        position: relative;
         img {
-          margin-top: 3.25rem;
-          top: 25%;
-          width: 100%;
+          margin: 3.25rem auto 3.25rem auto;
+          width: 90%;
           height: auto;
+          display: block;
+        }
+        a {
+          position: absolute;
+          bottom: 1%;
+          display: block;
+          left: 20%;
+          border:1px solid #494949;
+          color: #494949;
+          height: 48px;
+          width: 156px;
+          line-height: 46px !important;
+          text-align: center;
+          text-decoration: none;
+          &:hover{
+            color: white;
+            background-color: #494949;
+          }
         }
       }
     }
   }
 }
 
-@media screen and (max-width: 580px){
-    .center_band {
-        div:nth-of-type(1) {
-          h1 {
-          font-size: 1.625rem !important;
+@media screen and (max-width: 767px) {
+  .center_band {
+    padding-bottom: 1rem;
+    div:nth-of-type(1) {
+      h1 {
+        margin-top: 4.75rem;
+      }
+    }
+    div:nth-of-type(2) {
+      div {
+        height: auto !important;
+        div {
+          img {
           }
-        }
-        div:nth-of-type(2) {
-          div {
-        
-            div {
-          
-              img {
-           
-              }
-            }
+          a{
+            left: 37% !important;
+            bottom: 0% !important;
           }
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .center_band {
+    div:nth-of-type(1) {
+      h1 {
+        font-size: 1.625rem !important;
+      }
+    }
+    div:nth-of-type(2) {
+      div {
+        div {
+          img {
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .center_band {
+    div:nth-of-type(1) {
+      h1 {
+      }
+    }
+    div:nth-of-type(2) {
+      div {
+        div {
+          img {
+          }
+          a{
+            width: 94% !important;
+            left: 3% !important;
+          }
+        }
+      }
+    }
+  }
 }
