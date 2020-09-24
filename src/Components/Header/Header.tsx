@@ -11,6 +11,7 @@ import {
   toggleSmallScreenSubmenu,
 } from "../../Actions/HeaderSearchPanelActions";
 import SmallScreenSubmenu from "../SmallScreenSubmenu/SmallScreenSubmenu";
+import LargeScreenSubmenu from "../LargeScreenSubmenu/LargeScreenSubmenu";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -24,7 +25,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
   render() {
     const {isToggle } = this.props;
     return (
-      <>
+      <div className={header.main_menu_bg}>
         <div className="container-xl">
           <nav className={`row ${header.main_menu}`}>
             <div className="col-6">
@@ -65,8 +66,9 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
           </nav>
         </div>
         <HeaderSearchPanel />
-       <SmallScreenSubmenu />
-      </>
+        <LargeScreenSubmenu />
+        <SmallScreenSubmenu />
+      </div>
     );
   }
 }

@@ -20,6 +20,12 @@ $height-submenu: 3.4375rem;
 }
 
 /* Main menu */
+.main_menu_bg{
+  position: fixed; 
+  top: 0; 
+  width: 100%;
+  z-index: 1;
+  div{
 .main_menu {
   height: $height-submenu;
   background-color: #f7f7f8;
@@ -89,4 +95,6 @@ $height-submenu: 3.4375rem;
       margin: 0 auto;
     }
   }
+}
+}
 }

@@ -19,15 +19,15 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
     this.state = {
       matrix: [
         [
-          [1, 1, -1],
+          [0, 0, -1],
           [-105, 0, 105],
         ],
         [
-          [-1, 1, 1],
+          [-1, 0, 0],
           [105, -105, 0],
         ],
         [
-          [1, -1, 1],
+          [0, -1, 0],
           [0, 105, -105],
         ],
       ],
@@ -63,7 +63,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
   };
 
   componentDidMount() {
-    // this.movingImages();
+    this.movingImages();
   }
 
   render() {
