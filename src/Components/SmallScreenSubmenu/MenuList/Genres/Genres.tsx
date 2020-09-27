@@ -22,16 +22,14 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
 
   toggleGenreBooks = (i: number) => {
     const node = this.arrItem[i];
-    node.style.height === "auto"
+    node.style.height === "30rem"
       ? (node.style.height = "0rem")
-      : (node.style.height = "auto")
+      : (node.style.height = "30rem");
   };
 
   private getArrayOfGenres = (node: HTMLDivElement) => {
     this.arrItem.push(node);
   };
-
- 
 
   render() {
     const { allGenresData, genresName } = this.props;
@@ -62,6 +60,9 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
             </div>
           </div>
         ))}
+        <div className={b.item}>
+          <NavLink to="#">Shop all</NavLink>
+        </div>
       </>
     );
   }
@@ -74,9 +75,7 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {
-
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Genres);

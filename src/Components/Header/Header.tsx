@@ -25,7 +25,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
   render() {
     const {isToggle } = this.props;
     return (
-      <div className={header.main_menu_bg}>
+      <div className={`${header.main_menu_bg} ${isToggle?'':header.fixed_menu}`}>
         <div className="container-xl">
           <nav className={`row ${header.main_menu}`}>
             <div className="col-6">
