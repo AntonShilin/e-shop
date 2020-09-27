@@ -1,7 +1,6 @@
 .slider_bg {
   div {
     overflow: hidden;
-
     div {
       padding-top: 8rem;
       height: 47rem;
@@ -17,8 +16,8 @@
           max-width: 100%;
         }
         h1 {
-          right: 15%;
-          bottom: 37%;
+          right: 22%;
+          bottom: 60%;
           position: absolute;
           text-align: center;
           font-weight: 600;
@@ -27,8 +26,8 @@
           background-color:#ffffffb5;
         }
         a {
-          right: 20%;
-          bottom: 25%;
+          right: 25%;
+          bottom: 47%;
           position: absolute;
           display: block;
           border: 1px solid #494949;
@@ -59,8 +58,8 @@
           max-height: 39rem;
         }
         h1 {
-          right: 15%;
-          bottom: 37%;
+          right: 22%;
+          bottom: 60%;
           position: absolute;
           text-align: center;
           font-weight: 600;
@@ -69,8 +68,8 @@
           background-color: #ffffffb5;
         }
         a {
-          right: 20%;
-          bottom: 25%;
+          right: 25%;
+          bottom: 47%;
           position: absolute;
           display: block;
           border: 1px solid #494949;
@@ -101,8 +100,8 @@
           max-height: 39rem;
         }
         h1 {
-          right: 15%;
-          bottom: 37%;
+          right: 22%;
+          bottom: 60%;
           position: absolute;
           text-align: center;
           font-weight: 600;
@@ -111,8 +110,8 @@
           background-color: #ffffffb5;
         }
         a {
-          right: 20%;
-          bottom: 25%;
+          right: 25%;
+          bottom: 47%;
           position: absolute;
           display: block;
           border: 1px solid #494949;
@@ -136,14 +135,71 @@
   }
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 990px) {
+  .slider_bg {
+    div {
+      div {
+        padding-top:2.5rem !important;
+        div {
+     
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
   .slider_bg {
     div {
       div {
         div {
+          h1{
+            bottom: 20% !important;
+            right:35% !important;
+          }
+          a {
+            bottom: 8% !important;
+            left: 35% !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 414px) {
+  .slider_bg {
+    div {
+      div {
+        height: 44rem !important;
+        div {
+          img{
+            max-width: 90% !important;
+          }
+          h1{
+            right:12% !important;
+          }
           a {
             width: 94% !important;
             left: 3% !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .slider_bg {
+    div {
+      div {
+        div {
+          h1{
+            bottom: 23% !important;
+          }
+          a {
+            bottom: 10% !important;
           }
         }
       }
