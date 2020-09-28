@@ -24,9 +24,8 @@ class Centerband extends React.Component<ICenterbandProps, State> {
               {genresName.map(
                 (name: any, k: number) =>
                   k>4 && k< 7  && (
-                    <div className="col-lg-6 col-md-6 col-sm-12">
+                    <div  key={k} className="col-lg-6 col-md-6 col-sm-12">
                       <img
-                        key={k}
                         src={require(`../../Media/Images/${name}.png`)}
                         alt="name"
                       />

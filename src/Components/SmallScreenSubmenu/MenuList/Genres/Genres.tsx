@@ -22,9 +22,9 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
 
   toggleGenreBooks = (i: number) => {
     const node = this.arrItem[i];
-    node.style.height === "30rem"
+    node.style.height === "auto"
       ? (node.style.height = "0rem")
-      : (node.style.height = "30rem");
+      : (node.style.height = "auto");
   };
 
   private getArrayOfGenres = (node: HTMLDivElement) => {

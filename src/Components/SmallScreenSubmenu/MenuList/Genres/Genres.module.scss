@@ -38,13 +38,15 @@
   overflow: hidden;
   height: 0rem;
   .item_more_info_img {
+    background-color: #f7f7f8;
     padding: 0.5rem;
     width: 30%;
     overflow: hidden;
     position: relative;
-    background-color: #f7f7f8;
+    border-bottom: solid 1px #b2bbc4;
     img {
-      height: 100%;
+      width: 100%;
+      height: auto;
     }
     span {
       width: 100%;
@@ -65,7 +67,7 @@
       bottom: 30%;
       left: 0%;
       text-align: center;
-      color: #b2bbc4;
+      color: #67696b;
       font-size: 1.3rem;
       text-decoration: none;
       &:hover {
@@ -76,6 +78,7 @@
   .item_more_info_list {
     padding: 0.5rem;
     width: 70%;
+    border-bottom: solid 1px #b2bbc4;
     span {
       border: 1px solid #b2bbc4;
       margin: 0.25rem;
@@ -108,6 +111,17 @@
     .item_more_info_list {
       margin: 0;
       width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .item_more_info {
+    .item_more_info_img {
+      img {
+        height: 100% !important;
+        width: auto !important;
+      }
     }
   }
 }

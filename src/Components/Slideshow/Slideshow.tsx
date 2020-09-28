@@ -41,8 +41,8 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
 
   public settingSliderValues = (arr0: number[], arr1: number[]) => {
     this.images.map((img, i) => {
-      this.images[i].style.zIndex = arr0[i].toString();
-      this.images[i].style.left = `${arr1[i]}%`;
+      img.style.zIndex = arr0[i].toString();
+      img.style.left = `${arr1[i]}%`;
     });
   };
 
@@ -63,7 +63,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
   };
 
   componentDidMount() {
-    this.movingImages();
+    // this.movingImages();
   }
 
   render() {
@@ -73,22 +73,19 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
       <div className={`container-xl ${s.slider_bg}`}>
         <div className="row">
           <div className="col">
-           
-              {genresName.map(
-                (name: any, k: number) =>
-                  k < 3 && (
-                    <div ref={this.getArrayOfImages}>
-                      <img
-                        key={k}
-                        src={require(`../../Media/Images/${name}.png`)}
-                        alt="name"
-                      />
-                      <h1>{`${name} books`}</h1>
-                      <NavLink to="#">Shop now</NavLink>
-                    </div>
-                  )
-              )}
-        
+            {genresName.map(
+              (name: any, k: number) =>
+                k < 3 && (
+                  <div key={k} ref={this.getArrayOfImages}>
+                    <img
+                      src={require(`../../Media/Images/${name}.png`)}
+                      alt="name"
+                    />
+                    <h1>{`${name} books`}</h1>
+                    <NavLink to="#">Shop now</NavLink>
+                  </div>
+                )
+            )}
           </div>
         </div>
       </div>
