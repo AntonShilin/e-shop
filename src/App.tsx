@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import Slideshow from "./Components/Slideshow/Slideshow";
 import Centerband from "./Components/Centerband/Centerband";
 import Contact from "./Components/Contact/Contact";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Slideshow />
       <Centerband />
       <Contact/>
+      <Footer/>
     </BrowserRouter>
   );
 }
