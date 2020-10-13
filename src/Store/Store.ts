@@ -1,11 +1,11 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
-import { headerSearchPanelReducer } from "../Reducers/HeaderSearchPanelReducer";
+import { headerPanelReducer } from "../Reducers/HeaderPanelReducer";
 import { mainStateReducer } from "../Reducers/MainStateReducer";
 
 
 const rootReducer = combineReducers({
-  headerSearchPanel: headerSearchPanelReducer,
+  headerSearchPanel: headerPanelReducer,
   data: mainStateReducer
 });
 

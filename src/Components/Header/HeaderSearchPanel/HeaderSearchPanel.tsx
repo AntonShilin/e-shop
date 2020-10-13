@@ -3,7 +3,7 @@ import searchpanel from "./HeaderSearchPanel.module.scss";
 import { MdClose } from "react-icons/md";
 import { IApplicationState } from "../../../Store/Store";
 import { connect } from "react-redux";
-import { closeHeaderSearchPanel } from "../../../Actions/HeaderSearchPanelActions";
+import { closeHeaderSearchPanel } from "../../../Actions/HeaderPanelActions";
 
 export interface IHeaderSearchPanelProps {
   closeHeaderSearchPanel: typeof closeHeaderSearchPanel;

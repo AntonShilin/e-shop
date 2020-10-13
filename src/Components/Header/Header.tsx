@@ -7,9 +7,10 @@ import HeaderSearchPanel from "./HeaderSearchPanel/HeaderSearchPanel";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
 import {
+  closeSelectedGenre,
   openHeaderSearchPanel,
   toggleSmallScreenSubmenu,
-} from "../../Actions/HeaderSearchPanelActions";
+} from "../../Actions/HeaderPanelActions";
 import SmallScreenSubmenu from "../SmallScreenSubmenu/SmallScreenSubmenu";
 import LargeScreenSubmenu from "../LargeScreenSubmenu/LargeScreenSubmenu";
 
@@ -17,6 +18,7 @@ export interface IHeaderProps {
   isToggle: boolean;
   openHeaderSearchPanel: typeof openHeaderSearchPanel;
   toggleSmallScreenSubmenu: typeof toggleSmallScreenSubmenu;
+  closeSelectedGenre: typeof closeSelectedGenre;
 }
 
 export interface IHeaderState {}
@@ -27,7 +29,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
     return (
       <div className={`${header.main_menu_bg} ${isToggle?'':header.fixed_menu}`}>
         <div className="container-xl">
-          <nav className={`row ${header.main_menu}`}>
+          <nav className={`row ${header.main_menu}`} onClick={()=>this.props.closeSelectedGenre(false)}>
             <div className="col-6">
               <NavLink
                 to="/home"
@@ -81,6 +83,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     openHeaderSearchPanel: () => dispatch(openHeaderSearchPanel()),
     toggleSmallScreenSubmenu: (value:boolean) => dispatch(toggleSmallScreenSubmenu(value)),
+    closeSelectedGenre: (value:boolean) => dispatch(closeSelectedGenre(value)),
   };
 };
 
