@@ -1,7 +1,9 @@
 import * as React from "react";
+import { FiArrowRight } from "react-icons/fi";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { closeSelectedGenre } from "../../../Actions/HeaderPanelActions";
+import { isOpenShop } from "../../../Actions/ShopActions";
 import { IApplicationState } from "../../../Store/Store";
 import sg from "./SelectedGenre.module.scss";
 
@@ -11,6 +13,7 @@ export interface ISelectedGenreProps {
   id: number | null;
   isOpenSelectedGenre: boolean;
   closeSelectedGenre: typeof closeSelectedGenre;
+  isOpenShop: typeof isOpenShop;
 }
 
 export interface State {}
@@ -23,26 +26,31 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
       id !== null &&
       isOpenSelectedGenre && (
         <>
-        <div className={`row ${sg.selected_genre_bg}`}>
-          <div className="col-5">
-            <img
-              src={require(`../../../Media/Images/${genresName[id]}.png`)}
-              alt="img"
-            />
-            <h1>Shop {genresName[id]}</h1>
-            <NavLink to="#">Shop All</NavLink>
-          </div>
-          <div className="col-7">
-            {allGenresData[id] !== undefined &&
-              allGenresData[id].items.map((book: any, k: number) => (
-                <span key={k}>{book.volumeInfo.title}</span>
-              ))}
-          </div>
+          <div className={`row ${sg.selected_genre_bg}`}>
+            <div className="col-5">
+              <img
+                src={require(`../../../Media/Images/${genresName[id]}.png`)}
+                alt="img"
+              />
+              <h1>Shop {genresName[id]}</h1>
+              <NavLink to="/shop" onClick={this.props.isOpenShop}>
+                Shop All <FiArrowRight />
+              </NavLink>
+            </div>
+            <div className="col-7">
+              {allGenresData[id] !== undefined &&
+                allGenresData[id].items.map((book: any, k: number) => (
+                  <span key={k}>{book.volumeInfo.title}</span>
+                ))}
+            </div>
           </div>
           <div className="row">
-            <div className={sg.empty} onClick={()=>this.props.closeSelectedGenre(false)}/>
+            <div
+              className={sg.empty}
+              onClick={() => this.props.closeSelectedGenre(false)}
+            />
           </div>
-          </>
+        </>
       )
     );
   }
@@ -57,7 +65,8 @@ const mapStateToProps = (state: IApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    closeSelectedGenre:(value:boolean)=>dispatch(closeSelectedGenre(value))
+    closeSelectedGenre: (value: boolean) => dispatch(closeSelectedGenre(value)),
+    isOpenShop: () => dispatch(isOpenShop()),
   };
 };
 

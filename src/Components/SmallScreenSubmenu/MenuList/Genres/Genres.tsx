@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../../../Store/Store";
 import { connect } from "react-redux";
 import Arrow from "../../../Arrow/Arrow";
+import { FiArrowRight } from "react-icons/fi";
 
 export interface IGenresProps {
   allGenresData: null | any;
@@ -49,7 +50,7 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
                   alt="img"
                 />
                 <span>Shop {genresName[i]}</span>
-                <NavLink to="#">Shop All</NavLink>
+                <NavLink to="#">Shop All <FiArrowRight/></NavLink>
               </div>
               <div className={b.item_more_info_list}>
                 {allGenresData[i] !== undefined &&

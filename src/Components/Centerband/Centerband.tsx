@@ -3,6 +3,7 @@ import c from "./Centerband.module.scss";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 
 export interface ICenterbandProps {
   genresName: string[];
@@ -23,13 +24,24 @@ class Centerband extends React.Component<ICenterbandProps, State> {
             <div className="row">
               {genresName.map(
                 (name: any, k: number) =>
-                  k>4 && k< 7  && (
-                    <div  key={k} className="col-lg-6 col-md-6 col-sm-12">
+                  k > 4 &&
+                  k < 7 && (
+                    <div key={k} className="col-lg-6 col-md-6 col-sm-12">
                       <img
                         src={require(`../../Media/Images/${name}.png`)}
                         alt="name"
                       />
-                      <NavLink to="#">Shop {name}</NavLink>
+                      <>
+                        {k % 2 ? (
+                          <NavLink to="#">
+                            <FaLongArrowAltLeft /> {`Shop ${name}`}
+                          </NavLink>
+                        ) : (
+                          <NavLink to="#">
+                            {`Shop ${name}`} <FaLongArrowAltRight />
+                          </NavLink>
+                        )}
+                      </>
                     </div>
                   )
               )}
@@ -49,4 +61,4 @@ const mapDispatchToProps = (dispatch: any) => {
   return {};
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Centerband);
+export default connect(mapStateToProps, mapDispatchToProps)(Centerband);

@@ -36,13 +36,13 @@ export interface State {}
 
 class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
   componentDidMount() {
-    this.props.getBiographyBooks();
-    this.props.getFableBooks();
-    this.props.getStoryBooks();
-    this.props.getBestSellersBooks();
-    this.props.getFictionBooks();
-    this.props.getArtBooks();
-    this.props.getLifestyleBooks();
+    // this.props.getBiographyBooks();
+    // this.props.getFableBooks();
+    // this.props.getStoryBooks();
+    // this.props.getBestSellersBooks();
+    // this.props.getFictionBooks();
+    // this.props.getArtBooks();
+    // this.props.getLifestyleBooks();
   }
   render() {
     const { genresName } = this.props;
@@ -54,14 +54,12 @@ class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
             <div
               className="col"
               key={i}
-              onClick={() => this.props.selectIdGenreInSubmenu(i)}
+              onClick={() => {
+                this.props.selectIdGenreInSubmenu(i);
+                this.props.openSelectedGenre(true);
+              }}
             >
-              <NavLink
-                to="#"
-                onClick={() => this.props.openSelectedGenre(true)}
-              >
-                {name}
-              </NavLink>
+              <NavLink to="#">{name}</NavLink>
             </div>
           ))}
           <div className="col">
