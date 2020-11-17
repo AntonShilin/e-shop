@@ -122,8 +122,5 @@ const mapStateToProps = (state: IApplicationState) => ({
   isHiddenContainer: state.shopContainer.isHiddenContainer,
 });
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {};
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Slideshow);
+export default connect(mapStateToProps, {})(Slideshow);

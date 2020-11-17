@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import App from "../App";
-import ShopContainer from "../Components/ShopAllContainer/ShopAllContainer";
+import ShopContainer from "../Components/ShopAll/ShopAll";
 
 
 class Routes extends React.Component {

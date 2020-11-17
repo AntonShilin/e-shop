@@ -11,7 +11,7 @@
     background-color: #f7f7f8;
     overflow: hidden;
     img {
-        position: absolute;
+      position: absolute;
       max-height: 24rem;
       width: auto;
       right: -25%;
@@ -22,7 +22,7 @@
       position: absolute;
       text-align: start;
       width: 100%;
-      padding-left:1.6rem;
+      padding-left: 1.6rem;
       text-transform: capitalize;
       font-weight: 400;
     }
@@ -35,10 +35,14 @@
       font-size: 1.25rem;
       text-transform: capitalize;
       &:hover {
+        text-decoration: underline;
         color: #323233 !important;
       }
       svg {
         vertical-align: -0.25rem;
+        &:hover {
+          color: #323233 !important;
+        }
       }
     }
   }

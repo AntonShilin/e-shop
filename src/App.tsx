@@ -7,7 +7,7 @@ import Slideshow from "./Components/Slideshow/Slideshow";
 import Centerband from "./Components/Centerband/Centerband";
 import Contact from "./Components/Contact/Contact";
 import Footer from "./Components/Footer/Footer";
-import ShopAllContainer from "./Components/ShopAllContainer/ShopAllContainer";
+import ShopAll from "./Components/ShopAll/ShopAll";
 
 
 
@@ -20,7 +20,7 @@ class App extends React.Component<IAppProps, State> {
     return (
       <BrowserRouter>
       <Header />
-      <ShopAllContainer />
+      <ShopAll />
       <Slideshow />
       <Centerband />
       <Contact/>

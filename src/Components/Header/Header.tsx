@@ -13,12 +13,15 @@ import {
 } from "../../Actions/HeaderPanelActions";
 import SmallScreenSubmenu from "../SmallScreenSubmenu/SmallScreenSubmenu";
 import LargeScreenSubmenu from "../LargeScreenSubmenu/LargeScreenSubmenu";
+import { closeShop, showContainer } from "../../Actions/ShopActions";
 
 export interface IHeaderProps {
   isToggle: boolean;
   openHeaderSearchPanel: typeof openHeaderSearchPanel;
   toggleSmallScreenSubmenu: typeof toggleSmallScreenSubmenu;
   closeSelectedGenre: typeof closeSelectedGenre;
+  showContainer: typeof showContainer;
+  closeShop: typeof closeShop;
 }
 
 export interface IHeaderState {}
@@ -41,6 +44,10 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
               <NavLink
                 to="/home"
                 className={`${header.logo_lg_deivices} d-none d-lg-block`}
+                onClick={() => {
+                  this.props.showContainer();
+                  this.props.closeShop();
+                }}
               >
                 Books Store
               </NavLink>
@@ -92,6 +99,8 @@ const mapDispatchToProps = (dispatch: any) => {
     toggleSmallScreenSubmenu: (value: boolean) =>
       dispatch(toggleSmallScreenSubmenu(value)),
     closeSelectedGenre: (value: boolean) => dispatch(closeSelectedGenre(value)),
+    showContainer: () => dispatch(showContainer()),
+    closeShop: () => dispatch(closeShop()),
   };
 };
 
