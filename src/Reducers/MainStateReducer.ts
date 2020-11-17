@@ -13,7 +13,7 @@ import {
 const mainState: IMainState = {
   allGenresData: [],
   isLoading: false,
-  genresName: ["fable", "biography", "story", "bestsellers", "fiction", "art","lifestyle"],
+  genresName: ["fable", "biography", "story", "bestsellers", "fiction", "art", "lifestyle"]
 };
 
 export const mainStateReducer = (

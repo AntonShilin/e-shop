@@ -1,13 +1,19 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import { IApplicationState } from "../../Store/Store";
 import c from "./Contact.module.scss";
 
-export interface Props {}
+export interface IContactProps {
+  isHiddenContainer: boolean;
+}
 
 export interface State {}
 
-class Contact extends React.Component<Props, State> {
+class Contact extends React.Component<IContactProps, State> {
   render() {
+    const { isHiddenContainer } = this.props;
     return (
+      isHiddenContainer&&
       <div className="container-xl">
         <div className={`row ${c.contact_item}`}>
           <div className="col-lg-4 col-md-4 col-sm-12">
@@ -35,4 +41,12 @@ class Contact extends React.Component<Props, State> {
   }
 }
 
-export default Contact;
+const mapStateToProps = (state: IApplicationState) => ({
+  isHiddenContainer: state.shopContainer.isHiddenContainer,
+});
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {};
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Contact);

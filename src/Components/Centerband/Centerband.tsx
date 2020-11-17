@@ -7,14 +7,16 @@ import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 
 export interface ICenterbandProps {
   genresName: string[];
+  isHiddenContainer: boolean;
 }
 
 export interface State {}
 
 class Centerband extends React.Component<ICenterbandProps, State> {
   render() {
-    const { genresName } = this.props;
+    const { genresName,isHiddenContainer } = this.props;
     return (
+      isHiddenContainer&&
       <div className="container-xl">
         <div className={`row ${c.center_band}`}>
           <div className="col-lg-5 col-md-5 col-sm-12">
@@ -55,6 +57,7 @@ class Centerband extends React.Component<ICenterbandProps, State> {
 
 const mapStateToProps = (state: IApplicationState) => ({
   genresName: state.data.genresName,
+  isHiddenContainer: state.shopContainer.isHiddenContainer,
 });
 
 const mapDispatchToProps = (dispatch: any) => {

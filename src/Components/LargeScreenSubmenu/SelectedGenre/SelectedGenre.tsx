@@ -3,7 +3,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { closeSelectedGenre } from "../../../Actions/HeaderPanelActions";
-import { isOpenShop } from "../../../Actions/ShopActions";
+import { hiddenContainer, isOpenShop } from "../../../Actions/ShopActions";
 import { IApplicationState } from "../../../Store/Store";
 import sg from "./SelectedGenre.module.scss";
 
@@ -14,6 +14,7 @@ export interface ISelectedGenreProps {
   isOpenSelectedGenre: boolean;
   closeSelectedGenre: typeof closeSelectedGenre;
   isOpenShop: typeof isOpenShop;
+  hiddenContainer: typeof hiddenContainer;
 }
 
 export interface State {}
@@ -33,7 +34,11 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
                 alt="img"
               />
               <h1>Shop {genresName[id]}</h1>
-              <NavLink to="/shop" onClick={this.props.isOpenShop}>
+              <NavLink to="/shop" onClick={() => {
+                this.props.isOpenShop();
+                this.props.closeSelectedGenre(false);
+                this.props.hiddenContainer();
+              }}>
                 Shop All <FiArrowRight />
               </NavLink>
             </div>
@@ -67,6 +72,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     closeSelectedGenre: (value: boolean) => dispatch(closeSelectedGenre(value)),
     isOpenShop: () => dispatch(isOpenShop()),
+    hiddenContainer: () => dispatch(hiddenContainer()),
   };
 };
 

@@ -25,11 +25,18 @@ export interface IHeaderState {}
 
 class Header extends React.Component<IHeaderProps, IHeaderState> {
   render() {
-    const {isToggle } = this.props;
+    const { isToggle } = this.props;
     return (
-      <div className={`${header.main_menu_bg} ${isToggle?'':header.fixed_menu}`}>
+      <div
+        className={`${header.main_menu_bg} ${
+          isToggle ? "" : header.fixed_menu
+        }`}
+      >
         <div className="container-xl">
-          <nav className={`row ${header.main_menu}`} onClick={()=>this.props.closeSelectedGenre(false)}>
+          <nav
+            className={`row ${header.main_menu}`}
+            onClick={() => this.props.closeSelectedGenre(false)}
+          >
             <div className="col-6">
               <NavLink
                 to="/home"
@@ -45,7 +52,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
               </NavLink>
               <FaBars
                 className="d-lg-none"
-                onClick={()=>this.props.toggleSmallScreenSubmenu(isToggle)}
+                onClick={() => this.props.toggleSmallScreenSubmenu(isToggle)}
               />
             </div>
             <div className="col-2">
@@ -82,8 +89,9 @@ const mapStateToProps = (state: IApplicationState) => ({
 const mapDispatchToProps = (dispatch: any) => {
   return {
     openHeaderSearchPanel: () => dispatch(openHeaderSearchPanel()),
-    toggleSmallScreenSubmenu: (value:boolean) => dispatch(toggleSmallScreenSubmenu(value)),
-    closeSelectedGenre: (value:boolean) => dispatch(closeSelectedGenre(value)),
+    toggleSmallScreenSubmenu: (value: boolean) =>
+      dispatch(toggleSmallScreenSubmenu(value)),
+    closeSelectedGenre: (value: boolean) => dispatch(closeSelectedGenre(value)),
   };
 };
 

@@ -2,13 +2,24 @@ export enum isOpenShopTypes {
   ISOPENSHOP = "ISOPENSHOP",
 }
 
-export interface IOpenShopAction {
-    type: isOpenShopTypes.ISOPENSHOP;
-    value: boolean;
+export enum hiddenContainerTypes {
+  HIDDENCONTAINER = "HIDDENCONTAINER",
 }
 
-export type shopStateActions = IOpenShopAction;
+/* interfaces */
+export interface IOpenShopAction {
+  type: isOpenShopTypes.ISOPENSHOP;
+  value: boolean;
+}
+
+export interface IHiddenContainerAction {
+  type: hiddenContainerTypes.HIDDENCONTAINER;
+  value: boolean;
+}
+
+export type shopStateActions = IOpenShopAction | IHiddenContainerAction;
 
 export interface IShopState {
   isShopOpen: boolean;
+  isHiddenContainer: boolean;
 }
