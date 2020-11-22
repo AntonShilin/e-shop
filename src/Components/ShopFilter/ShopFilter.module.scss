@@ -1,0 +1,35 @@
+.filter_main_container {
+  div {
+    div:nth-of-type(1) {
+      background-color: #f7f7f8;
+      div {
+        height: 48px !important;
+        span {
+          line-height: 48px;
+          padding-left: 14px;
+        }
+      }
+    }
+    div:nth-of-type(2) {
+      min-height: 48px !important;
+      div:nth-of-type(1) {
+        div {
+          background-color: #b2bbc4;
+          h2{
+              margin: 0;
+              text-transform: uppercase;
+              font-weight: 500;
+              font-size: 1.4rem;
+              line-height: 2.7rem;
+              color: #494949;
+          }
+        }
+      }
+      div:nth-of-type(2) {
+        div {
+          border: 1px solid red;
+        }
+      }
+    }
+  }
+}

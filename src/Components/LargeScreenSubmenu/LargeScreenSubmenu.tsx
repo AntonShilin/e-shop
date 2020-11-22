@@ -42,7 +42,7 @@ class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
     // this.props.getBestSellersBooks();
     // this.props.getFictionBooks();
     // this.props.getArtBooks();
-    // this.props.getLifestyleBooks();
+    this.props.getLifestyleBooks();
   }
   render() {
     const { genresName } = this.props;
