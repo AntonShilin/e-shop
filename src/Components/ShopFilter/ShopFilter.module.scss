@@ -15,19 +15,36 @@
       div:nth-of-type(1) {
         div {
           background-color: #b2bbc4;
-          h2{
-              margin: 0;
-              text-transform: uppercase;
-              font-weight: 500;
-              font-size: 1.4rem;
-              line-height: 2.7rem;
-              color: #494949;
+          h2 {
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 1.4rem;
+            line-height: 2.9rem;
+            color: #494949;
           }
         }
       }
       div:nth-of-type(2) {
         div {
-          border: 1px solid red;
+          a {
+            img {
+              margin: 1rem auto;
+              display: block;
+            }
+          }
+          p {
+            color: #b2bbc4;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin: 0;
+          }
+          a {
+            text-transform: capitalize;
+            margin-top: 6px;
+            margin-bottom: 2px;
+            color: #494949 !important;
+          }
         }
       }
     }

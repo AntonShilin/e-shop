@@ -19,10 +19,10 @@ class ShopAll extends React.Component<IShopAllProps, State> {
         <>
           <div className={`container-xl ${shop.shop_container_bg}`}>
             <div className="row">
-              <div className="col-lg-4 col-md-4">
+              <div className="col-4">
                 <h1>Shop {shopName}</h1>
               </div>
-              <div className="col-lg-8 col-md-8">
+              <div className="col-8">
                 <img
                   src={require(`../../Media/Images/${shopName}.png`)}
                   alt={shopName}

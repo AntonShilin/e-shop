@@ -17,14 +17,14 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
     return (
       <div className={`container-xl ${sf.filter_main_container}`}>
         <div className="row">
-          <div className="col-4">
+          <div className="col-lg-4 col-md-12">
             <div>
               <span>Filter</span>
             </div>
           </div>
-          <div className="col-8">
+          <div className="col-lg-8 col-md-12">
             <div className="row">
-              <div className="col">
+              <div className="col-12">
                 <h2>
                   {shopName} ({allGenresData[0].items.length})
                 </h2>
@@ -34,7 +34,6 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
               {allGenresData[0] !== undefined &&
                 allGenresData[0].items.map((book: any, k: number) => (
                   <div className="col-4" key={k}>
-                    
                       <NavLink to="#">
                         <img
                           src={book.volumeInfo.imageLinks.thumbnail}
@@ -43,7 +42,6 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
                       </NavLink>
                       <p>{shopName}</p>
                       <NavLink to="#">{book.volumeInfo.title}</NavLink>
-                    
                   </div>
                 ))}
             </div>
