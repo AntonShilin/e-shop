@@ -1,4 +1,5 @@
 import * as React from "react";
+import ShopSortBy from "./ShopSortBy/ShopSortBy";
 import ShopViewCategory from "./ShopViewCategory/ShopViewCategory";
 
 export interface IShopFilterProps {}
@@ -11,9 +12,7 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
       <div className="container-xl">
         <div className="row">
           <div className="col-lg-4 col-md-12">
-            <div>
-              <span>Filter</span>
-            </div>
+            <ShopSortBy />
           </div>
           <div className="col-lg-8 col-md-12">
             <ShopViewCategory />
@@ -23,7 +22,5 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
     );
   }
 }
-
-
 
 export default ShopFilter;

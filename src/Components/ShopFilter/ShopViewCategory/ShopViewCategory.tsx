@@ -2,27 +2,29 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Store";
+import cw from "./ShopViewCategory.module.scss";
 
 export interface IShopViewCategoryProps {
-    shopName: string;
-    allGenresData: any[];
+  shopName: string;
+  allGenresData: any[];
 }
 
 export interface State {}
 
 class ShopViewCategory extends React.Component<IShopViewCategoryProps, State> {
-    render() {
-        const { shopName, allGenresData } = this.props;
+  render() {
+    const { shopName, allGenresData } = this.props;
     return (
       <>
-        <div className="row">
+        <div className={`row ${cw.category_title}`}>
+          <div className="col-lg-12 d-lg-block d-none"/>
           <div className="col-12">
             <h2>
               {shopName} ({allGenresData[0].items.length})
             </h2>
           </div>
         </div>
-        <div className="row">
+        <div className={`row ${cw.book_info}`}>
           {allGenresData[0] !== undefined &&
             allGenresData[0].items.map((book: any, k: number) => (
               <div className="col-4" key={k}>
@@ -47,12 +49,12 @@ class ShopViewCategory extends React.Component<IShopViewCategoryProps, State> {
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
-    shopName: state.shopContainer.shopName,
-    allGenresData: state.data.allGenresData,
-  });
-  
-  const mapDispatchToProps = (dispatch: any) => {
-    return {};
-  };
+  shopName: state.shopContainer.shopName,
+  allGenresData: state.data.allGenresData,
+});
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopViewCategory);
