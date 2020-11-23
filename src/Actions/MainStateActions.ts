@@ -21,7 +21,7 @@ export const getFableBooks = () => {
   return (dispatch: (arg0: ILoadingAction|IGetFableResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=fairytales&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
+      "https://www.googleapis.com/books/v1/volumes?q=fairytales&filter=paid-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
     )
       .then((response) => {
         if (!response.ok) {

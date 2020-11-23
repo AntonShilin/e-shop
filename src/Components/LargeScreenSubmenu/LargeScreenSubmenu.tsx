@@ -37,12 +37,12 @@ export interface State {}
 class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
   componentDidMount() {
     // this.props.getBiographyBooks();
-    // this.props.getFableBooks();
+    this.props.getFableBooks();
     // this.props.getStoryBooks();
     // this.props.getBestSellersBooks();
     // this.props.getFictionBooks();
     // this.props.getArtBooks();
-    this.props.getLifestyleBooks();
+    // this.props.getLifestyleBooks();
   }
   render() {
     const { genresName } = this.props;
