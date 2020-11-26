@@ -18,14 +18,14 @@ class ShopViewCategory extends React.Component<IShopViewCategoryProps, State> {
     return (
       <>
         <div className={`row ${cw.category_title}`}>
-          <div className="col-lg-12 d-lg-block d-none"/>
+          <div className="col-lg-12 d-lg-block d-none" />
           <div className="col-6">
             <h2>
               {shopName} ({allGenresData[0].items.length})
             </h2>
           </div>
-          <div className="col-6">
-            <SelectBox/>
+          <div className="col-6 d-lg-block d-none">
+            <SelectBox />
           </div>
         </div>
         <div className={`row ${cw.book_info}`}>
