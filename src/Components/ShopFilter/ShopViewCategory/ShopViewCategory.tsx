@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Store";
+import SelectBox from "../SelectBox/SelectBox";
 import cw from "./ShopViewCategory.module.scss";
 
 export interface IShopViewCategoryProps {
@@ -18,16 +19,19 @@ class ShopViewCategory extends React.Component<IShopViewCategoryProps, State> {
       <>
         <div className={`row ${cw.category_title}`}>
           <div className="col-lg-12 d-lg-block d-none"/>
-          <div className="col-12">
+          <div className="col-6">
             <h2>
               {shopName} ({allGenresData[0].items.length})
             </h2>
+          </div>
+          <div className="col-6">
+            <SelectBox/>
           </div>
         </div>
         <div className={`row ${cw.book_info}`}>
           {allGenresData[0] !== undefined &&
             allGenresData[0].items.map((book: any, k: number) => (
-              <div className="col-4" key={k}>
+              <div className="col-lg-4 col-6" key={k}>
                 <NavLink to="#">
                   <img
                     src={book.volumeInfo.imageLinks.thumbnail}
@@ -39,6 +43,8 @@ class ShopViewCategory extends React.Component<IShopViewCategoryProps, State> {
                 <p>
                   {book.saleInfo.retailPrice.currencyCode}{" "}
                   {book.saleInfo.retailPrice.amount}
+                  {book.volumeInfo.categories[0]}
+                  {book.volumeInfo.pageCount}
                 </p>
               </div>
             ))}
