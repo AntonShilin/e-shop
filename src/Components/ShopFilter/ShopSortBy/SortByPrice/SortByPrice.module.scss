@@ -1,0 +1,18 @@
+.sort_price_main {
+  p {
+    color: #b2bbc4;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin: 0.5rem 0rem 0.5rem 0rem;
+    padding-left: 10px;
+  }
+  input {
+    width: 50%;
+    height: 56px;
+    border: 1px solid #b2bbc4;
+    padding-left: 14px !important;
+    &:focus {
+      outline: none !important;
+    }
+  }
+}

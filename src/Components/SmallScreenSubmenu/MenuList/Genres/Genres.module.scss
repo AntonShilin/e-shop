@@ -67,11 +67,12 @@
       bottom: 30%;
       left: 0%;
       text-align: center;
-      color: #67696b;
+      color: #393b3c;
       font-size: 1.3rem;
       text-decoration: none;
       &:hover {
         color: #323233 !important;
+        text-decoration: underline !important;
       }
       svg {
         vertical-align: -0.25rem;

@@ -11,7 +11,7 @@ import {
 const shopState: IShopState = {
   isShopOpen: false,
   isHiddenContainer: true,
-  shopName:''
+  shopName: "",
 };
 
 export const shopReducer = (
@@ -25,7 +25,7 @@ export const shopReducer = (
         isShopOpen: action.value,
       };
     }
-      
+
     case isCloseShopTypes.ISCLOSESHOP: {
       return {
         ...state,
@@ -39,20 +39,20 @@ export const shopReducer = (
         isHiddenContainer: action.value,
       };
     }
-      
+
     case showContainerTypes.SHOWCONTAINER: {
       return {
         ...state,
         isHiddenContainer: action.value,
       };
     }
-      
+
     case shopNameTypes.SHOPNAME: {
       return {
         ...state,
-        shopName:action.name
-      }
-      }
+        shopName: action.name,
+      };
+    }
 
     default:
       return state;

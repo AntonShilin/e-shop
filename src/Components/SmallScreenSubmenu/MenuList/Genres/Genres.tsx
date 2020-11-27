@@ -5,11 +5,16 @@ import { IApplicationState } from "../../../../Store/Store";
 import { connect } from "react-redux";
 import Arrow from "../../../Arrow/Arrow";
 import { FiArrowRight } from "react-icons/fi";
+import { isOpenShop, selectShopName } from "../../../../Actions/ShopActions";
+import { toggleSmallScreenSubmenu } from "../../../../Actions/HeaderPanelActions";
 
 export interface IGenresProps {
   allGenresData: null | any;
   isLoading: boolean;
   genresName: string[];
+  selectShopName: typeof selectShopName;
+  isOpenShop: typeof isOpenShop;
+  toggleSmallScreenSubmenu: typeof toggleSmallScreenSubmenu;
 }
 
 export interface IGenresState {}
@@ -50,7 +55,16 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
                   alt="img"
                 />
                 <span>Shop {genresName[i]}</span>
-                <NavLink to="#">Shop All <FiArrowRight/></NavLink>
+                <NavLink
+                  to="/shop"
+                  onClick={() => {
+                    this.props.selectShopName(genresName[i]);
+                    this.props.isOpenShop();
+                    this.props.toggleSmallScreenSubmenu(true);
+                  }}
+                >
+                  Shop All <FiArrowRight />
+                </NavLink>
               </div>
               <div className={b.item_more_info_list}>
                 {allGenresData[i] !== undefined &&
@@ -76,7 +90,11 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    selectShopName: (name: string) => dispatch(selectShopName(name)),
+    isOpenShop: () => dispatch(isOpenShop()),
+    toggleSmallScreenSubmenu: (value:boolean) => dispatch(toggleSmallScreenSubmenu(value)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Genres);

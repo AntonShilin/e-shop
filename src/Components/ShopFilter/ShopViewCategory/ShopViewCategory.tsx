@@ -43,9 +43,9 @@ class ShopViewCategory extends React.Component<IShopViewCategoryProps, State> {
                 <p>
                   {book.saleInfo.retailPrice.currencyCode}{" "}
                   {book.saleInfo.retailPrice.amount}
-                  {book.volumeInfo.categories[0]}
-                  {book.volumeInfo.pageCount}
                 </p>
+                <p> {book.volumeInfo.publishedDate}</p>
+                <p> {book.volumeInfo.pageCount}</p>
               </div>
             ))}
         </div>
