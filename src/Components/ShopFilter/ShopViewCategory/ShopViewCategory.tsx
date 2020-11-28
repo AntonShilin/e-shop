@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Store";
+import CategoryBooks from "../CategoryBooks/CategoryBooks";
 import SelectBox from "../SelectBox/SelectBox";
 import cw from "./ShopViewCategory.module.scss";
 
@@ -16,40 +17,22 @@ class ShopViewCategory extends React.Component<IShopViewCategoryProps, State> {
   render() {
     const { shopName, allGenresData } = this.props;
     return (
-      <>
-        <div className={`row ${cw.category_title}`}>
-          <div className="col-lg-12 d-lg-block d-none" />
-          <div className="col-6">
-            <h2>
-              {shopName} ({allGenresData[0].items.length})
-            </h2>
-          </div>
-          <div className="col-6 d-lg-block d-none">
-            <SelectBox />
-          </div>
+      <div className={`row ${cw.category_title}`}>
+        <div className="col-lg-12 col-md-12 d-lg-block d-md-block d-sm-none">
+          dsadada
         </div>
-        <div className={`row ${cw.book_info}`}>
-          {allGenresData[0] !== undefined &&
-            allGenresData[0].items.map((book: any, k: number) => (
-              <div className="col-lg-4 col-6" key={k}>
-                <NavLink to="#">
-                  <img
-                    src={book.volumeInfo.imageLinks.thumbnail}
-                    alt={`Card image_${k}`}
-                  />
-                </NavLink>
-                <p>{shopName}</p>
-                <NavLink to="#">{book.volumeInfo.title}</NavLink>
-                <p>
-                  {book.saleInfo.retailPrice.currencyCode}{" "}
-                  {book.saleInfo.retailPrice.amount}
-                </p>
-                <p> {book.volumeInfo.publishedDate}</p>
-                <p> {book.volumeInfo.pageCount}</p>
-              </div>
-            ))}
+        <div className="col-sm-12 d-lg-none d-md-none d-sm-block">
+          <SelectBox />
         </div>
-      </>
+        <div className="col-6">
+          <h2>
+            {shopName} ({allGenresData[0].items.length})
+          </h2>
+        </div>
+        <div className="col-6 d-lg-block d-md-block d-none">
+          <SelectBox />
+        </div>
+      </div>
     );
   }
 }

@@ -38,7 +38,7 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
               <NavLink to="/shop" onClick={() => {
                 this.props.isOpenShop();
                 this.props.closeSelectedGenre(false);
-                this.props.hiddenContainer();
+                this.props.hiddenContainer();           this.props.hiddenContainer();
                 this.props.selectShopName(genresName[id]);
               }}>
                 Shop All <FiArrowRight />

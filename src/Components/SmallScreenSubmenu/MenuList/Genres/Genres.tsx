@@ -5,7 +5,7 @@ import { IApplicationState } from "../../../../Store/Store";
 import { connect } from "react-redux";
 import Arrow from "../../../Arrow/Arrow";
 import { FiArrowRight } from "react-icons/fi";
-import { isOpenShop, selectShopName } from "../../../../Actions/ShopActions";
+import { hiddenContainer, isOpenShop, selectShopName } from "../../../../Actions/ShopActions";
 import { toggleSmallScreenSubmenu } from "../../../../Actions/HeaderPanelActions";
 
 export interface IGenresProps {
@@ -15,6 +15,7 @@ export interface IGenresProps {
   selectShopName: typeof selectShopName;
   isOpenShop: typeof isOpenShop;
   toggleSmallScreenSubmenu: typeof toggleSmallScreenSubmenu;
+  hiddenContainer: typeof hiddenContainer;
 }
 
 export interface IGenresState {}
@@ -61,6 +62,7 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
                     this.props.selectShopName(genresName[i]);
                     this.props.isOpenShop();
                     this.props.toggleSmallScreenSubmenu(true);
+                    this.props.hiddenContainer();
                   }}
                 >
                   Shop All <FiArrowRight />
@@ -93,7 +95,8 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     selectShopName: (name: string) => dispatch(selectShopName(name)),
     isOpenShop: () => dispatch(isOpenShop()),
-    toggleSmallScreenSubmenu: (value:boolean) => dispatch(toggleSmallScreenSubmenu(value)),
+    toggleSmallScreenSubmenu: (value: boolean) => dispatch(toggleSmallScreenSubmenu(value)),
+    hiddenContainer: () => dispatch(hiddenContainer()),
   };
 };
 

@@ -54,6 +54,10 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
               <NavLink
                 to="/home"
                 className={`${header.logo_small_devices} d-lg-none d-block`}
+                onClick={() => {
+                  this.props.showContainer();
+                  this.props.closeShop();
+                }}
               >
                 B
               </NavLink>
