@@ -1,3 +1,17 @@
+.category_books_title {
+  margin-bottom: 1rem;
+  div {
+    h2 {
+      color: #494949;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+
 .book_info {
     div {
       a:nth-of-type(1) {
