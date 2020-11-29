@@ -43,7 +43,6 @@ class CategoryBooks extends React.Component<ICategoryBooksProps, State> {
                   {book.saleInfo.retailPrice.currencyCode}{" "}
                   {book.saleInfo.retailPrice.amount}
                 </p>
-                <p> {book.volumeInfo.publishedDate}</p>
                 <p> {book.volumeInfo.pageCount}</p>
               </div>
             ))}

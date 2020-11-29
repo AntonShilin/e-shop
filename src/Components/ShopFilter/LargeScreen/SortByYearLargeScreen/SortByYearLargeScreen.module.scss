@@ -1,17 +1,23 @@
-.sort_by_year_main_lg{
-    p {
-        color: #b2bbc4;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        margin: 1rem 0rem 1rem 0rem;
-        padding-left: 10px;
+.sort_by_year_main_lg {
+  p {
+    color: #b2bbc4;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin: 1rem 0rem 1rem 0rem;
+    padding-left: 10px;
+    cursor: pointer;
+  }
+  div {
+    span {
+      margin-right: 1rem;
+      label {
         cursor: pointer;
-      }
-      div {
-          margin-left: 10px;
-        label {
-          input {
-          }
+        color: #494949;
+        input {
+          cursor: pointer;
+          margin-right: 0.5rem;
         }
       }
+    }
+  }
 }

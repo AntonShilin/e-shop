@@ -24,9 +24,9 @@ class SortByYear extends React.Component<ISortByYearProps, State> {
       <div className={sy.sort_by_year_main}>
         <p onClick={this.toggleFilterYear}>Year</p>
         {this.state.showYearFilter && (
-          <div className="form-check">
-            <label className="form-check-label">
-              <input type="checkbox" className="form-check-input" value="" />
+          <div>
+            <label>
+              <input type="checkbox" value="" />
               2017
             </label>
           </div>
