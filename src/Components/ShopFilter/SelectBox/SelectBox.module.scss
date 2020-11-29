@@ -3,7 +3,7 @@
   position: relative;
   .select_box_title {
     color: #b2bbc4;
-    height: 48px;
+    height: 3rem;
     background-color: white !important;
     position: relative;
     cursor: pointer;
@@ -15,29 +15,27 @@
       padding: 12px 50px 12px 12px;
       border: 1px solid #b2bbc4;
     }
-    svg{
-        position: absolute;
-        right: 10%;
-        top: 35%;
-        font-size: 1.5rem;
+    svg {
+      position: absolute;
+      right: 10%;
+      top: 35%;
+      font-size: 1.5rem;
     }
   }
   .select_box_names {
     position: absolute;
-    height: 48px;
     width: 100%;
-    bottom: -50px;
     z-index: 1;
+    height: auto;
     span {
+      height: 3rem;
       color: #b2bbc4;
       text-transform: capitalize;
       font-size: 1rem;
       width: 100%;
       display: block;
       padding: 12px 50px 12px 12px;
-      border-bottom: 1px solid #b2bbc4;
-      border-left: 1px solid #b2bbc4;
-      border-right: 1px solid #b2bbc4;
+      border: 1px solid #b2bbc4;
       background-color: white;
       &:hover {
         background-color: #b2bbc4;
@@ -48,13 +46,22 @@
   }
 }
 
-
 @media screen and (max-width: 700px) {
-    .select_box_main {
-        .select_box_names{
-            width: 210% !important;
-            right: 0% !important;
-        }
+  .select_box_main {
+    border: none !important;
+    .select_box_title {
+      border: none !important;
+      span {
+        border: none !important;
+      }
+    }
+    .select_box_names {
+      border: 1px solid #b2bbc4 !important;
+      width: 220% !important;
+      right: -1rem !important;
+      span {
+        border: none !important;
+      }
     }
   }
-  
+}

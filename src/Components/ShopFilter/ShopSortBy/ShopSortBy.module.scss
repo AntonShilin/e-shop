@@ -2,26 +2,35 @@
   div:nth-of-type(1) {
     background-color: #f7f7f8;
     height: 3rem;
-    padding-top: 0.5rem;
     cursor: pointer;
-    span {
+    position: relative;
+    border: 1px solid #b2bbc4;
+    p {
+      color: #494949;
+      font-size: 1rem;
+      line-height: 3rem;
+      display: block;
+      text-align: center;
+      margin: 0;
+    }
+    b {
+      position: absolute;
+      top: 25%;
+      left: 5%;
       svg {
         font-size: 1.5rem;
       }
     }
   }
   div:nth-of-type(2) {
-    background-color: #f7f7f8;
-    position: relative;
-    height: 3rem;
-    margin-bottom: 15px;
-    cursor: pointer;
-    span {
-      color: #494949;
-      font-size: 1rem;
-      line-height: 3rem;
-      display: block;
-      text-align: center;
+    border: 1px solid #b2bbc4;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .sort_by_title {
+    div:nth-of-type(1) {
+      height: auto !important;
     }
   }
 }

@@ -1,6 +1,6 @@
 .category_books_title {
   margin-bottom: 1rem;
-  div {
+  div:nth-of-type(1) {
     h2 {
       color: #494949;
       font-size: 1.5rem;
@@ -16,8 +16,6 @@
     div {
       a:nth-of-type(1) {
         img {
-          display: block;
-          margin: 0 auto;
         }
       }
       p:nth-of-type(1) {
@@ -38,3 +36,10 @@
     }
   }
   
+  @media screen and (max-width: 700px) {
+    .category_books_title {
+      div:nth-of-type(2) {
+      display: none;
+      }
+    }
+  }

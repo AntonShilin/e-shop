@@ -23,7 +23,7 @@ class CategoryBooks extends React.Component<ICategoryBooksProps, State> {
               {shopName} ({allGenresData[0].items.length})
             </h2>
           </div>
-          <div className="col-4 d-lg-block d-md-block d-none">
+          <div className="col-4">
             <SelectBox />
           </div>
         </div>

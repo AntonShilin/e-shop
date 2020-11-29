@@ -1,5 +1,6 @@
 import * as React from "react";
 import { MdClose } from "react-icons/md";
+import SelectBox from "../SelectBox/SelectBox";
 import sbt from "./ShopSortBy.module.scss";
 import SortByPrice from "./SortByPrice/SortByPrice";
 
@@ -28,17 +29,20 @@ class ShopSortBy extends React.Component<IShopSortByProps, IShopSortByState> {
     return (
       <>
         <div className={`row ${sbt.sort_by_title}`}>
-          <div className="col-2">
-            <span
+          <div className={`${this.state.showAllFilters ? "col-12" : "col-6"}`}>
+            <p onClick={this.showAllFilters}>Filter</p>
+            <b
               className={this.state.showAllFilters ? "d-block" : "d-none"}
               onClick={this.hideAllFilters}
             >
               <MdClose />
-            </span>
+            </b>
           </div>
-          <div className="col-10" onClick={this.showAllFilters}>
-            <span>Filter</span>
-          </div>
+          {this.state.showAllFilters ? null : (
+            <div className="col-6">
+              <SelectBox />
+            </div>
+          )}
         </div>
         <div
           className={`row ${this.state.showAllFilters ? "d-block" : "d-none"}`}

@@ -1,7 +1,9 @@
 import * as React from "react";
 import CategoryBooks from "./CategoryBooks/CategoryBooks";
-import ShopSortBy from "./ShopSortBy/ShopSortBy";
 import ShopViewCategory from "./ShopViewCategory/ShopViewCategory";
+import sf from "./ShopFilter.module.scss";
+import ShopSortByLargeScreen from "./LargeScreen/ShopSortByLargeScreen/ShopSortByLargeScreen";
+import ShopSortBy from "./ShopSortBy/ShopSortBy";
 
 export interface IShopFilterProps {}
 
@@ -11,16 +13,20 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
   render() {
     return (
       <div className="container-xl">
-        <div className="row">
-          <div className="col-lg-4 col-md-4 col-sm-6">
-            <ShopSortBy />
+        <div className={`row ${sf.filter_large_screen}`}>
+          <div className="col-4">
+            <ShopSortByLargeScreen />
           </div>
-          <div className="col-lg-8 col-md-8 col-sm-6">
+          <div className="col-8">
             <ShopViewCategory />
+            <CategoryBooks />
           </div>
         </div>
-        <div className="row">
-          <div className="offset-lg-4 col-lg-8 offset-md-4 col-md-8 col-sm-12">
+        <div className={`row ${sf.filter_small_screen}`}>
+          <div className="col-12">
+            <ShopSortBy />
+          </div>
+          <div className="col-12">
             <CategoryBooks />
           </div>
         </div>
