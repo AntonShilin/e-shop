@@ -1,5 +1,6 @@
 import * as React from "react";
 import SortByPriceLargeScreen from "../SortByPriceLargeScreen/SortByPriceLargeScreen";
+import SortByYearLargeScreen from "../SortByYearLargeScreen/SortByYearLargeScreen";
 import lc from "./ShopSortByLargeScreen.module.scss";
 
 export interface Props {}
@@ -16,8 +17,11 @@ class ShopSortByLargeScreen extends React.Component<Props, State> {
           </div>
         </div>
         <div className="row">
-          <div className="col">
+          <div className="col-12">
             <SortByPriceLargeScreen/>
+          </div>
+          <div className="col-12">
+            <SortByYearLargeScreen/>
           </div>
         </div>
       </>

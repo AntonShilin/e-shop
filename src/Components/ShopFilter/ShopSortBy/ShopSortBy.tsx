@@ -3,6 +3,7 @@ import { MdClose } from "react-icons/md";
 import SelectBox from "../SelectBox/SelectBox";
 import sbt from "./ShopSortBy.module.scss";
 import SortByPrice from "./SortByPrice/SortByPrice";
+import SortByYear from "./SortByYear/SortByYear";
 
 export interface IShopSortByProps {}
 
@@ -49,6 +50,9 @@ class ShopSortBy extends React.Component<IShopSortByProps, IShopSortByState> {
         >
           <div className="col">
             <SortByPrice />
+          </div>
+          <div className="col">
+            <SortByYear/>
           </div>
         </div>
       </>

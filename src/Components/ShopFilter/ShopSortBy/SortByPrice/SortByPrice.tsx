@@ -13,10 +13,10 @@ class SortByPrice extends React.Component<
   constructor(props: ISortByPriceProps) {
     super(props);
     this.state = {
-      showPriceFilter: true,
+      showPriceFilter: false,
     };
   }
-  
+
   public toggleFilter = () => {
     this.setState({ showPriceFilter: !this.state.showPriceFilter });
   };
@@ -25,10 +25,12 @@ class SortByPrice extends React.Component<
     return (
       <div className={sbp.sort_price_main}>
         <p onClick={this.toggleFilter}>Price</p>
-        <div className={`${this.state.showPriceFilter ? "d-none" : "d-block"}`}>
-          <input type="text" />
-          <input type="text" />
-        </div>
+        {this.state.showPriceFilter && (
+          <div>
+            <input type="text" />
+            <input type="text" />
+          </div>
+        )}
       </div>
     );
   }
