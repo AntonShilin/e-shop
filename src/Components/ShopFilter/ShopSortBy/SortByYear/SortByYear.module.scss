@@ -1,4 +1,4 @@
-.sort_by_year_main {
+.sort_by_year_main_sm {
   p {
     color: #b2bbc4;
     font-size: 0.9rem;
@@ -8,11 +8,16 @@
     cursor: pointer;
   }
   div {
-      margin-left: 10px;
-    label {
-      color: #494949;
-      input {
-        margin-right: .5rem;
+    margin-left: 10px;
+    span {
+      margin-right: 1rem;
+      cursor: pointer;
+      label {
+        color: #494949;
+        input {
+          cursor: pointer;
+          margin-right: 0.5rem;
+        }
       }
     }
   }
