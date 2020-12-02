@@ -1,4 +1,5 @@
 import {
+  FilterByValueTypes,
   hiddenContainerTypes,
   isCloseShopTypes,
   IShopState,
@@ -12,6 +13,9 @@ const shopState: IShopState = {
   isShopOpen: false,
   isHiddenContainer: true,
   shopName: "",
+  filterByName: false,
+  filterByPrice: false,
+  filterByNewest: false,
 };
 
 export const shopReducer = (
@@ -52,6 +56,31 @@ export const shopReducer = (
         ...state,
         shopName: action.name,
       };
+    }
+
+    case FilterByValueTypes.FILTERBYVALUE: {
+      if (action.name === "name") {
+        return {
+          ...state,
+          filterByName: true,
+          filterByNewest: false,
+          filterByPrice: false,
+        };
+      } else if (action.name === "price") {
+        return {
+          ...state,
+          filterByName: false,
+          filterByNewest: false,
+          filterByPrice: true,
+        };
+      } else if (action.name === "newest") {
+        return {
+          ...state,
+          filterByName: false,
+          filterByNewest: true,
+          filterByPrice: false,
+        };
+      }
     }
 
     default:

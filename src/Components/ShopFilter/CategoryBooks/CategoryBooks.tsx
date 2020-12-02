@@ -8,13 +8,42 @@ import cb from "./CategoryBooks.module.scss";
 export interface ICategoryBooksProps {
   shopName: string;
   allGenresData: any[];
+  filterByName: boolean;
+  filterByPrice: boolean;
+  filterByNewest: boolean;
 }
 
-export interface State {}
+export interface ICategoryBooksState {
+  allGenresData: any[];
+}
 
-class CategoryBooks extends React.Component<ICategoryBooksProps, State> {
+class CategoryBooks extends React.Component<
+  ICategoryBooksProps,
+  ICategoryBooksState
+> {
+  constructor(props: ICategoryBooksProps) {
+    super(props);
+    this.state = {
+      allGenresData: this.props.allGenresData,
+    };
+  }
+
   render() {
-    const { shopName, allGenresData } = this.props;
+    const { filterByName, filterByPrice, filterByNewest } = this.props;
+    const { shopName } = this.props;
+    const { allGenresData } = this.state;
+
+    if (filterByName) {
+    } else if (filterByPrice) {
+      allGenresData[0].items.sort(
+        (
+          a: { saleInfo: { listPrice: { amount: number } } },
+          b: { saleInfo: { listPrice: { amount: number } } }
+        ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
+      );
+    } else if (filterByNewest) {
+    }
+
     return (
       <>
         <div className={`row ${cb.category_books_title}`}>
@@ -55,6 +84,9 @@ class CategoryBooks extends React.Component<ICategoryBooksProps, State> {
 const mapStateToProps = (state: IApplicationState) => ({
   shopName: state.shopContainer.shopName,
   allGenresData: state.data.allGenresData,
+  filterByName: state.shopContainer.filterByName,
+  filterByPrice: state.shopContainer.filterByPrice,
+  filterByNewest: state.shopContainer.filterByNewest,
 });
 
 const mapDispatchToProps = (dispatch: any) => {

@@ -1,11 +1,13 @@
 import * as React from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { connect } from "react-redux";
+import { filterByValue } from "../../../Actions/ShopActions";
 import { IApplicationState } from "../../../Store/Store";
 import sb from "./SelectBox.module.scss";
 
 export interface ISelectBoxProps {
   allGenresData: any[];
+  filterByValue: typeof filterByValue;
 }
 
 export interface State {
@@ -42,7 +44,7 @@ class SelectBox extends React.Component<ISelectBoxProps, State> {
             {this.state.names.map((value, i) => (
               <span
                 key={i}
-                // onClick={(event) => this.props.handleChange(event.target.value)}
+                onClick={() => this.props.filterByValue(value)}
               >
                 {value}
               </span>
@@ -59,7 +61,9 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    filterByValue:(name:string)=>dispatch(filterByValue(name))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectBox);

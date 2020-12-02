@@ -18,7 +18,16 @@ export enum shopNameTypes {
   SHOPNAME = "SHOPNAME",
 }
 
+export enum FilterByValueTypes {
+  FILTERBYVALUE = "FILTERBYVALUE",
+}
+
 /* interfaces */
+export interface IFilterByValueAction {
+  type: FilterByValueTypes.FILTERBYVALUE
+  name: string;
+}
+
 export interface IShopNameAction {
   type: shopNameTypes.SHOPNAME;
   name: string;
@@ -49,10 +58,14 @@ export type shopStateActions =
   | IHiddenContainerAction
   | IShowContainerAction
   | ICloseShopAction
-  | IShopNameAction;
+  | IShopNameAction
+  | IFilterByValueAction;
 
 export interface IShopState {
   isShopOpen: boolean;
   isHiddenContainer: boolean;
   shopName: string;
+  filterByName: boolean;
+  filterByPrice: boolean;
+  filterByNewest: boolean;
 }

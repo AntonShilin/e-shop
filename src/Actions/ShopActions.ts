@@ -1,4 +1,5 @@
 import {
+  FilterByValueTypes,
   hiddenContainerTypes,
   isCloseShopTypes,
   isOpenShopTypes,
@@ -32,5 +33,11 @@ export const showContainer = () => ({
 /* select shop name */
 export const selectShopName = (name:string) => ({
   type: shopNameTypes.SHOPNAME,
+  name
+});
+
+/* filter books by select value in selectBox container*/
+export const filterByValue = (name:string) => ({
+  type: FilterByValueTypes.FILTERBYVALUE,
   name
 });
