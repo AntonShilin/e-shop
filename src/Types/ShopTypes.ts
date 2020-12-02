@@ -65,7 +65,5 @@ export interface IShopState {
   isShopOpen: boolean;
   isHiddenContainer: boolean;
   shopName: string;
-  filterByName: boolean;
-  filterByPrice: boolean;
-  filterByNewest: boolean;
+  filterByValue: string;
 }

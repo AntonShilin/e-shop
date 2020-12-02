@@ -13,7 +13,8 @@
 
 
 .book_info {
-    div {
+  div {
+    margin-bottom: 1rem;
       a:nth-of-type(1) {
         img {
         }
@@ -32,6 +33,18 @@
       p:nth-of-type(2) {
         color: #494949;
         font-size: 1rem;
+        margin: 0;
+      }
+      p:nth-of-type(3) {
+        color: #494949;
+        font-size: 1rem;
+        margin: 0;
+      }
+      p:nth-of-type(4) {
+        color: #494949;
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0;
       }
     }
   }

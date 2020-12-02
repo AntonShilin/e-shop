@@ -37,7 +37,7 @@ export const selectShopName = (name:string) => ({
 });
 
 /* filter books by select value in selectBox container*/
-export const filterByValue = (name:string) => ({
+export const filterBySelectValue = (name:string) => ({
   type: FilterByValueTypes.FILTERBYVALUE,
   name
 });

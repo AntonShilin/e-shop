@@ -13,9 +13,7 @@ const shopState: IShopState = {
   isShopOpen: false,
   isHiddenContainer: true,
   shopName: "",
-  filterByName: false,
-  filterByPrice: false,
-  filterByNewest: false,
+  filterByValue: 'name',
 };
 
 export const shopReducer = (
@@ -59,28 +57,10 @@ export const shopReducer = (
     }
 
     case FilterByValueTypes.FILTERBYVALUE: {
-      if (action.name === "name") {
         return {
           ...state,
-          filterByName: true,
-          filterByNewest: false,
-          filterByPrice: false,
+          filterByValue: action.name,
         };
-      } else if (action.name === "price") {
-        return {
-          ...state,
-          filterByName: false,
-          filterByNewest: false,
-          filterByPrice: true,
-        };
-      } else if (action.name === "newest") {
-        return {
-          ...state,
-          filterByName: false,
-          filterByNewest: true,
-          filterByPrice: false,
-        };
-      }
     }
 
     default:

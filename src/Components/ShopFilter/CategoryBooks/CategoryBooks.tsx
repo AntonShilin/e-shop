@@ -8,9 +8,7 @@ import cb from "./CategoryBooks.module.scss";
 export interface ICategoryBooksProps {
   shopName: string;
   allGenresData: any[];
-  filterByName: boolean;
-  filterByPrice: boolean;
-  filterByNewest: boolean;
+  filterByValue: string;
 }
 
 export interface ICategoryBooksState {
@@ -29,19 +27,30 @@ class CategoryBooks extends React.Component<
   }
 
   render() {
-    const { filterByName, filterByPrice, filterByNewest } = this.props;
+    const { filterByValue } = this.props;
     const { shopName } = this.props;
     const { allGenresData } = this.state;
 
-    if (filterByName) {
-    } else if (filterByPrice) {
+    if (filterByValue === "name") {
+      allGenresData[0].items.sort(
+        (
+          a: { volumeInfo: { title: any } },
+          b: { volumeInfo: { title: any } }
+        ) => a.volumeInfo.title.localeCompare(b.volumeInfo.title)
+      );
+    } else if (filterByValue === "price") {
       allGenresData[0].items.sort(
         (
           a: { saleInfo: { listPrice: { amount: number } } },
           b: { saleInfo: { listPrice: { amount: number } } }
         ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
       );
-    } else if (filterByNewest) {
+    } else if (filterByValue === "newest") {
+      allGenresData[0].items.sort(
+        (a: any, b: any) =>
+          b.volumeInfo.publishedDate.match(/\d+/)[0] -
+          a.volumeInfo.publishedDate.match(/\d+/)[0]
+      );
     }
 
     return (
@@ -68,11 +77,12 @@ class CategoryBooks extends React.Component<
                 </NavLink>
                 <p>{shopName}</p>
                 <NavLink to="#">{book.volumeInfo.title}</NavLink>
+                <p>{book.volumeInfo.pageCount} pages</p>
+                <p>Published: {book.volumeInfo.publishedDate}</p>
                 <p>
-                  {book.saleInfo.retailPrice.currencyCode}{" "}
-                  {book.saleInfo.retailPrice.amount}
+                  {book.saleInfo.retailPrice.amount}{" "}
+                  {book.saleInfo.retailPrice.currencyCode}
                 </p>
-                <p> {book.volumeInfo.pageCount}</p>
               </div>
             ))}
         </div>
@@ -84,9 +94,7 @@ class CategoryBooks extends React.Component<
 const mapStateToProps = (state: IApplicationState) => ({
   shopName: state.shopContainer.shopName,
   allGenresData: state.data.allGenresData,
-  filterByName: state.shopContainer.filterByName,
-  filterByPrice: state.shopContainer.filterByPrice,
-  filterByNewest: state.shopContainer.filterByNewest,
+  filterByValue: state.shopContainer.filterByValue,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
