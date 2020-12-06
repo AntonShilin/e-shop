@@ -22,7 +22,16 @@ export enum FilterByValueTypes {
   FILTERBYVALUE = "FILTERBYVALUE",
 }
 
+export enum ShopIDTypes{
+  SHOPID="SHOPID"
+}
+
 /* interfaces */
+export interface IShopIDAction {
+  type: ShopIDTypes.SHOPID
+  id: number;
+}
+
 export interface IFilterByValueAction {
   type: FilterByValueTypes.FILTERBYVALUE
   name: string;
@@ -59,6 +68,7 @@ export type shopStateActions =
   | IShowContainerAction
   | ICloseShopAction
   | IShopNameAction
+  |IShopIDAction
   | IFilterByValueAction;
 
 export interface IShopState {
@@ -66,4 +76,5 @@ export interface IShopState {
   isHiddenContainer: boolean;
   shopName: string;
   filterByValue: string;
+  shopID: number;
 }

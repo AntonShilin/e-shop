@@ -9,6 +9,7 @@ export interface ICategoryBooksProps {
   shopName: string;
   allGenresData: any[];
   filterByValue: string;
+  shopID: number;
 }
 
 export interface ICategoryBooksState {
@@ -27,38 +28,49 @@ class CategoryBooks extends React.Component<
   }
 
   render() {
-    const { filterByValue } = this.props;
-    const { shopName } = this.props;
+    const { filterByValue, shopName ,shopID} = this.props;
     const { allGenresData } = this.state;
 
-    if (filterByValue === "name") {
-      allGenresData[0].items.sort(
-        (
-          a: { volumeInfo: { title: any } },
-          b: { volumeInfo: { title: any } }
-        ) => a.volumeInfo.title.localeCompare(b.volumeInfo.title)
-      );
-    } else if (filterByValue === "price") {
-      allGenresData[0].items.sort(
-        (
-          a: { saleInfo: { listPrice: { amount: number } } },
-          b: { saleInfo: { listPrice: { amount: number } } }
-        ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
-      );
-    } else if (filterByValue === "newest") {
-      allGenresData[0].items.sort(
-        (a: any, b: any) =>
-          b.volumeInfo.publishedDate.match(/\d+/)[0] -
-          a.volumeInfo.publishedDate.match(/\d+/)[0]
-      );
-    }
+    // if (filterByValue === "name") {
+    //   allGenresData[shopID].items.sort(
+    //     (
+    //       a: { volumeInfo: { title: string } },
+    //       b: { volumeInfo: { title: string } }
+    //     ) => a.volumeInfo.title.localeCompare(b.volumeInfo.title)
+    //   );
+    // } else if (filterByValue === "price") {
+    //   allGenresData[shopID].items.sort(
+    //     (
+    //       a: { saleInfo: { listPrice: { amount: number } } },
+    //       b: { saleInfo: { listPrice: { amount: number } } }
+    //     ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
+    //   );
+    // } else if (filterByValue === "newest") {
+    //   allGenresData[shopID].items.sort(
+    //     (
+    //       a: {
+    //         volumeInfo: {
+    //           publishedDate: { match: (arg0: RegExp) => number[] };
+    //         };
+    //       },
+    //       b: {
+    //         volumeInfo: {
+    //           publishedDate: { match: (arg0: RegExp) => number[] };
+    //         };
+    //       }
+    //     ) =>
+    //       b.volumeInfo.publishedDate.match(/\d+/)[0] -
+    //       a.volumeInfo.publishedDate.match(/\d+/)[0]
+    //   );
+    // }
 
     return (
+      allGenresData[shopID] !== undefined &&
       <>
         <div className={`row ${cb.category_books_title}`}>
           <div className="col-8">
             <h2>
-              {shopName} ({allGenresData[0].items.length})
+              {shopName} ({allGenresData[shopID].items.length})
             </h2>
           </div>
           <div className="col-4">
@@ -66,8 +78,8 @@ class CategoryBooks extends React.Component<
           </div>
         </div>
         <div className={`row ${cb.book_info}`}>
-          {allGenresData[0] !== undefined &&
-            allGenresData[0].items.map((book: any, k: number) => (
+          {
+            allGenresData[shopID].items.map((book: any, k: number) => (
               <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
                 <NavLink to="#">
                   <img
@@ -78,11 +90,10 @@ class CategoryBooks extends React.Component<
                 <p>{shopName}</p>
                 <NavLink to="#">{book.volumeInfo.title}</NavLink>
                 <p>{book.volumeInfo.pageCount} pages</p>
-                <p>Published: {book.volumeInfo.publishedDate}</p>
                 <p>
-                  {book.saleInfo.retailPrice.amount}{" "}
-                  {book.saleInfo.retailPrice.currencyCode}
+                  Published: {book.volumeInfo.publishedDate}
                 </p>
+                <p>{book.saleInfo.retailPrice.amount} $</p>
               </div>
             ))}
         </div>
@@ -95,6 +106,7 @@ const mapStateToProps = (state: IApplicationState) => ({
   shopName: state.shopContainer.shopName,
   allGenresData: state.data.allGenresData,
   filterByValue: state.shopContainer.filterByValue,
+  shopID: state.shopContainer.shopID,
 });
 
 const mapDispatchToProps = (dispatch: any) => {

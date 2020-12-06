@@ -43,7 +43,7 @@ export const getBiographyBooks = () => {
   return (dispatch: (arg0: ILoadingAction|IGetBiographyResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=biography&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
+      "https://www.googleapis.com/books/v1/volumes?q=biography&filter=paid-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
     )
       .then((response) => {
         if (!response.ok) {
@@ -65,7 +65,7 @@ export const getStoryBooks = () => {
   return (dispatch: (arg0: ILoadingAction|IGetStoryResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=story&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
+      "https://www.googleapis.com/books/v1/volumes?q=story&filter=paid-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
     )
       .then((response) => {
         if (!response.ok) {
@@ -87,7 +87,7 @@ export const getBestSellersBooks = () => {
   return (dispatch: (arg0: ILoadingAction|IGetBestsellersResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=bestsellers&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
+      "https://www.googleapis.com/books/v1/volumes?q=bestsellers&filter=paid-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
     )
       .then((response) => {
         if (!response.ok) {
@@ -109,7 +109,7 @@ export const getFictionBooks = () => {
   return (dispatch: (arg0: ILoadingAction|IGetFictionResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=fiction&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
+      "https://www.googleapis.com/books/v1/volumes?q=fiction&filter=paid-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
     )
       .then((response) => {
         if (!response.ok) {
@@ -132,7 +132,7 @@ export const getArtBooks = () => {
   return (dispatch: (arg0: ILoadingAction|IGetArtResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=art&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
+      "https://www.googleapis.com/books/v1/volumes?q=art&filter=paid-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
     )
       .then((response) => {
         if (!response.ok) {
@@ -155,7 +155,7 @@ export const getLifestyleBooks = () => {
   return (dispatch: (arg0: ILoadingAction|IGetLifestyleResultsAction) => void) => {
     dispatch(waitingFewMinutes());
     fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=lifestyle&filter=free-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
+      "https://www.googleapis.com/books/v1/volumes?q=lifestyle&filter=paid-ebooks&key=AIzaSyDYD8Tc3uRUciTMoIjiVfmdJuM2dAuHqOA"
     )
       .then((response) => {
         if (!response.ok) {

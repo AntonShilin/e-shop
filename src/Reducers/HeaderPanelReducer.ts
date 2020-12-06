@@ -9,7 +9,7 @@ import {
 const headerPanelState: IHeaderPanelState = {
   isOpen: false,
   isToggle: false,
-  id: null,
+  id: 0,
   isOpenSelectedGenre: false,
 };
 

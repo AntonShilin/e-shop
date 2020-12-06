@@ -30,7 +30,8 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SmallScreenSubmenu);

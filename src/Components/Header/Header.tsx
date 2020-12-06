@@ -9,11 +9,13 @@ import { connect } from "react-redux";
 import {
   closeSelectedGenre,
   openHeaderSearchPanel,
+  selectIdGenreInSubmenu,
   toggleSmallScreenSubmenu,
 } from "../../Actions/HeaderPanelActions";
 import SmallScreenSubmenu from "../SmallScreenSubmenu/SmallScreenSubmenu";
 import LargeScreenSubmenu from "../LargeScreenSubmenu/LargeScreenSubmenu";
 import { closeShop, showContainer } from "../../Actions/ShopActions";
+import { getArtBooks, getBestSellersBooks, getBiographyBooks, getFableBooks, getFictionBooks, getLifestyleBooks, getStoryBooks } from "../../Actions/MainStateActions";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -22,11 +24,30 @@ export interface IHeaderProps {
   closeSelectedGenre: typeof closeSelectedGenre;
   showContainer: typeof showContainer;
   closeShop: typeof closeShop;
+  getBiographyBooks: typeof getBiographyBooks;
+  getFableBooks: typeof getFableBooks;
+  getStoryBooks: typeof getStoryBooks;
+  getBestSellersBooks: typeof getBestSellersBooks;
+  getFictionBooks: typeof getFictionBooks;
+  getArtBooks: typeof getArtBooks;
+  getLifestyleBooks: typeof getLifestyleBooks;
+  selectIdGenreInSubmenu: typeof selectIdGenreInSubmenu;
 }
 
 export interface IHeaderState {}
 
 class Header extends React.Component<IHeaderProps, IHeaderState> {
+
+   componentDidMount() {
+    this.props.getBiographyBooks();
+    this.props.getFableBooks();
+    this.props.getStoryBooks();
+    this.props.getBestSellersBooks();
+    this.props.getFictionBooks();
+    this.props.getArtBooks();
+    this.props.getLifestyleBooks();
+  }
+
   render() {
     const { isToggle } = this.props;
     return (
@@ -105,6 +126,14 @@ const mapDispatchToProps = (dispatch: any) => {
     closeSelectedGenre: (value: boolean) => dispatch(closeSelectedGenre(value)),
     showContainer: () => dispatch(showContainer()),
     closeShop: () => dispatch(closeShop()),
+    getBiographyBooks: () => dispatch(getBiographyBooks()),
+    getFableBooks: () => dispatch(getFableBooks()),
+    getStoryBooks: () => dispatch(getStoryBooks()),
+    getBestSellersBooks: () => dispatch(getBestSellersBooks()),
+    getFictionBooks: () => dispatch(getFictionBooks()),
+    getArtBooks: () => dispatch(getArtBooks()),
+    getLifestyleBooks: () => dispatch(getLifestyleBooks()),
+    selectIdGenreInSubmenu: (n: number) => dispatch(selectIdGenreInSubmenu(n)),
   };
 };
 

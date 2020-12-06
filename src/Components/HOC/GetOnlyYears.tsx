@@ -5,6 +5,7 @@ import { IApplicationState } from "../../Store/Store";
 const GetOnlyYears = (Component: typeof React.Component) => {
   interface IGetOnlyYearsProps {
     allGenresData: any[];
+    id: number;
   }
 
   interface IGetOnlyYearsState {
@@ -31,7 +32,10 @@ const GetOnlyYears = (Component: typeof React.Component) => {
     };
 
     componentDidMount() {
-      this.filterByUniqueYear(this.props.allGenresData[0].items);
+      const { id } = this.props;
+      if(this.props.allGenresData[id] !== undefined) {
+        this.filterByUniqueYear(this.props.allGenresData[id].items);
+      }
     }
 
     render() {
@@ -42,6 +46,7 @@ const GetOnlyYears = (Component: typeof React.Component) => {
   const mapStateToProps = (state: IApplicationState) => {
     return {
       allGenresData: state.data.allGenresData,
+      id: state.headerSearchPanel.id
     };
   };
 

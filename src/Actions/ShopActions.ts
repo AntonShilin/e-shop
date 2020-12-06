@@ -3,6 +3,7 @@ import {
   hiddenContainerTypes,
   isCloseShopTypes,
   isOpenShopTypes,
+  ShopIDTypes,
   shopNameTypes,
 } from "../Types/ShopTypes";
 
@@ -41,3 +42,9 @@ export const filterBySelectValue = (name:string) => ({
   type: FilterByValueTypes.FILTERBYVALUE,
   name
 });
+
+/* get ShopID */
+export const getShopID = (id: number) => ({
+  type: ShopIDTypes.SHOPID,
+  id
+})

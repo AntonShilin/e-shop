@@ -65,6 +65,6 @@ export type HeaderPanelActions =
 export interface IHeaderPanelState {
   isOpen: boolean;
   isToggle: boolean;
-  id: number | null;
+  id: number;
   isOpenSelectedGenre: boolean;
 }

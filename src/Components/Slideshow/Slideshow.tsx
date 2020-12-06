@@ -42,10 +42,14 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
     this.state.images.push(node);
   };
 
-  public settingSliderValues = (arr0: number[], arr1: number[], n: number) => {
-    this.state.images.map((img, i) => {
-      img.style.zIndex = arr0[i].toString();
-      img.style.left = `${arr1[i]}%`;
+  public settingSliderValues = (
+    position: { toString: () => string }[],
+    step: number[],
+    n: number
+  ) => {
+    this.state.images.map((img, i: number) => {
+      img.style.left = step[i]+"%";
+      img.style.zIndex = position[i].toString();
     });
     this.setState({ dots_number: n });
   };
@@ -67,7 +71,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
   };
 
   componentDidMount() {
-    // this.movingImages();
+    this.movingImages();
   }
 
   render() {
@@ -121,6 +125,5 @@ const mapStateToProps = (state: IApplicationState) => ({
   genresName: state.data.genresName,
   isHiddenContainer: state.shopContainer.isHiddenContainer,
 });
-
 
 export default connect(mapStateToProps, {})(Slideshow);

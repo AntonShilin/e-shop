@@ -3,19 +3,25 @@ import { FiArrowRight } from "react-icons/fi";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { closeSelectedGenre } from "../../../Actions/HeaderPanelActions";
-import { hiddenContainer, isOpenShop, selectShopName } from "../../../Actions/ShopActions";
+import {
+  getShopID,
+  hiddenContainer,
+  isOpenShop,
+  selectShopName,
+} from "../../../Actions/ShopActions";
 import { IApplicationState } from "../../../Store/Store";
 import sg from "./SelectedGenre.module.scss";
 
 export interface ISelectedGenreProps {
   allGenresData: null | any;
   genresName: string[];
-  id: number | null;
+  id: number ;
   isOpenSelectedGenre: boolean;
   closeSelectedGenre: typeof closeSelectedGenre;
   isOpenShop: typeof isOpenShop;
   hiddenContainer: typeof hiddenContainer;
   selectShopName: typeof selectShopName;
+  getShopID: typeof getShopID;
 }
 
 export interface State {}
@@ -25,7 +31,6 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
     const { genresName, allGenresData, id, isOpenSelectedGenre } = this.props;
 
     return (
-      id !== null &&
       isOpenSelectedGenre && (
         <>
           <div className={`row ${sg.selected_genre_bg}`}>
@@ -35,12 +40,17 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
                 alt="img"
               />
               <h1>Shop {genresName[id]}</h1>
-              <NavLink to="/shop" onClick={() => {
-                this.props.isOpenShop();
-                this.props.closeSelectedGenre(false);
-                this.props.hiddenContainer();           this.props.hiddenContainer();
-                this.props.selectShopName(genresName[id]);
-              }}>
+              <NavLink
+                to="/shop"
+                onClick={() => {
+                  this.props.isOpenShop();
+                  this.props.closeSelectedGenre(false);
+                  this.props.hiddenContainer();
+                  this.props.hiddenContainer();
+                  this.props.selectShopName(genresName[id]);
+                  this.props.getShopID(id);
+                }}
+              >
                 Shop All <FiArrowRight />
               </NavLink>
             </div>
@@ -65,8 +75,8 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
 
 const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
-  genresName: state.data.genresName,
   id: state.headerSearchPanel.id,
+  genresName: state.data.genresName,
   isOpenSelectedGenre: state.headerSearchPanel.isOpenSelectedGenre,
 });
 
@@ -75,7 +85,8 @@ const mapDispatchToProps = (dispatch: any) => {
     closeSelectedGenre: (value: boolean) => dispatch(closeSelectedGenre(value)),
     isOpenShop: () => dispatch(isOpenShop()),
     hiddenContainer: () => dispatch(hiddenContainer()),
-    selectShopName: (name:string) => dispatch(selectShopName(name)),
+    selectShopName: (name: string) => dispatch(selectShopName(name)),
+    getShopID: (id: number) => dispatch(getShopID(id)),
   };
 };
 

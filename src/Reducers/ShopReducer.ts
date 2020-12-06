@@ -4,6 +4,7 @@ import {
   isCloseShopTypes,
   IShopState,
   isOpenShopTypes,
+  ShopIDTypes,
   shopNameTypes,
   shopStateActions,
   showContainerTypes,
@@ -14,6 +15,7 @@ const shopState: IShopState = {
   isHiddenContainer: true,
   shopName: "",
   filterByValue: 'name',
+  shopID: 0,
 };
 
 export const shopReducer = (
@@ -60,6 +62,13 @@ export const shopReducer = (
         return {
           ...state,
           filterByValue: action.name,
+        };
+    }
+      
+    case ShopIDTypes.SHOPID: {
+        return {
+          ...state,
+          shopID: action.id,
         };
     }
 

@@ -11,48 +11,68 @@
   }
 }
 
-
 .book_info {
   div {
     margin-bottom: 1rem;
+    a:nth-of-type(1) {
+      img {
+      }
+    }
+    p:nth-of-type(1) {
+      color: #b2bbc4;
+      font-size: 0.875rem;
+      margin: 0.25rem 0rem 0.25rem 0rem;
+      text-transform: uppercase;
+    }
+    a:nth-of-type(2) {
+      color: #494949;
+      font-size: 1rem;
+      margin: 0.375rem 0rem 0.125rem;
+    }
+    p:nth-of-type(2) {
+      color: #494949;
+      font-size: 1rem;
+      margin: 0;
+    }
+    p:nth-of-type(3) {
+      color: #494949;
+      font-size: 1rem;
+      margin: 0;
+    }
+    p:nth-of-type(4) {
+      color: #494949;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .category_books_title {
+    div:nth-of-type(2) {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .book_info {
+    div {
+      margin-bottom: 1rem;
       a:nth-of-type(1) {
         img {
+          display: block !important;
+          margin: 0 auto !important;
         }
       }
-      p:nth-of-type(1) {
-        color: #b2bbc4;
-        font-size: 0.875rem;
-        margin: 0.25rem 0rem 0.25rem 0rem;
-        text-transform: uppercase;
+      a{
+        text-align: center !important;
+        display: block !important;
       }
-      a:nth-of-type(2) {
-        color: #494949;
-        font-size: 1rem;
-        margin: 0.375rem 0rem 0.125rem;
-      }
-      p:nth-of-type(2) {
-        color: #494949;
-        font-size: 1rem;
-        margin: 0;
-      }
-      p:nth-of-type(3) {
-        color: #494949;
-        font-size: 1rem;
-        margin: 0;
-      }
-      p:nth-of-type(4) {
-        color: #494949;
-        font-size: 1rem;
-        font-weight: 500;
-        margin: 0;
+      p {
+        text-align: center !important;
       }
     }
   }
-  
-  @media screen and (max-width: 700px) {
-    .category_books_title {
-      div:nth-of-type(2) {
-      display: none;
-      }
-    }
-  }
+}
