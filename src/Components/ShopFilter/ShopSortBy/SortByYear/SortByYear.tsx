@@ -7,6 +7,7 @@ import sy from "./SortByYear.module.scss";
 export interface ISortByYearProps {
   allGenresData: any[];
   uniqueYears: any[];
+  id: number;
 }
 
 export interface ISortByYearState {
@@ -52,6 +53,7 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
 
 const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
+  id: state.headerSearchPanel.id
 });
 
 const mapDispatchToProps = (dispatch: any) => {

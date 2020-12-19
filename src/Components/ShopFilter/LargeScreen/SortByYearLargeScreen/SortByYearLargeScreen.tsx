@@ -7,6 +7,7 @@ import large from "./SortByYearLargeScreen.module.scss";
 export interface ISortByYearLargeScreenProps {
   allGenresData: any[];
   uniqueYears: any[];
+  id: number;
 }
 
 export interface State {}
@@ -39,6 +40,7 @@ class SortByYearLargeScreen extends React.Component<
 
 const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
+  id: state.headerSearchPanel.id
 });
 
 const mapDispatchToProps = (dispatch: any) => {

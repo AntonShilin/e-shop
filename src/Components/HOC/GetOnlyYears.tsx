@@ -33,8 +33,8 @@ const GetOnlyYears = (Component: typeof React.Component) => {
 
     componentDidMount() {
       const { id } = this.props;
-      if(this.props.allGenresData[id] !== undefined) {
-        this.filterByUniqueYear(this.props.allGenresData[id].items);
+      if(this.props.allGenresData[0] !== undefined) {
+        this.filterByUniqueYear(this.props.allGenresData[0].items);
       }
     }
 
@@ -50,7 +50,7 @@ const GetOnlyYears = (Component: typeof React.Component) => {
     };
   };
 
-  return connect(mapStateToProps, null)(YearsArray);
+  return connect(mapStateToProps, {})(YearsArray);
 };
 
 export default GetOnlyYears;

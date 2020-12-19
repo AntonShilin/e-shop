@@ -11,13 +11,14 @@ export interface ISlideshowProps {
 
 export interface ISlideshowState {
   matrix: number[][][];
-  images: HTMLImageElement[];
   dots_number: number;
 }
 
 class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
+  images: any[];
   constructor(props: ISlideshowProps) {
     super(props);
+    this.images = [];
     this.state = {
       matrix: [
         [
@@ -33,38 +34,40 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
           [0, 105, -105],
         ],
       ],
-      images: [],
       dots_number: 0,
     };
   }
-
-  private getArrayOfImages = (node: HTMLImageElement) => {
-    this.state.images.push(node);
-  };
 
   public settingSliderValues = (
     position: { toString: () => string }[],
     step: number[],
     n: number
   ) => {
-    this.state.images.map((img, i: number) => {
-      img.style.left = step[i]+"%";
-      img.style.zIndex = position[i].toString();
+    this.images.map((img, i) => {
+      if (img !== null) {
+        img.style.left = step[i] + "%";
+        img.style.zIndex = position[i].toString();
+      }
     });
+
     this.setState({ dots_number: n });
   };
 
   public movingImages = () => {
     const { matrix } = this.state;
+
     setTimeout(() => {
       this.settingSliderValues(matrix[0][0], matrix[0][1], 1);
     }, 3000);
+
     setTimeout(() => {
       this.settingSliderValues(matrix[1][0], matrix[1][1], 2);
     }, 8000);
+
     setTimeout(() => {
       this.settingSliderValues(matrix[2][0], matrix[2][1], 0);
     }, 12000);
+
     setTimeout(() => {
       this.movingImages();
     }, 12100);
@@ -86,7 +89,13 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
                 {genresName.map(
                   (name: any, k: number) =>
                     k < 3 && (
-                      <div key={k} ref={this.getArrayOfImages}>
+                      <div
+                        key={k}
+                        ref={(ref) => {
+                          this.images[k] = ref;
+                          return true;
+                        }}
+                      >
                         <img
                           src={require(`../../Media/Images/${name}.png`)}
                           alt="name"

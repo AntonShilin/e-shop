@@ -31,38 +31,38 @@ class CategoryBooks extends React.Component<
     const { filterByValue, shopName ,shopID} = this.props;
     const { allGenresData } = this.state;
 
-    // if (filterByValue === "name") {
-    //   allGenresData[shopID].items.sort(
-    //     (
-    //       a: { volumeInfo: { title: string } },
-    //       b: { volumeInfo: { title: string } }
-    //     ) => a.volumeInfo.title.localeCompare(b.volumeInfo.title)
-    //   );
-    // } else if (filterByValue === "price") {
-    //   allGenresData[shopID].items.sort(
-    //     (
-    //       a: { saleInfo: { listPrice: { amount: number } } },
-    //       b: { saleInfo: { listPrice: { amount: number } } }
-    //     ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
-    //   );
-    // } else if (filterByValue === "newest") {
-    //   allGenresData[shopID].items.sort(
-    //     (
-    //       a: {
-    //         volumeInfo: {
-    //           publishedDate: { match: (arg0: RegExp) => number[] };
-    //         };
-    //       },
-    //       b: {
-    //         volumeInfo: {
-    //           publishedDate: { match: (arg0: RegExp) => number[] };
-    //         };
-    //       }
-    //     ) =>
-    //       b.volumeInfo.publishedDate.match(/\d+/)[0] -
-    //       a.volumeInfo.publishedDate.match(/\d+/)[0]
-    //   );
-    // }
+    if (filterByValue === "name") {
+      allGenresData[shopID].items.sort(
+        (
+          a: { volumeInfo: { title: string } },
+          b: { volumeInfo: { title: string } }
+        ) => a.volumeInfo.title.localeCompare(b.volumeInfo.title)
+      );
+    } else if (filterByValue === "price") {
+      allGenresData[shopID].items.sort(
+        (
+          a: { saleInfo: { listPrice: { amount: number } } },
+          b: { saleInfo: { listPrice: { amount: number } } }
+        ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
+      );
+    } else if (filterByValue === "newest") {
+      allGenresData[shopID].items.sort(
+        (
+          a: {
+            volumeInfo: {
+              publishedDate: { match: (arg0: RegExp) => number[] };
+            };
+          },
+          b: {
+            volumeInfo: {
+              publishedDate: { match: (arg0: RegExp) => number[] };
+            };
+          }
+        ) =>
+          b.volumeInfo.publishedDate.match(/\d+/)[0] -
+          a.volumeInfo.publishedDate.match(/\d+/)[0]
+      );
+    }
 
     return (
       allGenresData[shopID] !== undefined &&
