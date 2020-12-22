@@ -96,11 +96,11 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
                           return true;
                         }}
                       >
+                        <h1>{`${name} books`}</h1>
                         <img
                           src={require(`../../Media/Images/${name}.png`)}
                           alt="name"
                         />
-                        <h1>{`${name} books`}</h1>
                         <NavLink to="#">Shop now</NavLink>
                       </div>
                     )

@@ -14,7 +14,7 @@ const shopState: IShopState = {
   isShopOpen: false,
   isHiddenContainer: true,
   shopName: "",
-  filterByValue: 'name',
+  filterByValue: "name",
   shopID: 0,
 };
 

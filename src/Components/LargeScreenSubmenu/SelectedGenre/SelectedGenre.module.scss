@@ -17,21 +17,16 @@
       right: -25%;
     }
     h1 {
-      top: 40%;
-      left: 0%;
-      position: absolute;
       text-align: start;
       width: 100%;
-      padding-left: 1.6rem;
+      padding-left: 1.5rem;
+      padding-top: 30%;
       text-transform: capitalize;
       font-weight: 400;
     }
     a {
       text-align: start;
-      top: 57%;
-      left: 0%;
-      position: absolute;
-      padding-left: 1.6rem;
+      padding-left: 1.5rem;
       font-size: 1.25rem;
       text-transform: capitalize;
       &:hover {

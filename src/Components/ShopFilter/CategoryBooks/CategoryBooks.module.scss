@@ -64,9 +64,10 @@
         img {
           display: block !important;
           margin: 0 auto !important;
+          width: 80% !important;
         }
       }
-      a{
+      a:nth-of-type(2){
         text-align: center !important;
         display: block !important;
       }
