@@ -1,0 +1,13 @@
+.not_found_page {
+  height: 90vh;
+  padding-top: 30%;
+  h1 {
+    text-align: center;
+  }
+  a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+}

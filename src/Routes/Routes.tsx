@@ -1,17 +1,19 @@
 import * as React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import App from "../App";
-import ShopAll from "../Components/ShopAll/ShopAll";
+import HomePage from "../Components/HomePage/HomePage";
+import NotFoundPage from "../Components/NotFoundPage/NotFoundPage";
+import ShopPage from "../Components/ShopPage/ShopPage";
 
 
 class Routes extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact={true} path="/home" component={App} />
-        <Route exact={true} path="/shop" component={ShopAll} />
+        <Route exact={true} path="/home" component={HomePage} />
         <Redirect exact={true} from="/" to="/home" />
-        {/* <Route exact={true} path="/404" component={NotFoundPage} /> */}
+        <Route exact={true} path="/shop" component={ShopPage} />
+        <Route exact={true} component={NotFoundPage} />
       </Switch>
     );
   }

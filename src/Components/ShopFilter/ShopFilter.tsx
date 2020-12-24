@@ -12,7 +12,7 @@ export interface IShopFilterState {}
 class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
   render() {
     return (
-      <div className="container-xl">
+      <div className={`container-xl ${sf.shop_filter_bg}`}>
         <div className={`row ${sf.filter_large_screen}`}>
           <div className="col-4">
             <ShopSortByLargeScreen />

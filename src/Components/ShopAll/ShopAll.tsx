@@ -1,7 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { IApplicationState } from "../../Store/Store";
-import ShopFilter from "../ShopFilter/ShopFilter";
 import shop from "./ShopAll.module.scss";
 
 export interface IShopAllProps {
@@ -30,7 +29,6 @@ class ShopAll extends React.Component<IShopAllProps, State> {
               </div>
             </div>
           </div>
-          <ShopFilter />
         </>
       )
     );
