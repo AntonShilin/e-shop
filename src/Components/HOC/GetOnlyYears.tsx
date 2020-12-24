@@ -23,18 +23,18 @@ const GetOnlyYears = (Component: typeof React.Component) => {
 
     filterByUniqueYear = (arr: any[]) => {
       let onlyYears: number[] = [];
-      onlyYears = arr.map(
-        (book: any, k: number) => book.volumeInfo.publishedDate.match(/\d+/)[0]
-      );
-      onlyYears = onlyYears.filter((item, i) => onlyYears.indexOf(item) === i);
-      onlyYears.sort((a, b) => a - b);
-      this.setState({ uniqueYears: [...onlyYears] });
+        onlyYears = arr.map(
+          (book: any, k: number) => book.volumeInfo.publishedDate.match(/\d+/)[0]
+        );
+        onlyYears = onlyYears.filter((item, i) => onlyYears.indexOf(item) === i);
+        onlyYears.sort((a, b) => a - b);
+        this.setState({ uniqueYears: [...onlyYears] });
     };
 
     componentDidMount() {
       const { id } = this.props;
-      if(this.props.allGenresData[0] !== undefined) {
-        this.filterByUniqueYear(this.props.allGenresData[0].items);
+      if(this.props.allGenresData[id] !== undefined) {
+        this.filterByUniqueYear(this.props.allGenresData[id].items);
       }
     }
 
