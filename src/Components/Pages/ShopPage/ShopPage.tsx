@@ -1,6 +1,6 @@
 import * as React from "react";
-import ShopAll from "../ShopAll/ShopAll";
-import ShopFilter from "../ShopFilter/ShopFilter";
+import ShopAll from "../../ShopAll/ShopAll";
+import ShopFilter from "../../ShopFilter/ShopFilter";
 
 export interface Props {}
 

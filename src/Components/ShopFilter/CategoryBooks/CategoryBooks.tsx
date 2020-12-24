@@ -13,59 +13,58 @@ export interface ICategoryBooksProps {
 }
 
 export interface ICategoryBooksState {
-  allGenresData: any[];
 }
 
 class CategoryBooks extends React.Component<
   ICategoryBooksProps,
   ICategoryBooksState
 > {
-  constructor(props: ICategoryBooksProps) {
-    super(props);
-    this.state = {
-      allGenresData: this.props.allGenresData,
-    };
-  }
+
 
   render() {
-    const { filterByValue, shopName ,shopID} = this.props;
-    const { allGenresData } = this.state;
+    const {filterByValue, shopName, shopID,allGenresData } = this.props;
 
     if (filterByValue === "name") {
-      allGenresData[shopID].items.sort(
-        (
-          a: { volumeInfo: { title: string } },
-          b: { volumeInfo: { title: string } }
-        ) => a.volumeInfo.title.localeCompare(b.volumeInfo.title)
-      );
+      if(allGenresData[shopID] !== undefined) {
+        allGenresData[shopID].items.sort(
+          (
+            a: { volumeInfo: { title: string } },
+            b: { volumeInfo: { title: string } }
+          ) => a.volumeInfo.title.localeCompare(b.volumeInfo.title)
+        );
+      }
     } else if (filterByValue === "price") {
-      allGenresData[shopID].items.sort(
-        (
-          a: { saleInfo: { listPrice: { amount: number } } },
-          b: { saleInfo: { listPrice: { amount: number } } }
-        ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
-      );
+      if (allGenresData[shopID] !== undefined) {
+        allGenresData[shopID].items.sort(
+          (
+            a: { saleInfo: { listPrice: { amount: number } } },
+            b: { saleInfo: { listPrice: { amount: number } } }
+          ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
+        );
+      }
     } else if (filterByValue === "newest") {
-      allGenresData[shopID].items.sort(
-        (
-          a: {
-            volumeInfo: {
-              publishedDate: { match: (arg0: RegExp) => number[] };
-            };
-          },
-          b: {
-            volumeInfo: {
-              publishedDate: { match: (arg0: RegExp) => number[] };
-            };
-          }
-        ) =>
-          b.volumeInfo.publishedDate.match(/\d+/)[0] -
-          a.volumeInfo.publishedDate.match(/\d+/)[0]
-      );
-    }
+      if (allGenresData[shopID] !== undefined) {
+        allGenresData[shopID].items.sort(
+          (
+            a: {
+              volumeInfo: {
+                publishedDate: { match: (arg0: RegExp) => number[] };
+              };
+            },
+            b: {
+              volumeInfo: {
+                publishedDate: { match: (arg0: RegExp) => number[] };
+              };
+            }
+          ) =>
+            b.volumeInfo.publishedDate.match(/\d+/)[0] -
+            a.volumeInfo.publishedDate.match(/\d+/)[0]
+        );
+      }
+    } 
 
     return (
-      allGenresData[shopID] !== undefined &&
+      allGenresData[shopID] !== undefined  &&
       <>
         <div className={`row ${cb.category_books_title}`}>
           <div className="col-8">

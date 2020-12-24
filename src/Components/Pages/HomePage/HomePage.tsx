@@ -1,8 +1,7 @@
 import * as React from "react";
-import Centerband from "../Centerband/Centerband";
-import Contact from "../Contact/Contact";
-import ShopAll from "../ShopAll/ShopAll";
-import Slideshow from "../Slideshow/Slideshow";
+import Centerband from "../../Centerband/Centerband";
+import Contact from "../../Contact/Contact";
+import Slideshow from "../../Slideshow/Slideshow";
 
 export interface Props {}
 

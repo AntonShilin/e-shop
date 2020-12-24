@@ -13,8 +13,8 @@ class NotFoundPage extends React.Component<Props, State> {
         <div className="row">
           <div className="col">
             <div className={`${nf.not_found_page}`}>
-              <h1>404 - Not Found!</h1>
-              <Link to="/">Go Home</Link>
+              <h1>Oops! That page doesn't exists</h1>
+              <Link to="/">Back to Shopping</Link>
             </div>
           </div>
         </div>
