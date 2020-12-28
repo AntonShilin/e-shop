@@ -61,7 +61,7 @@ class CategoryBooks extends React.Component<
             a.volumeInfo.publishedDate.match(/\d+/)[0]
         );
       }
-    } 
+    }
 
     return (
       allGenresData[shopID] !== undefined  &&
@@ -83,7 +83,7 @@ class CategoryBooks extends React.Component<
                 <NavLink to="#">
                   <img
                     src={book.volumeInfo.imageLinks.thumbnail}
-                    alt={`Card image_${k}`}
+                    alt={`img_${k}`}
                   />
                 </NavLink>
                 <p>{shopName}</p>
@@ -92,7 +92,7 @@ class CategoryBooks extends React.Component<
                 <p>
                   Published: {book.volumeInfo.publishedDate}
                 </p>
-                <p>{book.saleInfo.retailPrice.amount} $</p>
+                <p>{(book.saleInfo.retailPrice.amount/28).toFixed(2)} $</p>
               </div>
             ))}
         </div>

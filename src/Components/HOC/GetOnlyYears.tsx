@@ -33,7 +33,7 @@ const GetOnlyYears = (Component: typeof React.Component) => {
 
     componentDidMount() {
       const { id } = this.props;
-      if(this.props.allGenresData[id] !== undefined) {
+      if (this.props.allGenresData[id] !== undefined) {
         this.filterByUniqueYear(this.props.allGenresData[id].items);
       }
     }

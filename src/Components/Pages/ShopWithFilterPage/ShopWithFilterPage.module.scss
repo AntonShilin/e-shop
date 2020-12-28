@@ -1,0 +1,21 @@
+.shop_filter_bg{
+}
+
+.filter_small_screen{
+display: none;
+}
+
+
+@media screen and (max-width: 700px) {
+  .filter_large_screen {
+    display: none !important;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .filter_small_screen {
+    display: block !important;
+  }
+}
+

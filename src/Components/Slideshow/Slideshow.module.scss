@@ -6,12 +6,17 @@
       height: 47rem;
       position: relative;
       background-color: white;
+      background-image: url("../../Media/Images/letter.png");
+      background-repeat: no-repeat;
+      background-position: center center;
       div:nth-of-type(1) {
         padding-top: 0rem;
         position: absolute;
         transition: left 1s;
         left: 0%;
         width: 100%;
+        background-color: transparent;
+        background-image: none !important;
         img {
           max-width: 100%;
         }
@@ -21,10 +26,8 @@
           position: absolute;
           text-align: center;
           font-weight: 500;
-          font-size: 2.2rem;
           text-transform: uppercase;
           color: #494949;
-          background-color: #ffffffb5;
         }
         a {
           right: 17%;
@@ -54,6 +57,8 @@
         transition: left 1s;
         left: 105%;
         position: absolute;
+        background-image: none !important;
+        background-color: transparent;
         img {
           max-width: 100%;
           max-height: 39rem;
@@ -63,10 +68,9 @@
           bottom: 60%;
           position: absolute;
           text-align: center;
-          font-weight: 600;
+          font-weight: 500;
           text-transform: uppercase;
           color: #494949;
-          background-color: #ffffffb5;
         }
         a {
           right: 15%;
@@ -96,6 +100,8 @@
         position: absolute;
         left: -105%;
         transition: left 1s;
+        background-image: none !important;
+        background-color: transparent;
         img {
           max-width: 100%;
           max-height: 39rem;
@@ -105,10 +111,9 @@
           bottom: 60%;
           position: absolute;
           text-align: center;
-          font-weight: 600;
+          font-weight: 500;
           text-transform: uppercase;
           color: #494949;
-          background-color: #ffffffb5;
         }
         a {
           right: 25%;
@@ -177,10 +182,10 @@
       div {
         div {
           h1 {
-           position: static !important;
-           margin-top: 1rem;
+            position: static !important;
+            margin-top: 1rem;
           }
-          img{
+          img {
             display: block;
             margin: 2rem auto;
             width: 50% !important;
@@ -202,7 +207,6 @@
         height: 45rem !important;
         div {
           img {
-       
           }
           h1 {
             // bottom: 20% !important;
@@ -225,7 +229,6 @@
         height: 42rem !important;
         div {
           img {
-       
           }
         }
       }
@@ -237,10 +240,9 @@
   .slider_bg {
     div {
       div {
-        height:39rem !important;
+        height: 39rem !important;
         div {
           img {
-       
           }
         }
       }
@@ -252,7 +254,7 @@
   .slider_bg {
     div {
       div {
-        height:90vh !important;
+        height: 90vh !important;
         div {
           img {
             max-width: 90% !important;

@@ -1,24 +1,23 @@
 .signup_bg {
-  padding-bottom: .5rem;
-    h3 {
+  padding-bottom: 0.5rem;
+  h3 {
     text-transform: uppercase;
     color: #b2bbc4;
     font-size: 0.9rem;
     font-weight: 400;
   }
   div {
-      input {
-          background-clip: unset;
-          border: 1px solid #fff !important;
+    input {
+      background-clip: unset;
+      border: 1px solid #fff !important;
       border-radius: 0rem !important;
       color: #b2bbc4;
     }
     div {
       button {
-          border-radius: 0rem !important;
-          background-color: #fff !important;
+        border-radius: 0rem !important;
+        background-color: #fff !important;
       }
     }
   }
 }
-

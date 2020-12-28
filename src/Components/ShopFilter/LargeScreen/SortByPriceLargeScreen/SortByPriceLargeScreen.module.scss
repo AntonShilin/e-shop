@@ -1,4 +1,4 @@
-.large_main {
+.sort_price_large_main {
   p {
     color: #b2bbc4;
     font-size: 0.9rem;
@@ -9,11 +9,13 @@
   div {
     input {
       width: 50%;
-      height: 56px;
+      height: 50px;
       border: 1px solid #b2bbc4;
       padding-left: 14px !important;
+     color:#494949;
       &:focus {
         outline: none !important;
+        border-radius: 0rem !important;
       }
     }
   }

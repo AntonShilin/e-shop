@@ -15,7 +15,17 @@ import {
 import SmallScreenSubmenu from "../SmallScreenSubmenu/SmallScreenSubmenu";
 import LargeScreenSubmenu from "../LargeScreenSubmenu/LargeScreenSubmenu";
 import { closeShop, showContainer } from "../../Actions/ShopActions";
-import { getArtBooks, getBestSellersBooks, getBiographyBooks, getFableBooks, getFictionBooks, getLifestyleBooks, getStoryBooks } from "../../Actions/MainStateActions";
+import {
+  getArtBooks,
+  getBestSellersBooks,
+  getBiographyBooks,
+  getFableBooks,
+  getFictionBooks,
+  getLifestyleBooks,
+  getStoryBooks,
+} from "../../Actions/MainStateActions";
+import { toggleLoggedBox } from "../../Actions/LoggedBoxActions";
+import LoggedBox from "../LoggedBox/LoggedBox";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -32,20 +42,20 @@ export interface IHeaderProps {
   getArtBooks: typeof getArtBooks;
   getLifestyleBooks: typeof getLifestyleBooks;
   selectIdGenreInSubmenu: typeof selectIdGenreInSubmenu;
+  toggleLoggedBox: typeof toggleLoggedBox;
 }
 
 export interface IHeaderState {}
 
 class Header extends React.Component<IHeaderProps, IHeaderState> {
-
-   componentDidMount() {
+  componentDidMount() {
     this.props.getBiographyBooks();
-    this.props.getFableBooks();
-    this.props.getStoryBooks();
-    this.props.getBestSellersBooks();
-    this.props.getFictionBooks();
-    this.props.getArtBooks();
-    this.props.getLifestyleBooks();
+    // this.props.getFableBooks();
+    // this.props.getStoryBooks();
+    // this.props.getBestSellersBooks();
+    // this.props.getFictionBooks();
+    // this.props.getArtBooks();
+    // this.props.getLifestyleBooks();
   }
 
   render() {
@@ -94,10 +104,17 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
               />
             </div>
             <div className="col-2">
-              <NavLink to="#" className="d-none d-lg-block">
+              <NavLink
+                to="#"
+                className="d-none d-lg-block"
+                onClick={() => this.props.toggleLoggedBox(true)}
+              >
                 Login | Sign Up
               </NavLink>
-              <FaRegUserCircle className="d-lg-none d-block" />
+              <FaRegUserCircle
+                className="d-lg-none d-block"
+                onClick={() => this.props.toggleLoggedBox(true)}
+              />
             </div>
             <div className="col-2">
               <NavLink to="#" className="d-block">
@@ -106,6 +123,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
             </div>
           </nav>
         </div>
+        <LoggedBox />
         <HeaderSearchPanel />
         <LargeScreenSubmenu />
         <SmallScreenSubmenu />
@@ -134,6 +152,7 @@ const mapDispatchToProps = (dispatch: any) => {
     getArtBooks: () => dispatch(getArtBooks()),
     getLifestyleBooks: () => dispatch(getLifestyleBooks()),
     selectIdGenreInSubmenu: (n: number) => dispatch(selectIdGenreInSubmenu(n)),
+    toggleLoggedBox: (value: boolean) => dispatch(toggleLoggedBox(value)),
   };
 };
 
