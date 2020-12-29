@@ -1,0 +1,42 @@
+.logged_box_sm_bg{
+    margin-top: 6rem;
+      width: 100%;
+      height: 75vh;
+      padding: 25vh 1rem 1rem 1rem;
+      form {
+        input {
+          width: 100%;
+          font-size: 16px;
+          height: 56px !important;
+          color: #494949;
+          padding: 0 10px !important;
+          border: 1px solid #b2bbc4;
+          border-radius: 0rem !important;
+          &:focus{
+            outline: none;
+          }
+        }
+        button {
+          margin-top: 2.5rem;
+          width: 100%;
+          height: 56px;
+          background-color: #f7f7f8;
+          color: #93979b;
+          border: none;
+          &:hover {
+            background-color: #b2bbc4;
+            color: white;
+          }
+          &:focus{
+            outline: none;
+          }
+        }
+      }
+    }
+
+  
+    @media screen and (max-width: 991px) {
+        .logged_box_sm_bg {
+         margin-top: 4rem !important;
+        }
+      }

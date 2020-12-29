@@ -74,7 +74,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
             <div className="col-6">
               <NavLink
                 to="/home"
-                className={`${header.logo_lg_deivices} d-none d-lg-block`}
+                className="d-none d-lg-block"
                 onClick={() => {
                   this.props.showContainer();
                   this.props.closeShop();
@@ -84,7 +84,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
               </NavLink>
               <NavLink
                 to="/home"
-                className={`${header.logo_small_devices} d-lg-none d-block`}
+                className="d-lg-none d-block"
                 onClick={() => {
                   this.props.showContainer();
                   this.props.closeShop();
@@ -111,10 +111,9 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
               >
                 Login | Sign Up
               </NavLink>
-              <FaRegUserCircle
-                className="d-lg-none d-block"
-                onClick={() => this.props.toggleLoggedBox(true)}
-              />
+              <NavLink to="/logged">
+                <FaRegUserCircle className="d-lg-none d-block" />
+              </NavLink>
             </div>
             <div className="col-2">
               <NavLink to="#" className="d-block">

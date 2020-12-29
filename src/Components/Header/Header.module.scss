@@ -39,20 +39,22 @@ $height-submenu: 3.4375rem;
   -webkit-box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
   -moz-box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
   position: relative;
-  .logo_lg_deivices {
-    font-size: 2.2rem;
-    color: $main-menu-color;
-    text-decoration: none;
-    font-weight: 800;
-  }
-  .logo_small_devices {
-    font-size: 3rem;
-    line-height: 1;
-    color: $main-menu-color;
-    text-decoration: none;
-    font-weight: 800;
-  }
   div:nth-of-type(1) {
+    a:nth-of-type(1) {
+      font-size: 2.2rem;
+      color: $main-menu-color;
+      text-decoration: none;
+      font-weight: 800;
+      color: black;
+    }
+    a:nth-of-type(2) {
+      font-size: 3rem;
+      line-height: 1.1;
+      color: $main-menu-color;
+      text-decoration: none;
+      font-weight: 800;
+      color: black;
+    }
     svg {
       position: absolute;
       top: 1rem;
@@ -79,17 +81,19 @@ $height-submenu: 3.4375rem;
   }
   div:nth-of-type(3) {
     @include centered-item();
-    a {
+    a:nth-of-type(1) {
       color: $main-menu-color;
       margin: 0 auto;
     }
-    svg {
-      font-size: 1.5rem;
-      color: $color_grey;
-      margin: 0 auto;
-      cursor: pointer;
-      &:hover {
-        color: black;
+    a:nth-of-type(2){
+      svg {
+        font-size: 1.5rem;
+        color: $color_grey;
+        margin: 0 auto;
+        cursor: pointer;
+        &:hover {
+          color: black;
+        }
       }
     }
   }

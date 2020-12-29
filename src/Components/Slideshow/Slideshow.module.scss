@@ -1,8 +1,11 @@
+.slider_empty{
+  height: 10rem;
+}
+
 .slider_bg {
   div {
     overflow: hidden;
     div {
-      padding-top: 8rem;
       height: 47rem;
       position: relative;
       background-color: white;
@@ -164,13 +167,14 @@
 }
 
 @media screen and (max-width: 990px) {
+  .slider_empty{
+    height: 4rem !important;
+  }
   .slider_bg {
     div {
       div {
         padding-top: 2.5rem !important;
         height: 45rem !important;
-        div {
-        }
       }
     }
   }
@@ -205,18 +209,6 @@
     div {
       div {
         height: 45rem !important;
-        div {
-          img {
-          }
-          h1 {
-            // bottom: 20% !important;
-            // right: 35% !important;
-          }
-          a {
-            // bottom: 8% !important;
-            // left: 35% !important;
-          }
-        }
       }
     }
   }
@@ -227,23 +219,22 @@
     div {
       div {
         height: 42rem !important;
-        div {
-          img {
-          }
-        }
       }
     }
   }
 }
 
 @media screen and (max-width: 500px) {
+  .slider_empty{
+    height: 5rem !important;
+  }
   .slider_bg {
     div {
       div {
         height: 39rem !important;
-        div {
-          img {
-          }
+        padding-top: 1rem !important;
+        h1{
+          font-weight: 400 !important;
         }
       }
     }
@@ -254,13 +245,16 @@
   .slider_bg {
     div {
       div {
-        height: 90vh !important;
+        height: 33rem !important;
         div {
           img {
             max-width: 90% !important;
           }
           h1 {
             right: 12% !important;
+            span{
+              width: 100%;
+            }
           }
           a {
             width: 94% !important;

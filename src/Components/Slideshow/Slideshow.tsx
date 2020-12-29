@@ -83,6 +83,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
     return (
       isHiddenContainer && (
         <>
+          <div className={`container-xl ${s.slider_empty}`}/>
           <div className={`container-xl ${s.slider_bg}`}>
             <div className="row">
               <div className="col">
@@ -96,7 +97,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
                           return true;
                         }}
                       >
-                        <h1>{`${name} books`}</h1>
+                        <h1>{name} <span>books</span></h1>
                         <img
                           src={require(`../../Media/Images/${name}.png`)}
                           alt="name"
