@@ -5,8 +5,16 @@ import { IApplicationState } from "../../../../Store/Store";
 import { connect } from "react-redux";
 import Arrow from "../../../Arrow/Arrow";
 import { FiArrowRight } from "react-icons/fi";
-import { getShopID, hiddenContainer, isOpenShop, selectShopName } from "../../../../Actions/ShopActions";
-import { selectIdGenreInSubmenu, toggleSmallScreenSubmenu } from "../../../../Actions/HeaderPanelActions";
+import {
+  getShopID,
+  hiddenContainer,
+  isOpenShop,
+  selectShopName,
+} from "../../../../Actions/ShopActions";
+import {
+  selectIdGenreInSubmenu,
+  toggleSmallScreenSubmenu,
+} from "../../../../Actions/HeaderPanelActions";
 
 export interface IGenresProps {
   allGenresData: null | any;
@@ -40,14 +48,18 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
     this.arrItem.push(node);
   };
 
+
   render() {
     const { allGenresData, genresName } = this.props;
 
     return (
       <>
         {genresName.map((item, i: number) => (
-          <div key={i}>
-            <div className={b.item} onClick={() => this.toggleGenreBooks(i)}>
+          <div key={i} >
+            <div
+              className={b.item}
+              onClick={() => this.toggleGenreBooks(i)}
+            >
               <Arrow />
               <NavLink to="#">{genresName[i]}</NavLink>
             </div>
@@ -99,7 +111,8 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     selectShopName: (name: string) => dispatch(selectShopName(name)),
     isOpenShop: () => dispatch(isOpenShop()),
-    toggleSmallScreenSubmenu: (value: boolean) => dispatch(toggleSmallScreenSubmenu(value)),
+    toggleSmallScreenSubmenu: (value: boolean) =>
+      dispatch(toggleSmallScreenSubmenu(value)),
     hiddenContainer: () => dispatch(hiddenContainer()),
     getShopID: (id: number) => dispatch(getShopID(id)),
     selectIdGenreInSubmenu: (n: number) => dispatch(selectIdGenreInSubmenu(n)),

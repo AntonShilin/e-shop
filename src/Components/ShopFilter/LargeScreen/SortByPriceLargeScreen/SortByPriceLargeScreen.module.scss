@@ -12,10 +12,10 @@
       height: 50px;
       border: 1px solid #b2bbc4;
       padding-left: 14px !important;
-     color:#494949;
+      color: #494949;
+      border-radius: 0rem !important;
       &:focus {
         outline: none !important;
-        border-radius: 0rem !important;
       }
     }
   }

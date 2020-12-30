@@ -11,12 +11,16 @@
       width: 100% !important;
       background-color: #494949;
       height: 54px;
-      border: none;
+      border: 0rem;
       color: #ffffff;
+      border-radius: 0rem;
+      &:focus{
+        outline: none;
+      }
     }
     span {
       position: absolute;
-      top: 0.8rem;
+      top: 0.9rem;
       right: 1rem;
       cursor: pointer;
       svg {

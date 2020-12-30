@@ -49,13 +49,13 @@ export interface IHeaderState {}
 
 class Header extends React.Component<IHeaderProps, IHeaderState> {
   componentDidMount() {
-    this.props.getBiographyBooks();
     this.props.getFableBooks();
-    this.props.getStoryBooks();
-    this.props.getBestSellersBooks();
-    this.props.getFictionBooks();
+    // this.props.getBiographyBooks();
+    // this.props.getStoryBooks();
+    // this.props.getBestSellersBooks();
+    // this.props.getFictionBooks();
     this.props.getArtBooks();
-    this.props.getLifestyleBooks();
+    // this.props.getLifestyleBooks();
   }
 
   render() {
