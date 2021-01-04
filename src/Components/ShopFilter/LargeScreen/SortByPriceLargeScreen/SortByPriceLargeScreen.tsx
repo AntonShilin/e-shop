@@ -36,7 +36,6 @@ class SortByPriceLargeScreen extends React.Component<
             onChange={(e) => this.props.getMinPrice(+e.target.value)}
             onKeyPress={(event) => {
               if (event.key === "Enter") {
-                console.log(this.props);
                 this.props.history.push("/filterby");
               }
             }}
@@ -48,7 +47,6 @@ class SortByPriceLargeScreen extends React.Component<
             onChange={(e) => this.props.getMaxPrice(+e.target.value)}
             onKeyPress={(event) => {
               if (event.key === "Enter") {
-                console.log(this.props);
                 this.props.history.push("/filterby");
               }
             }}
