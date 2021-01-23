@@ -45,6 +45,14 @@ class SortByYearLargeScreen extends React.Component<
     this.setState({ uniqueYears: onlyYears });
   };
 
+  componentDidUpdate(prevProps: { allGenresData: string | any[]; }) {
+    const { allGenresData, shopID } = this.props;
+    if (allGenresData.length !== prevProps.allGenresData.length) {
+      this.filterByUniqueYear(allGenresData[shopID].items);
+    }
+  }
+
+
   render() {
     const { uniqueYears } = this.state;
 
@@ -53,12 +61,12 @@ class SortByYearLargeScreen extends React.Component<
         <p>Year</p>
         <div>
           {uniqueYears.map((year: any, k: number) => (
-            <label key={k}>
-              {year}
-              <input type="checkbox" value={year} />
-              <span/>
-            </label>
-          ))}
+              <label key={k}>
+                {year}
+                <input type="checkbox" value={year} />
+                <span />
+              </label>
+            ))}
         </div>
       </div>
     );

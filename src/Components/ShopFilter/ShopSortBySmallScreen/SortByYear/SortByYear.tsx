@@ -48,6 +48,13 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
     this.setState({ showYearFilter: !this.state.showYearFilter });
   };
 
+  componentDidUpdate(prevProps: { allGenresData: string | any[]; }) {
+    const { allGenresData, shopID } = this.props;
+    if (allGenresData.length !== prevProps.allGenresData.length) {
+      this.filterByUniqueYear(allGenresData[shopID].items);
+    }
+  }
+
   render() {
     const { uniqueYears, showYearFilter } = this.state;
 
