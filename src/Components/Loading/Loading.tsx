@@ -8,11 +8,13 @@ export interface State {}
 class Loading extends React.Component<Props, State> {
   render() {
     return (
-      <div className={l.loading_bg}>
+      <div className={l.loading_page_bg}>
         <div>
-          <span/>
-          <span/>
-          <p>Please wait ...</p>
+          <div />
+          <div />
+          <div>
+          <span>B</span>
+          </div>
         </div>
       </div>
     );

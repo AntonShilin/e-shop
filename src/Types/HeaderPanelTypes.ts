@@ -22,7 +22,16 @@ export enum CloseSelectedGenreTypes {
   CLOSESELECTEDGENRE="CLOSESELECTEDGENRE"
 }
 
+export enum ClientWidthTypes {
+  CLIENTWIDTH="CLIENTWIDTH"
+}
+
 /* action interfaces */
+export interface IClientWidthAction{
+  type: ClientWidthTypes.CLIENTWIDTH;
+  num: number;
+}
+
 export interface ICloseSelectedGenreAction{
   type: CloseSelectedGenreTypes.CLOSESELECTEDGENRE;
   value: boolean;
@@ -55,16 +64,18 @@ export interface ICloseHeaderSearchPanelAction {
 }
 
 export type HeaderPanelActions =
-  |ICloseSelectedGenreAction
-  |IOpenSelectedGenreAction
-  |ISelectIdGenreInSubmenuAction
+  | ICloseSelectedGenreAction
+  | IOpenSelectedGenreAction
+  | ISelectIdGenreInSubmenuAction
   | IOpenHeaderSearchPanelAction
   | ICloseHeaderSearchPanelAction
-  | IToggleSmallScreenSubmenuAction;
+  | IToggleSmallScreenSubmenuAction
+  | IClientWidthAction;
 
 export interface IHeaderPanelState {
   isOpen: boolean;
   isToggle: boolean;
   id: number;
   isOpenSelectedGenre: boolean;
+  clientWidth: number;
 }

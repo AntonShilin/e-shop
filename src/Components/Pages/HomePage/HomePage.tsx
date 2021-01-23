@@ -19,7 +19,7 @@ class HomePage extends React.Component<IHomePageProps, State> {
 
     return (
       <>
-        {allGenresData.length !== 7 && <Loading/>}
+        {/* {allGenresData.length !== 7 && <Loading/>} */}
         <Slideshow />
         <Centerband />
         <Contact />

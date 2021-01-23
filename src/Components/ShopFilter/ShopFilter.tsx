@@ -3,13 +3,15 @@ import CategoryBooks from "./CategoryBooks/CategoryBooks";
 import ShopViewCategory from "./ShopViewCategory/ShopViewCategory";
 import sf from "./ShopFilter.module.scss";
 import ShopSortByLargeScreen from "./LargeScreen/ShopSortByLargeScreen/ShopSortByLargeScreen";
-import ShopSortBy from "./ShopSortBy/ShopSortBy";
+import ShopSortBySmallScreen from "./ShopSortBySmallScreen/ShopSortBySmallScreen";
 
-export interface IShopFilterProps {}
+export interface IShopFilterProps {
+}
 
 export interface IShopFilterState {}
 
 class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
+
   render() {
     return (
       <div className={`container-xl ${sf.shop_filter_bg}`}>
@@ -24,7 +26,7 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
         </div>
         <div className={`row ${sf.filter_small_screen}`}>
           <div className="col-12">
-            <ShopSortBy />
+            <ShopSortBySmallScreen />
           </div>
           <div className="col-12">
             <CategoryBooks />
@@ -34,5 +36,6 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
     );
   }
 }
+
 
 export default ShopFilter;

@@ -1,101 +1,104 @@
-.loading_bg {
-  height: 100vh;
-  width: 100vw;
+.loading_page_bg {
+  position: fixed;
+  padding: 0;
   z-index: 5;
-  position: absolute;
-  top: 0%;
-  left: 0%;
+  background-color: #2125297a;
+  width: 100%;
+  height: 100vh;
   div {
+    margin: 35% auto 0%;
+    height: 10rem;
+    width: 10rem;
+    background-color: white;
     position: relative;
-    top: 30%;
-    left: 35%;
-    height: 6rem;
-    width: 6rem;
-    background-color: #f7f7f8;
-    padding: 1rem 0rem 0.5rem 0rem;
-    span {
-      display: inline-block;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-    }
-    span:nth-of-type(1) {
-      background-color: red;
-      -webkit-animation-name: dot_1;
-              animation-name: dot_1;
-      -webkit-animation-duration: 1.5s;
-              animation-duration: 1.5s;
-      -webkit-animation-iteration-count: infinite;
-              animation-iteration-count: infinite;
-    }
-    span:nth-of-type(2) {
-      background-color: green;
-      -webkit-animation-name: dot_2;
-              animation-name: dot_2;
-      -webkit-animation-duration: 1.5s;
-              animation-duration: 1.5s;
-      -webkit-animation-iteration-count: infinite;
-              animation-iteration-count: infinite;
-    }
-    p {
+    div:nth-of-type(1) {
+      -webkit-animation: moving 1s infinite linear;
+              animation: moving 1s infinite linear;
       position: absolute;
-      bottom: 0rem;
-      text-align: center;
-      width: 100%;
+      top: 25%;
+      left: 25%;
+      border-left: 0.3rem solid rgb(235, 15, 81);
+      border-top: 0.3rem solid transparent;
+      border-right: 0.3rem solid rgb(235, 15, 81);
+      border-bottom: 0.3rem solid transparent;
+      width: 5rem;
+      height: 5rem;
+      background-color: transparent;
+      border-radius: 50%;
+      margin: 0;
+    }
+    div:nth-of-type(2) {
+      -webkit-animation: moving_2 1s infinite linear;
+              animation: moving_2 1s infinite linear;
+      position: absolute;
+      top: 30%;
+      left: 30%;
+      border-left: 0.3rem solid rgb(74, 15, 235);
+      border-top: 0.3rem solid transparent;
+      border-right: 0.3rem solid rgb(74, 15, 235);
+      border-bottom: 0.3rem solid transparent;
+      width: 4rem;
+      height: 4rem;
+      background-color: transparent;
+      border-radius: 50%;
+      margin: 0;
+    }
+    div:nth-of-type(3) {
+      position: absolute;
+      top: 0%;
+      left: 30%;
+      width: 4rem;
+      height: 4rem;
+      background-color: transparent;
+      border-radius: 50%;
+      span {
+        width: 100%;
+        display: block;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+      }
     }
   }
 }
 
-@-webkit-keyframes dot_1 {
-  0% {
-    transform: translateX(3rem);
-    z-index: 2;
-    position: relative;
+@-webkit-keyframes moving {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translateX(0rem);
-  }
-  100% {
-    transform: translateX(3rem);
+
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@keyframes dot_1 {
-  0% {
-    transform: translateX(3rem);
-    z-index: 2;
-    position: relative;
+@keyframes moving {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translateX(0rem);
-  }
-  100% {
-    transform: translateX(3rem);
+
+  to {
+    transform: rotate(360deg);
   }
 }
-@-webkit-keyframes dot_2 {
-  0% {
-    transform: translateX(-2rem);
-    z-index: 1;
-    position: relative;
+
+@-webkit-keyframes moving_2 {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translateX(1rem);
-  }
-  100% {
-    transform: translateX(-2rem);
+
+  to {
+    transform: rotate(-360deg);
   }
 }
-@keyframes dot_2 {
-  0% {
-    transform: translateX(-2rem);
-    z-index: 1;
-    position: relative;
+
+@keyframes moving_2 {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translateX(1rem);
-  }
-  100% {
-    transform: translateX(-2rem);
+
+  to {
+    transform: rotate(-360deg);
   }
 }
+

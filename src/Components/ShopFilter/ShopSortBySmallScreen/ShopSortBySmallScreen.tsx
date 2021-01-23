@@ -5,14 +5,17 @@ import sbt from "./ShopSortBy.module.scss";
 import SortByPrice from "./SortByPrice/SortByPrice";
 import SortByYear from "./SortByYear/SortByYear";
 
-export interface IShopSortByProps {}
+export interface IShopSortBySmallScreenProps {}
 
-export interface IShopSortByState {
+export interface IShopSortBySmallScreenState {
   showAllFilters: boolean;
 }
 
-class ShopSortBy extends React.Component<IShopSortByProps, IShopSortByState> {
-  constructor(props: IShopSortByProps) {
+class ShopSortBySmallScreen extends React.Component<
+  IShopSortBySmallScreenProps,
+  IShopSortBySmallScreenState
+> {
+  constructor(props: IShopSortBySmallScreenProps) {
     super(props);
     this.state = {
       showAllFilters: true,
@@ -52,7 +55,7 @@ class ShopSortBy extends React.Component<IShopSortByProps, IShopSortByState> {
             <SortByPrice />
           </div>
           <div className="col">
-            <SortByYear/>
+            <SortByYear />
           </div>
         </div>
       </>
@@ -60,4 +63,4 @@ class ShopSortBy extends React.Component<IShopSortByProps, IShopSortByState> {
   }
 }
 
-export default ShopSortBy;
+export default ShopSortBySmallScreen;

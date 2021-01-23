@@ -1,24 +1,23 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { IApplicationState } from "../../../../Store/Store";
-import large from "./SortByYearLargeScreen.module.scss";
+import sy from "./SortByYear.module.scss";
 
-export interface ISortByYearLargeScreenProps {
+export interface ISortByYearProps {
   allGenresData: any[];
   shopID: number;
 }
 
-export interface ISortByYearLargeScreenState {
+export interface ISortByYearState {
+  showYearFilter: boolean;
   uniqueYears: any[];
 }
 
-class SortByYearLargeScreen extends React.Component<
-  ISortByYearLargeScreenProps,
-  ISortByYearLargeScreenState
-> {
-  constructor(props: ISortByYearLargeScreenProps) {
+class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
+  constructor(props: ISortByYearProps) {
     super(props);
     this.state = {
+      showYearFilter: false,
       uniqueYears: [],
     };
   }
@@ -39,28 +38,34 @@ class SortByYearLargeScreen extends React.Component<
         }
       }
     });
-    onlyYears = onlyYears.filter(x=>x!== undefined ); 
+    onlyYears = onlyYears.filter((x) => x !== undefined);
     onlyYears = onlyYears.filter((item, i) => onlyYears.indexOf(item) === i);
     onlyYears.sort((a, b) => a - b);
     this.setState({ uniqueYears: onlyYears });
   };
 
+  public toggleFilterYear = () => {
+    this.setState({ showYearFilter: !this.state.showYearFilter });
+  };
+
   render() {
-    const { uniqueYears } = this.state;
+    const { uniqueYears, showYearFilter } = this.state;
 
     return (
-      <div className={large.sort_by_year_main_lg}>
-        <p>Year</p>
-        <div>
-          {uniqueYears.map((year: any, k: number) => (
-            <span key={k}>
-              <label>
-                <input type="checkbox" value={year} />
-                {year}
-              </label>
-            </span>
-          ))}
-        </div>
+      <div className={sy.sort_by_year_main_sm}>
+        <p onClick={this.toggleFilterYear}>Year</p>
+        {showYearFilter && (
+          <div>
+            {uniqueYears.map((year: any, k: number) => (
+              <span key={k}>
+                <label>
+                  <input type="checkbox" value={year} />
+                  {year}
+                </label>
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     );
   }
@@ -75,7 +80,4 @@ const mapDispatchToProps = (dispatch: any) => {
   return {};
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SortByYearLargeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(SortByYear);

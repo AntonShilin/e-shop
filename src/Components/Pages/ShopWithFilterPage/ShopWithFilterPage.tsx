@@ -2,7 +2,7 @@ import * as React from "react";
 import CategoryBooksWithFilter from "../../CategoryBooksWithFilter/CategoryBooksWithFilter";
 import ShopAll from "../../ShopAll/ShopAll";
 import ShopSortByLargeScreen from "../../ShopFilter/LargeScreen/ShopSortByLargeScreen/ShopSortByLargeScreen";
-import ShopSortBy from "../../ShopFilter/ShopSortBy/ShopSortBy";
+import ShopSortBy from "../../ShopFilter/ShopSortBySmallScreen/ShopSortBySmallScreen";
 import ShopViewCategory from "../../ShopFilter/ShopViewCategory/ShopViewCategory";
 import sfp from "./ShopWithFilterPage.module.scss";
 
