@@ -22,16 +22,8 @@ export enum CloseSelectedGenreTypes {
   CLOSESELECTEDGENRE="CLOSESELECTEDGENRE"
 }
 
-export enum ClientWidthTypes {
-  CLIENTWIDTH="CLIENTWIDTH"
-}
 
 /* action interfaces */
-export interface IClientWidthAction{
-  type: ClientWidthTypes.CLIENTWIDTH;
-  num: number;
-}
-
 export interface ICloseSelectedGenreAction{
   type: CloseSelectedGenreTypes.CLOSESELECTEDGENRE;
   value: boolean;
@@ -69,13 +61,11 @@ export type HeaderPanelActions =
   | ISelectIdGenreInSubmenuAction
   | IOpenHeaderSearchPanelAction
   | ICloseHeaderSearchPanelAction
-  | IToggleSmallScreenSubmenuAction
-  | IClientWidthAction;
+  | IToggleSmallScreenSubmenuAction;
 
 export interface IHeaderPanelState {
   isOpen: boolean;
   isToggle: boolean;
   id: number;
   isOpenSelectedGenre: boolean;
-  clientWidth: number;
 }

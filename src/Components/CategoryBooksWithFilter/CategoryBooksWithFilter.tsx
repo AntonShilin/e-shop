@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -16,7 +15,7 @@ export interface ICategoryBooksWithFilterProps {
 }
 
 export interface ICategoryBooksWithFilterState {
-  numberOfBooks: number;
+  numbersOfBooks: number;
 }
 
 class CategoryBooksWithFilter extends React.Component<
@@ -26,19 +25,80 @@ class CategoryBooksWithFilter extends React.Component<
   constructor(props: ICategoryBooksWithFilterProps) {
     super(props);
     this.state = {
-      numberOfBooks: 0,
+      numbersOfBooks: 0,
     };
   }
 
-  countingFilteredBooks = () => {
-    let x = 0;
+  filteredByName = () => {
+    const { shopID, allGenresData } = this.props;
+    if (allGenresData[shopID] !== undefined) {
+      allGenresData[
+        shopID
+      ].items.sort(
+        (
+          a: { volumeInfo: { title: string } },
+          b: { volumeInfo: { title: string } }
+        ) => a.volumeInfo.title.localeCompare(b.volumeInfo.title)
+      );
+    }
+  };
+
+  filteredByPrice = () => {
+    const { shopID, allGenresData } = this.props;
+    if (allGenresData[shopID] !== undefined) {
+      allGenresData[shopID].items.sort(
+        (
+          a: { saleInfo: { listPrice: { amount: number } } },
+          b: { saleInfo: { listPrice: { amount: number } } }
+        ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
+      );
+    }
+  };
+
+  filterByNewest = () => {
+    const { shopID, allGenresData } = this.props;
+    if (allGenresData[shopID] !== undefined) {
+      allGenresData[shopID].items.sort(
+        (
+          a: {
+            volumeInfo: {
+              publishedDate: { match: (arg0: RegExp) => number[] };
+            };
+          },
+          b: {
+            volumeInfo: {
+              publishedDate: { match: (arg0: RegExp) => number[] };
+            };
+          }
+        ) => {
+          if (
+            "publishedDate" in b.volumeInfo &&
+            "publishedDate" in a.volumeInfo
+          ) {
+            if (
+              b.volumeInfo.publishedDate !== undefined &&
+              a.volumeInfo.publishedDate !== undefined
+            ) {
+              return (
+                b.volumeInfo.publishedDate.match(/\d+/)[0] -
+                a.volumeInfo.publishedDate.match(/\d+/)[0]
+              );
+            }
+          }
+        }
+      );
+    }
+  };
+
+  countingBooks = () => {
+    let count = 0;
     this.props.allGenresData[this.props.shopID].items.map(
       (book: any, k: number) => {
         if (
           book.saleInfo.retailPrice.amount / 28 < this.props.maxPrice &&
           book.saleInfo.retailPrice.amount / 28 > this.props.minPrice
         ) {
-          this.setState({ numberOfBooks: ++x });
+          this.setState({ numbersOfBooks: ++count });
         }
       }
     );
@@ -54,6 +114,16 @@ class CategoryBooksWithFilter extends React.Component<
       minPrice,
     } = this.props;
 
+    const { numbersOfBooks } = this.state;
+
+    if (filterByValue === "name") {
+      this.filteredByName();
+    } else if (filterByValue === "price") {
+      this.filteredByPrice();
+    } else if (filterByValue === "newest") {
+      this.filterByNewest();
+    }
+
     return (
       allGenresData[shopID] !== undefined && (
         <>
@@ -61,7 +131,7 @@ class CategoryBooksWithFilter extends React.Component<
             <div className="col-8">
               <h2>
                 {shopName.trim().length > 0 ? shopName : "fairytales"} (
-                {this.state.numberOfBooks})
+                {numbersOfBooks})
               </h2>
             </div>
             <div className="col-4">
@@ -78,7 +148,7 @@ class CategoryBooksWithFilter extends React.Component<
                       <img
                         src={book.volumeInfo.imageLinks.thumbnail}
                         alt={`img_${k}`}
-                        onLoad={this.countingFilteredBooks}
+                        onLoad={this.countingBooks}
                       />
                     </NavLink>
                     <p>{shopName}</p>

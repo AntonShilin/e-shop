@@ -3,7 +3,7 @@ import {
   OpenHeaderSearchPanelTypes,
   ICloseHeaderSearchPanelAction,
   CloseHeaderSearchPanelTypes,
-  ToggleSmallScreenSubmenuTypes, SelectIdGenreInSubmenuTypes, ISelectIdGenreInSubmenuAction, IToggleSmallScreenSubmenuAction, IOpenSelectedGenreAction, OpenSelectedGenreTypes, ICloseSelectedGenreAction, CloseSelectedGenreTypes, IClientWidthAction, ClientWidthTypes
+  ToggleSmallScreenSubmenuTypes, SelectIdGenreInSubmenuTypes, ISelectIdGenreInSubmenuAction, IToggleSmallScreenSubmenuAction, IOpenSelectedGenreAction, OpenSelectedGenreTypes, ICloseSelectedGenreAction, CloseSelectedGenreTypes
 } from "../Types/HeaderPanelTypes";
 
 /* open header serach panel */
@@ -42,8 +42,3 @@ export const closeSelectedGenre = (value:boolean):ICloseSelectedGenreAction => (
     value
 })
 
-/* watching screen width */
-export const watchingClientWidth = (value: number): IClientWidthAction => ({
-  type: ClientWidthTypes.CLIENTWIDTH,
-  num: value
-})

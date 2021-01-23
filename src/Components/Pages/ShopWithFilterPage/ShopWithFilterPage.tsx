@@ -29,7 +29,9 @@ class ShopWithFilterPage extends React.Component<Props, State> {
             <div className="col-12">
               <ShopSortBy />
             </div>
-            <div className="col-12"><CategoryBooksWithFilter /></div>
+            <div className="col-12">
+              <CategoryBooksWithFilter />
+            </div>
           </div>
         </div>
       </>

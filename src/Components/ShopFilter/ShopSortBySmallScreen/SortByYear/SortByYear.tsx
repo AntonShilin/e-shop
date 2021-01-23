@@ -57,12 +57,11 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
         {showYearFilter && (
           <div>
             {uniqueYears.map((year: any, k: number) => (
-              <span key={k}>
-                <label>
-                  <input type="checkbox" value={year} />
+                <label key={k}>
                   {year}
+                  <input type="checkbox" value={year} />
+                  <span/>
                 </label>
-              </span>
             ))}
           </div>
         )}

@@ -3,7 +3,7 @@ import {
   HeaderPanelActions,
   OpenHeaderSearchPanelTypes,
   CloseHeaderSearchPanelTypes,
-  ToggleSmallScreenSubmenuTypes, SelectIdGenreInSubmenuTypes, OpenSelectedGenreTypes, CloseSelectedGenreTypes, ClientWidthTypes
+  ToggleSmallScreenSubmenuTypes, SelectIdGenreInSubmenuTypes, OpenSelectedGenreTypes, CloseSelectedGenreTypes
 } from "../Types/HeaderPanelTypes";
 
 const headerPanelState: IHeaderPanelState = {
@@ -11,7 +11,6 @@ const headerPanelState: IHeaderPanelState = {
   isToggle: false,
   id: 0,
   isOpenSelectedGenre: false,
-  clientWidth:0,
 };
 
 export const headerPanelReducer = (
@@ -61,12 +60,6 @@ export const headerPanelReducer = (
       };
     }
       
-    case ClientWidthTypes.CLIENTWIDTH: {
-      return {
-        ...state,
-        clientWidth: action.num,
-      };
-    }
 
     default:
       return state;

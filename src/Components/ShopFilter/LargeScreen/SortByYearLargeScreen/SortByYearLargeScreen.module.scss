@@ -7,15 +7,40 @@
     padding-left: 10px;
   }
   div {
-    span {
+    label {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 1rem;
       margin-right: 1rem;
-      label {
-        cursor: pointer;
-        color: #494949;
-        input {
-          cursor: pointer;
-          margin-right: 0.5rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      &:hover {
+        span {
+          border: 1px solid grey !important;
         }
+      }
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        &:checked ~ span {
+          background-color: #494949 !important;
+        }
+      }
+      span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1.3rem;
+        width: 1.3rem;
+        background-color: #ffffff;
+        border: 1px solid #b2bbc4;
       }
     }
   }
