@@ -57,10 +57,11 @@
     }
     .select_box_names {
       border: 1px solid #b2bbc4 !important;
-      width: 220% !important;
+      width: 100vw !important;
       right: -1rem !important;
       span {
         border: none !important;
+        padding: 12px 12px 12px 35px;
       }
     }
   }

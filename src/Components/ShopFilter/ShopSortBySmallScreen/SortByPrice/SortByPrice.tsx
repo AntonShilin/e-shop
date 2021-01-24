@@ -1,19 +1,22 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import {  RouteComponentProps, withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import {
+  enableFilterByPrice,
   getMaxPrice,
   getMinPrice,
 } from "../../../../Actions/FilterByPriceActions";
 import { IApplicationState } from "../../../../Store/Store";
 import sbprice from "./SortByPrice.module.scss";
 
-export interface ISortByPriceProps extends RouteComponentProps{
+export interface ISortByPriceProps extends RouteComponentProps {
   allGenresData: any[];
+  shopID: number;
   minPrice: number;
   maxPrice: number;
   getMinPrice: typeof getMinPrice;
   getMaxPrice: typeof getMaxPrice;
+  enableFilterByPrice: typeof enableFilterByPrice;
 }
 
 export interface ISortByPriceState {
@@ -31,6 +34,26 @@ class SortByPrice extends React.Component<
     };
   }
 
+  maxDataEntryValidation = (e: { target: { value: number | string } }) => {
+    const val = e.target.value.toString().match(/\D/g);
+    if (val === null) {
+      this.props.getMaxPrice(+e.target.value);
+    }
+  };
+
+  minDataEntryValidation = (e: { target: { value: number | string } }) => {
+    const val = e.target.value.toString().match(/\D/g);
+    if (val === null) {
+      this.props.getMinPrice(+e.target.value);
+    }
+  };
+
+  filteredBooksByPrice = () => {
+    const { maxPrice, minPrice } = this.props;
+    this.props.history.push("/filterby");
+    this.props.enableFilterByPrice(minPrice, maxPrice);
+  };
+
   public toggleFilter = () => {
     this.setState({ showPriceFilter: !this.state.showPriceFilter });
   };
@@ -45,25 +68,25 @@ class SortByPrice extends React.Component<
           <div>
             <input
               type="text"
-              value={minPrice > 0 ? minPrice : ""}
-              placeholder={minPrice.toString()}
-              onChange={(e) => this.props.getMinPrice(+e.target.value)}
-              onKeyPress={event => {
-                if (event.key === 'Enter') {
-                  console.log(this.props)
-                  this.props.history.push("/filterby")
+              value={minPrice}
+              placeholder="min"
+              onChange={(e) => {
+                this.minDataEntryValidation(e);
+              }}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  this.filteredBooksByPrice();
                 }
               }}
             />
             <input
               type="text"
-              value={maxPrice > 0 ? maxPrice : ""}
-              placeholder={maxPrice.toString()}
-              onChange={(e) => this.props.getMaxPrice(+e.target.value)}
-              onKeyPress={event => {
-                if (event.key === 'Enter') {
-                  console.log(this.props)
-                  this.props.history.push("/filterby")
+              value={maxPrice}
+              placeholder="max"
+              onChange={(e) => this.maxDataEntryValidation(e)}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  this.filteredBooksByPrice();
                 }
               }}
             />
@@ -76,6 +99,7 @@ class SortByPrice extends React.Component<
 
 const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
+  shopID: state.shopContainer.shopID,
   minPrice: state.filterByPrice.minPrice,
   maxPrice: state.filterByPrice.maxPrice,
 });
@@ -84,7 +108,10 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     getMinPrice: (num: number) => dispatch(getMinPrice(num)),
     getMaxPrice: (num: number) => dispatch(getMaxPrice(num)),
+    enableFilterByPrice:(min:number,max:number)=>dispatch(enableFilterByPrice(min,max))
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SortByPrice));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SortByPrice)
+);

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { MdInput } from "react-icons/md";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../Store/Store";
@@ -12,6 +13,10 @@ export interface ICategoryBooksWithFilterProps {
   shopID: number;
   maxPrice: number;
   minPrice: number;
+  filterByPriceOn: {
+    max: number;
+    min: number;
+  };
 }
 
 export interface ICategoryBooksWithFilterState {
@@ -104,16 +109,18 @@ class CategoryBooksWithFilter extends React.Component<
     );
   };
 
-  render() {
-    const {
-      filterByValue,
-      shopName,
-      shopID,
-      allGenresData,
-      maxPrice,
-      minPrice,
-    } = this.props;
+  componentDidUpdate(prevProps: { filterByPriceOn: { min: number; max: number; } }) {
+    if (
+      this.props.filterByPriceOn.min !== prevProps.filterByPriceOn.min &&
+      this.props.filterByPriceOn.min !== prevProps.filterByPriceOn.max
+    ) {
+      this.countingBooks();
+    }
+  }
 
+  render() {
+    const { filterByValue, shopName, shopID, allGenresData } = this.props;
+    const { min, max } = this.props.filterByPriceOn;
     const { numbersOfBooks } = this.state;
 
     if (filterByValue === "name") {
@@ -141,8 +148,8 @@ class CategoryBooksWithFilter extends React.Component<
           <div className={`row ${cbwf.book_info}`}>
             {allGenresData[shopID].items.map(
               (book: any, k: number) =>
-                book.saleInfo.retailPrice.amount / 28 < maxPrice &&
-                book.saleInfo.retailPrice.amount / 28 > minPrice && (
+                book.saleInfo.retailPrice.amount / 28 < max &&
+                book.saleInfo.retailPrice.amount / 28 > min && (
                   <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
                     <NavLink to="#">
                       <img
@@ -175,6 +182,7 @@ const mapStateToProps = (state: IApplicationState) => ({
   shopID: state.shopContainer.shopID,
   maxPrice: state.filterByPrice.maxPrice,
   minPrice: state.filterByPrice.minPrice,
+  filterByPriceOn: state.filterByPrice.filterByPriceOn,
 });
 
 const mapDispatchToProps = (dispatch: any) => {

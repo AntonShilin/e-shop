@@ -1,4 +1,5 @@
 import {
+  filterByPriceOnTypes,
   filterByPriceStateActions,
   getMaxPriceTypes,
   getMinPriceTypes,
@@ -8,6 +9,10 @@ import {
 const filterByPriceState: IFilterByPriceState = {
   minPrice: 0,
   maxPrice: 1000,
+  filterByPriceOn: {
+    min: 0,
+    max: 1000
+  }
 };
 
 export const filterByPriceReducer = (
@@ -26,6 +31,16 @@ export const filterByPriceReducer = (
       return {
         ...state,
         maxPrice: action.max,
+      };
+    }
+      
+    case filterByPriceOnTypes.FILTERBYPRICEON: {
+      return {
+        ...state,
+        filterByPriceOn:  {
+          min: action.filterByPriceOn.min,
+          max: action.filterByPriceOn.max,
+        },
       };
     }
 

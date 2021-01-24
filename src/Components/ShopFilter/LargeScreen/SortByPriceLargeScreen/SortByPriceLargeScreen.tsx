@@ -2,26 +2,50 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import {
+  enableFilterByPrice,
   getMaxPrice,
   getMinPrice,
 } from "../../../../Actions/FilterByPriceActions";
 import { IApplicationState } from "../../../../Store/Store";
 import sbp from "./SortByPriceLargeScreen.module.scss";
 
-export interface ISortByPriceLargeScreenProps extends RouteComponentProps{
+export interface ISortByPriceLargeScreenProps extends RouteComponentProps {
   allGenresData: any[];
   minPrice: number;
   maxPrice: number;
   getMinPrice: typeof getMinPrice;
   getMaxPrice: typeof getMaxPrice;
+  enableFilterByPrice: typeof enableFilterByPrice;
 }
 
-export interface State {}
+export interface ISortByPriceLargeScreenState {
+}
 
 class SortByPriceLargeScreen extends React.Component<
   ISortByPriceLargeScreenProps,
-  State
-> {
+  ISortByPriceLargeScreenState
+  > {
+  
+  maxDataEntryValidation = (e: { target: { value: number | string } }) => {
+    const maxVal = e.target.value.toString().match(/\D/g);
+    if (maxVal === null) {
+      this.props.getMaxPrice(+e.target.value);
+    } 
+  };
+
+  minDataEntryValidation = (e: { target: { value: number | string } }) => {
+    const minVal = e.target.value.toString().match(/\D/g);
+    if (minVal === null) {
+      this.props.getMinPrice(+e.target.value);
+    } 
+  };
+
+  filteredBooksByPrice = () => {
+    const { maxPrice, minPrice } = this.props;
+    this.props.history.push("/filterby");
+    this.props.enableFilterByPrice(minPrice, maxPrice);
+  };
+
   render() {
     const { maxPrice, minPrice } = this.props;
 
@@ -31,23 +55,23 @@ class SortByPriceLargeScreen extends React.Component<
         <div>
           <input
             type="text"
-            value={minPrice > 0 ? minPrice : ""}
-            placeholder={minPrice.toString()}
-            onChange={(e) => this.props.getMinPrice(+e.target.value)}
+            value={minPrice}
+            placeholder="min"
+            onChange={(e) => this.minDataEntryValidation(e)}
             onKeyPress={(event) => {
               if (event.key === "Enter") {
-                this.props.history.push("/filterby");
+                this.filteredBooksByPrice();
               }
             }}
           />
           <input
             type="text"
-            value={maxPrice > 0 ? maxPrice : ""}
-            placeholder={maxPrice.toString()}
-            onChange={(e) => this.props.getMaxPrice(+e.target.value)}
+            value={maxPrice}
+            placeholder="max"
+            onChange={(e) => this.maxDataEntryValidation(e)}
             onKeyPress={(event) => {
               if (event.key === "Enter") {
-                this.props.history.push("/filterby");
+                this.filteredBooksByPrice();
               }
             }}
           />
@@ -67,10 +91,10 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     getMinPrice: (num: number) => dispatch(getMinPrice(num)),
     getMaxPrice: (num: number) => dispatch(getMaxPrice(num)),
+    enableFilterByPrice:(min:number,max:number)=>dispatch(enableFilterByPrice(min,max))
   };
 };
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SortByPriceLargeScreen));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SortByPriceLargeScreen)
+);

@@ -1,7 +1,9 @@
 import {
-    getMaxPriceTypes,
+  filterByPriceOnTypes,
+  getMaxPriceTypes,
   getMinPriceTypes,
-    IGetMaxPriceAction,
+  IFilterByPriceOnAction,
+  IGetMaxPriceAction,
   IGetMinPriceAction,
 } from "../Types/FilterByPriceTypes";
 
@@ -15,4 +17,16 @@ export const getMinPrice = (num: number): IGetMinPriceAction => ({
 export const getMaxPrice = (num: number): IGetMaxPriceAction => ({
   type: getMaxPriceTypes.GETMAXPRICE,
   max: num,
+});
+
+/* on/off filter by price */
+export const enableFilterByPrice = (
+  min: number,
+  max: number
+): IFilterByPriceOnAction => ({
+  type: filterByPriceOnTypes.FILTERBYPRICEON,
+  filterByPriceOn: {
+    min,
+    max,
+  },
 });
