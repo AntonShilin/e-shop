@@ -1,5 +1,6 @@
 import * as React from "react";
 import { MdClose } from "react-icons/md";
+import ClearFilter from "../../ClearFilter/ClearFilter";
 import SelectBox from "../SelectBox/SelectBox";
 import sbt from "./ShopSortBy.module.scss";
 import SortByPrice from "./SortByPrice/SortByPrice";
@@ -56,6 +57,9 @@ class ShopSortBySmallScreen extends React.Component<
           </div>
           <div className="col">
             <SortByYear />
+          </div>
+          <div className="col">
+            <ClearFilter/>
           </div>
         </div>
       </>

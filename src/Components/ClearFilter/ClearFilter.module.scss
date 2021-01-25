@@ -1,0 +1,19 @@
+.clear_filter_bg {
+        span {
+          margin: 0;
+          color: #fff;
+          text-transform: capitalize;
+          margin-right: 1rem;
+          line-height: 3rem;
+        }
+}
+
+@media screen and (max-width: 700px) {
+    .clear_filter_bg {
+        margin-top: 1rem !important;
+            span {
+              color: #b2bbc4 !important;
+              
+            }
+    }
+}

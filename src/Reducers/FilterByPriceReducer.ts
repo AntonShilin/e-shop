@@ -1,6 +1,8 @@
 import {
+  applyDefaultPriceTypes,
   filterByPriceOnTypes,
   filterByPriceStateActions,
+  filterEnableTypes,
   getMaxPriceTypes,
   getMinPriceTypes,
   IFilterByPriceState,
@@ -12,7 +14,9 @@ const filterByPriceState: IFilterByPriceState = {
   filterByPriceOn: {
     min: 0,
     max: 1000
-  }
+  },
+  filterName: "price",
+  filterEnable: false,
 };
 
 export const filterByPriceReducer = (
@@ -41,6 +45,25 @@ export const filterByPriceReducer = (
           min: action.filterByPriceOn.min,
           max: action.filterByPriceOn.max,
         },
+      };
+    }
+      
+    case filterEnableTypes.FILTERENABLE: {
+      return {
+        ...state,
+       filterEnable:action.condition
+      };
+    }
+      
+    case applyDefaultPriceTypes.APPLYDEFAULTPRICE: {
+      return {
+        ...state,
+        maxPrice: 1000,
+        minPrice: 0,
+        filterByPriceOn: {
+          max: 1000,
+          min: 0
+       }
       };
     }
 

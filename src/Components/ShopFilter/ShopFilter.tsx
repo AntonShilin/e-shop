@@ -5,16 +5,13 @@ import sf from "./ShopFilter.module.scss";
 import ShopSortByLargeScreen from "./LargeScreen/ShopSortByLargeScreen/ShopSortByLargeScreen";
 import ShopSortBySmallScreen from "./ShopSortBySmallScreen/ShopSortBySmallScreen";
 
-export interface IShopFilterProps {
-}
+export interface IShopFilterProps {}
 
 export interface IShopFilterState {}
 
 class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
-
   render() {
     return (
-      
       <div className={`container-xl ${sf.shop_filter_bg}`}>
         <div className={`row ${sf.filter_large_screen}`}>
           <div className="col-4">
@@ -37,6 +34,5 @@ class ShopFilter extends React.Component<IShopFilterProps, IShopFilterState> {
     );
   }
 }
-
 
 export default ShopFilter;

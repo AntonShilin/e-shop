@@ -5,6 +5,7 @@ import {
   enableFilterByPrice,
   getMaxPrice,
   getMinPrice,
+  toggleEnableFilter,
 } from "../../../../Actions/FilterByPriceActions";
 import { IApplicationState } from "../../../../Store/Store";
 import sbp from "./SortByPriceLargeScreen.module.scss";
@@ -16,6 +17,7 @@ export interface ISortByPriceLargeScreenProps extends RouteComponentProps {
   getMinPrice: typeof getMinPrice;
   getMaxPrice: typeof getMaxPrice;
   enableFilterByPrice: typeof enableFilterByPrice;
+  toggleEnableFilter: typeof toggleEnableFilter;
 }
 
 export interface ISortByPriceLargeScreenState {
@@ -44,6 +46,7 @@ class SortByPriceLargeScreen extends React.Component<
     const { maxPrice, minPrice } = this.props;
     this.props.history.push("/filterby");
     this.props.enableFilterByPrice(minPrice, maxPrice);
+    this.props.toggleEnableFilter(true);
   };
 
   render() {
@@ -91,7 +94,8 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     getMinPrice: (num: number) => dispatch(getMinPrice(num)),
     getMaxPrice: (num: number) => dispatch(getMaxPrice(num)),
-    enableFilterByPrice:(min:number,max:number)=>dispatch(enableFilterByPrice(min,max))
+    enableFilterByPrice: (min: number, max: number) => dispatch(enableFilterByPrice(min, max)),
+    toggleEnableFilter: (value: boolean) => dispatch(toggleEnableFilter(value)),
   };
 };
 

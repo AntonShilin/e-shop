@@ -10,7 +10,24 @@ export enum filterByPriceOnTypes {
   FILTERBYPRICEON = "FILTERBYPRICEON",
 }
 
+export enum filterEnableTypes {
+  FILTERENABLE = "FILTERENABLE",
+}
+
+export enum applyDefaultPriceTypes {
+  APPLYDEFAULTPRICE = "APPLYDEFAULTPRICE",
+}
+
 /* interfaces */
+
+export interface IApplyDefaultPriceAction {
+  type: applyDefaultPriceTypes.APPLYDEFAULTPRICE
+}
+
+export interface IFilterEnableAction {
+  type: filterEnableTypes.FILTERENABLE
+  condition: boolean;
+}
 
 export interface IFilterByPriceOnAction {
   type: filterByPriceOnTypes.FILTERBYPRICEON;
@@ -31,6 +48,8 @@ export interface IGetMaxPriceAction {
 }
 
 export type filterByPriceStateActions =
+  |IApplyDefaultPriceAction
+  |IFilterEnableAction
   | IFilterByPriceOnAction
   | IGetMinPriceAction
   | IGetMaxPriceAction;
@@ -42,4 +61,6 @@ export interface IFilterByPriceState {
     min: number;
     max: number;
   };
+  filterName: string;
+  filterEnable: boolean;
 }
