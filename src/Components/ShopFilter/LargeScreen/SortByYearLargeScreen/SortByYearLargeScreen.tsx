@@ -1,11 +1,19 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import {
+  addYearToFilter,
+  deleteYearFromFilter,
+} from "../../../../Actions/FilterByYearActions";
 import { IApplicationState } from "../../../../Store/Store";
 import large from "./SortByYearLargeScreen.module.scss";
 
-export interface ISortByYearLargeScreenProps {
+export interface ISortByYearLargeScreenProps extends RouteComponentProps {
   allGenresData: any[];
   shopID: number;
+  addYearToFilter: typeof addYearToFilter;
+  deleteYearFromFilter: typeof deleteYearFromFilter;
+  checkedYears: number[];
 }
 
 export interface ISortByYearLargeScreenState {
@@ -45,28 +53,41 @@ class SortByYearLargeScreen extends React.Component<
     this.setState({ uniqueYears: onlyYears });
   };
 
-  componentDidUpdate(prevProps: { allGenresData: string | any[]; }) {
+  componentDidUpdate(prevProps: { allGenresData: string | any[] }) {
     const { allGenresData, shopID } = this.props;
     if (allGenresData.length !== prevProps.allGenresData.length) {
       this.filterByUniqueYear(allGenresData[shopID].items);
     }
   }
 
-
   render() {
     const { uniqueYears } = this.state;
+    const { checkedYears } = this.props;
 
     return (
       <div className={large.sort_by_year_main_lg}>
         <p>Year</p>
         <div>
-          {uniqueYears.map((year: any, k: number) => (
-              <label key={k}>
-                {year}
-                <input type="checkbox" value={year} />
-                <span />
-              </label>
-            ))}
+          {uniqueYears.map((year: string, k: number) => (
+            <label key={k}>
+              {year}
+              <input
+                type="checkbox"
+                checked={checkedYears.includes(+year) ? true : false}
+                value={year}
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    this.props.addYearToFilter(+year);
+                    this.props.history.push("/filter-by-year");
+                  }
+                  if (e.target.checked === false) {
+                    this.props.deleteYearFromFilter(+year);
+                  }
+                }}
+              />
+              <span />
+            </label>
+          ))}
         </div>
       </div>
     );
@@ -76,13 +97,17 @@ class SortByYearLargeScreen extends React.Component<
 const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
   shopID: state.shopContainer.shopID,
+  checkedYears: state.filterByYear.checkedYears,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    addYearToFilter: (year: number) => dispatch(addYearToFilter(year)),
+    deleteYearFromFilter: (year: number) =>
+      dispatch(deleteYearFromFilter(year)),
+  };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SortByYearLargeScreen);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SortByYearLargeScreen)
+);

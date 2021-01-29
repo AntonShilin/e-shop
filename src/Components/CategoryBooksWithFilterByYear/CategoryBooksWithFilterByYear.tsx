@@ -1,12 +1,11 @@
 import * as React from "react";
-import { MdInput } from "react-icons/md";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../Store/Store";
 import SelectBox from "../ShopFilter/SelectBox/SelectBox";
-import cbwf from "./CategoryBooksWithFilter.module.scss";
+import cbwfby from "./CategoryBooksWithFilterByYear.module.scss";
 
-export interface ICategoryBooksWithFilterProps {
+export interface ICategoryBooksWithFilterByYearProps {
   shopName: string;
   allGenresData: any[];
   filterByValue: string;
@@ -17,17 +16,18 @@ export interface ICategoryBooksWithFilterProps {
     max: number;
     min: number;
   };
+  checkedYears: number[];
 }
 
-export interface ICategoryBooksWithFilterState {
+export interface ICategoryBooksWithFilterByYearState {
   numbersOfBooks: number;
 }
 
-class CategoryBooksWithFilter extends React.Component<
-  ICategoryBooksWithFilterProps,
-  ICategoryBooksWithFilterState
+class CategoryBooksWithFilterByYear extends React.Component<
+  ICategoryBooksWithFilterByYearProps,
+  ICategoryBooksWithFilterByYearState
 > {
-  constructor(props: ICategoryBooksWithFilterProps) {
+  constructor(props: ICategoryBooksWithFilterByYearProps) {
     super(props);
     this.state = {
       numbersOfBooks: 0,
@@ -96,30 +96,50 @@ class CategoryBooksWithFilter extends React.Component<
   };
 
   countingBooks = () => {
+    const { shopID, allGenresData, checkedYears } = this.props;
     let count = 0;
-    this.props.allGenresData[this.props.shopID].items.map(
-      (book: any, k: number) => {
+    if (allGenresData[shopID] !== undefined) {
+      allGenresData[shopID].items.map((book: any, k: number) => {
         if (
-          book.saleInfo.retailPrice.amount / 28 < this.props.maxPrice &&
-          book.saleInfo.retailPrice.amount / 28 > this.props.minPrice
+          book.saleInfo.retailPrice.amount / 28 <
+            this.props.filterByPriceOn.max &&
+          book.saleInfo.retailPrice.amount / 28 >
+            this.props.filterByPriceOn.min &&
+          book.volumeInfo.publishedDate !== undefined &&
+          "publishedDate" in book.volumeInfo &&
+          checkedYears.includes(+book.volumeInfo.publishedDate.match(/\d+/)[0])
         ) {
           this.setState({ numbersOfBooks: ++count });
         }
-      }
-    );
+      });
+    }
   };
 
-  componentDidUpdate(prevProps: { filterByPriceOn: { min: number; max: number; } }) {
+  componentDidUpdate(prevProps: {
+    filterByPriceOn: { min: number; max: number };
+    checkedYears: string | any[];
+  }) {
     if (
-      this.props.filterByPriceOn.min !== prevProps.filterByPriceOn.min &&
-      this.props.filterByPriceOn.min !== prevProps.filterByPriceOn.max
+      this.props.filterByPriceOn.min !== prevProps.filterByPriceOn.min ||
+      this.props.filterByPriceOn.max !== prevProps.filterByPriceOn.max ||
+      this.props.checkedYears.length !== prevProps.checkedYears.length
     ) {
       this.countingBooks();
     }
   }
 
+  componentDidMount() {
+    this.countingBooks();
+  }
+
   render() {
-    const { filterByValue, shopName, shopID, allGenresData } = this.props;
+    const {
+      filterByValue,
+      shopName,
+      shopID,
+      allGenresData,
+      checkedYears,
+    } = this.props;
     const { min, max } = this.props.filterByPriceOn;
     const { numbersOfBooks } = this.state;
 
@@ -134,28 +154,32 @@ class CategoryBooksWithFilter extends React.Component<
     return (
       allGenresData[shopID] !== undefined && (
         <>
-          <div className={`row ${cbwf.category_books_with_filter_title}`}>
+          <div className={`row ${cbwfby.category_books_with_filter_title}`}>
             <div className="col-8">
-              <h2>
+              <h3>
                 {shopName.trim().length > 0 ? shopName : "fairytales"} (
                 {numbersOfBooks})
-              </h2>
+              </h3>
             </div>
             <div className="col-4">
               <SelectBox />
             </div>
           </div>
-          <div className={`row ${cbwf.book_info}`}>
+          <div className={`row ${cbwfby.book_info}`}>
             {allGenresData[shopID].items.map(
               (book: any, k: number) =>
                 book.saleInfo.retailPrice.amount / 28 < max &&
-                book.saleInfo.retailPrice.amount / 28 > min && (
+                book.saleInfo.retailPrice.amount / 28 > min &&
+                book.volumeInfo.publishedDate !== undefined &&
+                "publishedDate" in book.volumeInfo &&
+                checkedYears.includes(
+                  +book.volumeInfo.publishedDate.match(/\d+/)[0]
+                ) && (
                   <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
                     <NavLink to="#">
                       <img
                         src={book.volumeInfo.imageLinks.thumbnail}
                         alt={`img_${k}`}
-                        onLoad={this.countingBooks}
                       />
                     </NavLink>
                     <p>{shopName}</p>
@@ -166,7 +190,7 @@ class CategoryBooksWithFilter extends React.Component<
                       {(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $
                     </p>
                   </div>
-                )
+                ) 
             )}
           </div>
         </>
@@ -183,6 +207,7 @@ const mapStateToProps = (state: IApplicationState) => ({
   maxPrice: state.filterByPrice.maxPrice,
   minPrice: state.filterByPrice.minPrice,
   filterByPriceOn: state.filterByPrice.filterByPriceOn,
+  checkedYears: state.filterByYear.checkedYears,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -192,4 +217,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CategoryBooksWithFilter);
+)(CategoryBooksWithFilterByYear);

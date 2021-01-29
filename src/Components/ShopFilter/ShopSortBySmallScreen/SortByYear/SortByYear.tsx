@@ -1,11 +1,19 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import {
+  addYearToFilter,
+  deleteYearFromFilter,
+} from "../../../../Actions/FilterByYearActions";
 import { IApplicationState } from "../../../../Store/Store";
 import sy from "./SortByYear.module.scss";
 
-export interface ISortByYearProps {
+export interface ISortByYearProps extends RouteComponentProps  {
   allGenresData: any[];
   shopID: number;
+  checkedYears: number[];
+  addYearToFilter: typeof addYearToFilter;
+  deleteYearFromFilter: typeof deleteYearFromFilter;
 }
 
 export interface ISortByYearState {
@@ -48,7 +56,7 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
     this.setState({ showYearFilter: !this.state.showYearFilter });
   };
 
-  componentDidUpdate(prevProps: { allGenresData: string | any[]; }) {
+  componentDidUpdate(prevProps: { allGenresData: string | any[] }) {
     const { allGenresData, shopID } = this.props;
     if (allGenresData.length !== prevProps.allGenresData.length) {
       this.filterByUniqueYear(allGenresData[shopID].items);
@@ -57,6 +65,7 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
 
   render() {
     const { uniqueYears, showYearFilter } = this.state;
+    const { checkedYears } = this.props;
 
     return (
       <div className={sy.sort_by_year_main_sm}>
@@ -64,11 +73,24 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
         {showYearFilter && (
           <div>
             {uniqueYears.map((year: any, k: number) => (
-                <label key={k}>
-                  {year}
-                  <input type="checkbox" value={year} />
-                  <span/>
-                </label>
+              <label key={k}>
+                {year}
+                <input
+                  type="checkbox"
+                  value={year}
+                  checked={checkedYears.includes(+year) ? true : false}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      this.props.addYearToFilter(+year);
+                      this.props.history.push("/filter-by-year");
+                    }
+                    if (e.target.checked === false) {
+                      this.props.deleteYearFromFilter(+year);
+                    }
+                  }}
+                />
+                <span />
+              </label>
             ))}
           </div>
         )}
@@ -80,10 +102,17 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
 const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
   shopID: state.shopContainer.shopID,
+  checkedYears: state.filterByYear.checkedYears,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    addYearToFilter: (year: number) => dispatch(addYearToFilter(year)),
+    deleteYearFromFilter: (year: number) =>
+      dispatch(deleteYearFromFilter(year)),
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SortByYear);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SortByYear)
+);

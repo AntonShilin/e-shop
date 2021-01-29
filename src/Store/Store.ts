@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import { filterByPriceReducer } from "../Reducers/FilterByPriceReducer";
+import { filterByYearReducer } from "../Reducers/FilterByYearReducer";
 import { headerPanelReducer } from "../Reducers/HeaderPanelReducer";
 import { loggedBoxReducer } from "../Reducers/LoggedBoxReducer";
 import { mainStateReducer } from "../Reducers/MainStateReducer";
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   data: mainStateReducer,
   shopContainer: shopReducer,
   loggedBox: loggedBoxReducer,
-  filterByPrice:filterByPriceReducer
+  filterByPrice: filterByPriceReducer,
+  filterByYear: filterByYearReducer
 });
 
 export type IApplicationState = ReturnType<typeof rootReducer>

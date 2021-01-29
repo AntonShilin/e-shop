@@ -1,6 +1,8 @@
 .clear_filter_by_price_bg {
-  display: inline-block;
+  display: flex;
+  margin-left: 1rem;
   span:nth-of-type(1) {
+    align-self: center;
     margin-right: 0.5rem;
     cursor: pointer;
     b {
@@ -9,16 +11,13 @@
     }
   }
   span:nth-of-type(2) {
-    margin-right: 0.5rem;
+    align-self: center;
+    margin-right: 0.25rem;
     color: #fff;
     text-transform: capitalize;
   }
   span:nth-of-type(3) {
-    font-size: 1rem;
-    color: #fff;
-    margin: 0;
-  }
-  span:nth-of-type(4) {
+    align-self: center;
     font-size: 1rem;
     color: #fff;
   }
@@ -33,17 +32,19 @@
       b {
         color: #b2bbc4 !important;
         border: 1px solid #b2bbc4;
-        padding: 0px 5px 5px 5px;
+        padding: 2px;
       }
     }
     span:nth-of-type(2) {
       color: #b2bbc4 !important;
     }
     span:nth-of-type(3) {
-      color: #b2bbc4 !important;
+      color: #636363 !important;
+      font-size: 1.05rem;
     }
     span:nth-of-type(4) {
-      color: #b2bbc4 !important;
+      color: #636363 !important;
+      font-size: 1.05rem;
     }
   }
 }

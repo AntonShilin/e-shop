@@ -95,10 +95,10 @@ class CategoryBooks extends React.Component<
         <>
           <div className={`row ${cb.category_books_title}`}>
             <div className="col-8">
-              <h2>
+              <h3>
                 {shopName.trim().length > 0 ? shopName : "fairytales"} (
                 {allGenresData[shopID].items.length})
-              </h2>
+              </h3>
             </div>
             <div className="col-4">
               <SelectBox />

@@ -11,7 +11,6 @@ export interface Props {
   min: number;
   max: number;
   filterName: string;
-  filterEnable: boolean;
   toggleEnableFilter: typeof toggleEnableFilter;
   applyDefaultPrice: typeof applyDefaultPrice;
 }
@@ -20,7 +19,7 @@ export interface State {}
 
 class ClearFilterByPrice extends React.Component<Props, State> {
   render() {
-    const { min, max, filterName, filterEnable } = this.props;
+    const { min, max, filterName } = this.props;
     return (
       <div className={cfp.clear_filter_by_price_bg}>
         <span
@@ -32,8 +31,7 @@ class ClearFilterByPrice extends React.Component<Props, State> {
           <b>&#9587;</b>
         </span>
         <span>{filterName}:</span>
-        <span>{min}$-</span>
-        <span>{max}$</span>
+        <span>{min}$-{max}$</span>
       </div>
     );
   }
@@ -41,7 +39,6 @@ class ClearFilterByPrice extends React.Component<Props, State> {
 
 const mapStateToProps = (state: IApplicationState) => ({
   filterName: state.filterByPrice.filterName,
-  filterEnable: state.filterByPrice.filterEnable,
   min: state.filterByPrice.filterByPriceOn.min,
   max: state.filterByPrice.filterByPriceOn.max,
 });

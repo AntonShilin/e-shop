@@ -26,6 +26,7 @@ import {
 } from "../../Actions/MainStateActions";
 import { toggleLoggedBox } from "../../Actions/LoggedBoxActions";
 import LoggedBox from "../LoggedBox/LoggedBox";
+import { applyDefaultPrice, toggleEnableFilter } from "../../Actions/FilterByPriceActions";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -43,6 +44,8 @@ export interface IHeaderProps {
   getLifestyleBooks: typeof getLifestyleBooks;
   selectIdGenreInSubmenu: typeof selectIdGenreInSubmenu;
   toggleLoggedBox: typeof toggleLoggedBox;
+  toggleEnableFilter: typeof toggleEnableFilter;
+  applyDefaultPrice: typeof applyDefaultPrice;
 }
 
 export interface IHeaderState {}
@@ -78,6 +81,8 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                 onClick={() => {
                   this.props.showContainer();
                   this.props.closeShop();
+                  this.props.toggleEnableFilter(false);
+                  this.props.applyDefaultPrice();
                 }}
               >
                 Books Store
@@ -88,6 +93,8 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                 onClick={() => {
                   this.props.showContainer();
                   this.props.closeShop();
+                  this.props.toggleEnableFilter(false);
+                  this.props.applyDefaultPrice();
                 }}
               >
                 B
@@ -152,6 +159,8 @@ const mapDispatchToProps = (dispatch: any) => {
     getLifestyleBooks: () => dispatch(getLifestyleBooks()),
     selectIdGenreInSubmenu: (n: number) => dispatch(selectIdGenreInSubmenu(n)),
     toggleLoggedBox: (value: boolean) => dispatch(toggleLoggedBox(value)),
+    toggleEnableFilter: (value: boolean) => dispatch(toggleEnableFilter(value)),
+    applyDefaultPrice: () => dispatch(applyDefaultPrice()),
   };
 };
 

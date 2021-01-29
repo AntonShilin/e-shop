@@ -44,7 +44,7 @@ class SortByPriceLargeScreen extends React.Component<
 
   filteredBooksByPrice = () => {
     const { maxPrice, minPrice } = this.props;
-    this.props.history.push("/filterby");
+    this.props.history.push("/filter-by-price");
     this.props.enableFilterByPrice(minPrice, maxPrice);
     this.props.toggleEnableFilter(true);
   };

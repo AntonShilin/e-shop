@@ -1,6 +1,7 @@
 .category_title {
   margin-bottom: 1rem;
-  div:nth-of-type(1) {
+  overflow: hidden;
+  div {
     background-color: #b2bbc4;
     height: 3rem;
   }
