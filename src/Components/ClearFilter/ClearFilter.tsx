@@ -6,8 +6,8 @@ import ClearFilterByPrice from "./ClearFilterByPrice/ClearFilterByPrice";
 import ClearFilterByYear from "./ClearFilterByYear/ClearFilterByYear";
 
 export interface IClearFilterProps {
-  filterEnable: boolean;
-  checkedYears: number[];
+  filterPriceEnable: boolean;
+  filterYearEnable: boolean;
 }
 
 export interface IClearFilterState {}
@@ -17,24 +17,24 @@ class ClearFilter extends React.Component<
   IClearFilterState
 > {
   render() {
-    const { filterEnable,checkedYears } = this.props;
+    const { filterPriceEnable, filterYearEnable } = this.props;
     return (
       <div className={cf.clear_filter_bg}>
-        {(filterEnable || checkedYears.length>0) && (
+        {(filterPriceEnable || filterYearEnable) && (
           <div>
             <p>Clear Filter</p>
           </div>
         )}
-        {filterEnable && <ClearFilterByPrice />}
-        { checkedYears.length>0 && <ClearFilterByYear />}
+        {filterPriceEnable && <ClearFilterByPrice />}
+        {filterYearEnable && <ClearFilterByYear />}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
-  filterEnable: state.filterByPrice.filterEnable,
-  checkedYears:state.filterByYear.checkedYears
+  filterPriceEnable: state.filterByPrice.filterPriceEnable,
+  filterYearEnable: state.filterByYear.filterYearEnable,
 });
 
 const mapDispatchToProps = (dispatch: any) => {

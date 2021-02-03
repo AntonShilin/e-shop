@@ -6,7 +6,7 @@ import ShopPage from "../Components/Pages/ShopPage/ShopPage";
 import ShopWithFilterByPrice from "../Components/Pages/ShopWithFilterByPrice/ShopWithFilterByPrice";
 import LoggedBoxSmDevices from "../Components/LoggedBoxSmDevices/LoggedBoxSmDevices";
 import ShopWithFilterByYear from "../Components/Pages/ShopWithFilterByYear/ShopWithFilterByYear";
-
+import ShopWithFilterByPriceAndYear from "../Components/Pages/ShopWithFilterByPriceAndYear/ShopWithFilterByPriceAndYear";
 
 class Routes extends React.Component {
   render() {
@@ -15,8 +15,21 @@ class Routes extends React.Component {
         <Route exact={true} path="/home" component={HomePage} />
         <Redirect exact={true} from="/" to="/home" />
         <Route exact={true} path="/shop" component={ShopPage} />
-        <Route exact={true} path="/filter-by-price" component={ShopWithFilterByPrice} />
-        <Route exact={true} path="/filter-by-year" component={ShopWithFilterByYear} />
+        <Route
+          exact={true}
+          path="/filter-by-price"
+          component={ShopWithFilterByPrice}
+        />
+        <Route
+          exact={true}
+          path="/filter-by-year"
+          component={ShopWithFilterByYear}
+        />
+        <Route
+          exact={true}
+          path="/filter-by-price-and-year"
+          component={ShopWithFilterByPriceAndYear}
+        />
         <Route exact={true} path="/logged" component={LoggedBoxSmDevices} />
         <Route exact={true} component={NotFoundPage} />
       </Switch>

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../Store/Store";
 import NoBooksByFilter from "../NoBooksByFilter/NoBooksByFilter";
 import SelectBox from "../ShopFilter/SelectBox/SelectBox";
-import cbwf from "./CategoryBooksWithFilterByPrice.module.scss";
+import cbwfbpay from "./CategoryBooksWithFilterByPriceAndYear.module.scss";
 
 export interface ICategoryBooksWithFilterProps {
   shopName: string;
@@ -17,13 +17,14 @@ export interface ICategoryBooksWithFilterProps {
     max: number;
     min: number;
   };
+  checkedYears: number[];
 }
 
 export interface ICategoryBooksWithFilterState {
   numbersOfBooks: number;
 }
 
-class CategoryBooksWithFilterByPrice extends React.Component<
+class CategoryBooksWithFilterByPriceAndYear extends React.Component<
   ICategoryBooksWithFilterProps,
   ICategoryBooksWithFilterState
 > {
@@ -95,22 +96,31 @@ class CategoryBooksWithFilterByPrice extends React.Component<
     }
   };
 
-  filterRange = (arrOfBooks: any[], max: number, min: number) => {
+  filterRange = (
+    arrOfBooks: any[],
+    max: number,
+    min: number,
+    checkedYears: number[]
+  ) => {
     return arrOfBooks.filter(
       (book) =>
         book.saleInfo.retailPrice.amount / 28 < max &&
-        book.saleInfo.retailPrice.amount / 28 > min
+        book.saleInfo.retailPrice.amount / 28 > min &&
+        book.volumeInfo.publishedDate !== undefined &&
+        "publishedDate" in book.volumeInfo &&
+        checkedYears.includes(+book.volumeInfo.publishedDate.match(/\d+/)[0])
     );
   };
 
   countingBooks = () => {
-    const { shopID, allGenresData } = this.props;
-    let filtered: any[] = [];
+    const { shopID, allGenresData, checkedYears } = this.props;
     if (allGenresData[shopID] !== undefined) {
+      let filtered: any[] = [];
       filtered = this.filterRange(
         allGenresData[shopID].items,
         this.props.filterByPriceOn.max,
-        this.props.filterByPriceOn.min
+        this.props.filterByPriceOn.min,
+        checkedYears
       );
 
       this.setState({ numbersOfBooks: filtered.length });
@@ -119,23 +129,60 @@ class CategoryBooksWithFilterByPrice extends React.Component<
 
   componentDidUpdate(prevProps: {
     filterByPriceOn: { min: number; max: number };
+    checkedYears: string | any[];
   }) {
     if (
       this.props.filterByPriceOn.min !== prevProps.filterByPriceOn.min ||
-      this.props.filterByPriceOn.max !== prevProps.filterByPriceOn.max
+      this.props.filterByPriceOn.max !== prevProps.filterByPriceOn.max ||
+      this.props.checkedYears.length !== prevProps.checkedYears.length
     ) {
       this.countingBooks();
     }
   }
 
-  componentDidMount() {
-    this.countingBooks();
-  }
+  handleFiltered = (
+    arr: any[],
+    max: number,
+    min: number,
+    checkedYears: number[]
+  ) => {
+    return arr.filter(
+      (book: {
+        saleInfo: { retailPrice: { amount: number } };
+        volumeInfo: {
+          publishedDate:
+            | { match: (arg0: RegExp) => (string | number)[] }
+            | undefined;
+        };
+      }) =>
+        book.saleInfo.retailPrice.amount / 28 < max &&
+        book.saleInfo.retailPrice.amount / 28 > min &&
+        book.volumeInfo.publishedDate !== undefined &&
+        "publishedDate" in book.volumeInfo &&
+        checkedYears.includes(+book.volumeInfo.publishedDate.match(/\d+/)[0])
+    );
+  };
 
   render() {
-    const { filterByValue, shopName, shopID, allGenresData } = this.props;
+    const {
+      filterByValue,
+      shopName,
+      shopID,
+      allGenresData,
+      checkedYears,
+    } = this.props;
     const { min, max } = this.props.filterByPriceOn;
     const { numbersOfBooks } = this.state;
+    let filtered: any[] = [];
+
+    if (allGenresData[shopID] !== undefined) {
+      filtered = this.handleFiltered(
+        allGenresData[shopID].items,
+        max,
+        min,
+        checkedYears
+      );
+    }
 
     if (filterByValue === "name") {
       this.filteredByName();
@@ -146,41 +193,40 @@ class CategoryBooksWithFilterByPrice extends React.Component<
     }
 
     return (
-      allGenresData[shopID] !== undefined && (
-        <>
-          <div className={`row ${cbwf.category_books_with_filter_title}`}>
-            <div className="col-8">
-              <h3>
-                {shopName.trim().length > 0 ? shopName : "fairytales"} (
-                {numbersOfBooks})
-              </h3>
-            </div>
-            <div className="col-4">
-              <SelectBox />
-            </div>
+      <>
+        <div className={`row ${cbwfbpay.category_books_with_filter_title}`}>
+          <div className="col-8">
+            <h3>
+              {shopName.trim().length > 0 ? shopName : "fairytales"} (
+              {numbersOfBooks})
+            </h3>
           </div>
-          <div className={`row ${cbwf.book_info}`}>
-            {allGenresData[shopID].items.map((book: any, k: number) =>
-              book.saleInfo.retailPrice.amount / 28 < max &&
-              book.saleInfo.retailPrice.amount / 28 > min && (
-                <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
-                  <NavLink to="#">
-                    <img
-                      src={book.volumeInfo.imageLinks.thumbnail}
-                      alt={`img_${k}`}
-                    />
-                  </NavLink>
-                  <p>{shopName}</p>
-                  <NavLink to="#">{book.volumeInfo.title}</NavLink>
-                  <p>{book.volumeInfo.pageCount} pages</p>
-                  <p>Published: {book.volumeInfo.publishedDate}</p>
-                  <p>{(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $</p>
-                </div>
-              ) 
-            )}
+          <div className="col-4">
+            <SelectBox />
           </div>
-        </>
-      )
+        </div>
+        <div className={`row ${cbwfbpay.book_info}`}>
+          {filtered.length > 0 ? (
+            filtered.map((book: any, k: number) => (
+              <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
+                <NavLink to="#">
+                  <img
+                    src={book.volumeInfo.imageLinks.thumbnail}
+                    alt={`img_${k}`}
+                  />
+                </NavLink>
+                <p>{shopName}</p>
+                <NavLink to="#">{book.volumeInfo.title}</NavLink>
+                <p>{book.volumeInfo.pageCount} pages</p>
+                <p>Published: {book.volumeInfo.publishedDate}</p>
+                <p>{(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $</p>
+              </div>
+            ))
+          ) : (
+            <NoBooksByFilter />
+          )}
+        </div>
+      </>
     );
   }
 }
@@ -193,6 +239,7 @@ const mapStateToProps = (state: IApplicationState) => ({
   maxPrice: state.filterByPrice.maxPrice,
   minPrice: state.filterByPrice.minPrice,
   filterByPriceOn: state.filterByPrice.filterByPriceOn,
+  checkedYears: state.filterByYear.checkedYears,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -202,4 +249,4 @@ const mapDispatchToProps = (dispatch: any) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CategoryBooksWithFilterByPrice);
+)(CategoryBooksWithFilterByPriceAndYear);

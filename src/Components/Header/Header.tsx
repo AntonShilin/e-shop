@@ -27,6 +27,7 @@ import {
 import { toggleLoggedBox } from "../../Actions/LoggedBoxActions";
 import LoggedBox from "../LoggedBox/LoggedBox";
 import { applyDefaultPrice, toggleEnableFilter } from "../../Actions/FilterByPriceActions";
+import { deleteAllYearFromFilter, offYearEnableFilter } from "../../Actions/FilterByYearActions";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -46,6 +47,8 @@ export interface IHeaderProps {
   toggleLoggedBox: typeof toggleLoggedBox;
   toggleEnableFilter: typeof toggleEnableFilter;
   applyDefaultPrice: typeof applyDefaultPrice;
+  offYearEnableFilter: typeof offYearEnableFilter;
+  deleteAllYearFromFilter: typeof deleteAllYearFromFilter;
 }
 
 export interface IHeaderState {}
@@ -83,6 +86,8 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                   this.props.closeShop();
                   this.props.toggleEnableFilter(false);
                   this.props.applyDefaultPrice();
+                  this.props.offYearEnableFilter(false);
+                  this.props.deleteAllYearFromFilter();
                 }}
               >
                 Books Store
@@ -93,15 +98,23 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                 onClick={() => {
                   this.props.showContainer();
                   this.props.closeShop();
-                  this.props.toggleEnableFilter(false);
                   this.props.applyDefaultPrice();
+                  this.props.offYearEnableFilter(false);
+                  this.props.toggleEnableFilter(false);
+                  this.props.deleteAllYearFromFilter();
                 }}
               >
                 B
               </NavLink>
               <FaBars
                 className="d-lg-none"
-                onClick={() => this.props.toggleSmallScreenSubmenu(isToggle)}
+                onClick={() => {
+                  this.props.toggleSmallScreenSubmenu(isToggle);
+                  this.props.applyDefaultPrice();
+                  this.props.offYearEnableFilter(false);
+                  this.props.toggleEnableFilter(false);
+                  this.props.deleteAllYearFromFilter();
+                }}
               />
             </div>
             <div className="col-2">
@@ -161,6 +174,8 @@ const mapDispatchToProps = (dispatch: any) => {
     toggleLoggedBox: (value: boolean) => dispatch(toggleLoggedBox(value)),
     toggleEnableFilter: (value: boolean) => dispatch(toggleEnableFilter(value)),
     applyDefaultPrice: () => dispatch(applyDefaultPrice()),
+    offYearEnableFilter:(value:boolean)=>dispatch(offYearEnableFilter(value)),
+    deleteAllYearFromFilter:()=>dispatch(deleteAllYearFromFilter()),
   };
 };
 

@@ -4,6 +4,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import {
   addYearToFilter,
   deleteYearFromFilter,
+  onYearEnableFilter,
 } from "../../../../Actions/FilterByYearActions";
 import { IApplicationState } from "../../../../Store/Store";
 import sy from "./SortByYear.module.scss";
@@ -14,6 +15,8 @@ export interface ISortByYearProps extends RouteComponentProps  {
   checkedYears: number[];
   addYearToFilter: typeof addYearToFilter;
   deleteYearFromFilter: typeof deleteYearFromFilter;
+  onYearEnableFilter: typeof onYearEnableFilter;
+  filterPriceEnable: boolean;
 }
 
 export interface ISortByYearState {
@@ -65,7 +68,7 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
 
   render() {
     const { uniqueYears, showYearFilter } = this.state;
-    const { checkedYears } = this.props;
+    const { checkedYears,filterPriceEnable } = this.props;
 
     return (
       <div className={sy.sort_by_year_main_sm}>
@@ -82,7 +85,12 @@ class SortByYear extends React.Component<ISortByYearProps, ISortByYearState> {
                   onChange={(e) => {
                     if (e.target.checked) {
                       this.props.addYearToFilter(+year);
-                      this.props.history.push("/filter-by-year");
+                      this.props.onYearEnableFilter(true);
+                      if (filterPriceEnable) {
+                        this.props.history.push("/filter-by-price-and-year");
+                      } else if(!filterPriceEnable) {
+                        this.props.history.push("/filter-by-year");
+                      }
                     }
                     if (e.target.checked === false) {
                       this.props.deleteYearFromFilter(+year);
@@ -103,6 +111,7 @@ const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
   shopID: state.shopContainer.shopID,
   checkedYears: state.filterByYear.checkedYears,
+  filterPriceEnable: state.filterByPrice.filterPriceEnable,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -110,6 +119,7 @@ const mapDispatchToProps = (dispatch: any) => {
     addYearToFilter: (year: number) => dispatch(addYearToFilter(year)),
     deleteYearFromFilter: (year: number) =>
       dispatch(deleteYearFromFilter(year)),
+      onYearEnableFilter: (value: boolean) => dispatch(onYearEnableFilter(value)),
   };
 };
 

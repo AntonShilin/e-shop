@@ -62,5 +62,5 @@ export interface IFilterByPriceState {
     max: number;
   };
   filterName: string;
-  filterEnable: boolean;
+  filterPriceEnable: boolean;
 }

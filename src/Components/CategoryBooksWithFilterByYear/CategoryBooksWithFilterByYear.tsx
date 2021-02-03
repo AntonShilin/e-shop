@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../Store/Store";
+import NoBooksByFilter from "../NoBooksByFilter/NoBooksByFilter";
 import SelectBox from "../ShopFilter/SelectBox/SelectBox";
 import cbwfby from "./CategoryBooksWithFilterByYear.module.scss";
 
@@ -96,34 +97,12 @@ class CategoryBooksWithFilterByYear extends React.Component<
   };
 
   countingBooks = () => {
-    const { shopID, allGenresData, checkedYears } = this.props;
-    let count = 0;
-    if (allGenresData[shopID] !== undefined) {
-      allGenresData[shopID].items.map((book: any, k: number) => {
-        if (
-          book.saleInfo.retailPrice.amount / 28 <
-            this.props.filterByPriceOn.max &&
-          book.saleInfo.retailPrice.amount / 28 >
-            this.props.filterByPriceOn.min &&
-          book.volumeInfo.publishedDate !== undefined &&
-          "publishedDate" in book.volumeInfo &&
-          checkedYears.includes(+book.volumeInfo.publishedDate.match(/\d+/)[0])
-        ) {
-          this.setState({ numbersOfBooks: ++count });
-        }
-      });
-    }
+    const { checkedYears } = this.props;
+    this.setState({ numbersOfBooks: checkedYears.length });
   };
 
-  componentDidUpdate(prevProps: {
-    filterByPriceOn: { min: number; max: number };
-    checkedYears: string | any[];
-  }) {
-    if (
-      this.props.filterByPriceOn.min !== prevProps.filterByPriceOn.min ||
-      this.props.filterByPriceOn.max !== prevProps.filterByPriceOn.max ||
-      this.props.checkedYears.length !== prevProps.checkedYears.length
-    ) {
+  componentDidUpdate(prevProps: { checkedYears: string | any[] }) {
+    if (this.props.checkedYears.length !== prevProps.checkedYears.length) {
       this.countingBooks();
     }
   }
@@ -140,7 +119,6 @@ class CategoryBooksWithFilterByYear extends React.Component<
       allGenresData,
       checkedYears,
     } = this.props;
-    const { min, max } = this.props.filterByPriceOn;
     const { numbersOfBooks } = this.state;
 
     if (filterByValue === "name") {
@@ -166,31 +144,33 @@ class CategoryBooksWithFilterByYear extends React.Component<
             </div>
           </div>
           <div className={`row ${cbwfby.book_info}`}>
-            {allGenresData[shopID].items.map(
-              (book: any, k: number) =>
-                book.saleInfo.retailPrice.amount / 28 < max &&
-                book.saleInfo.retailPrice.amount / 28 > min &&
-                book.volumeInfo.publishedDate !== undefined &&
-                "publishedDate" in book.volumeInfo &&
-                checkedYears.includes(
-                  +book.volumeInfo.publishedDate.match(/\d+/)[0]
-                ) && (
-                  <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
-                    <NavLink to="#">
-                      <img
-                        src={book.volumeInfo.imageLinks.thumbnail}
-                        alt={`img_${k}`}
-                      />
-                    </NavLink>
-                    <p>{shopName}</p>
-                    <NavLink to="#">{book.volumeInfo.title}</NavLink>
-                    <p>{book.volumeInfo.pageCount} pages</p>
-                    <p>Published: {book.volumeInfo.publishedDate}</p>
-                    <p>
-                      {(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $
-                    </p>
-                  </div>
-                ) 
+            {checkedYears.length > 0 ? (
+              allGenresData[shopID].items.map(
+                (book: any, k: number) =>
+                  book.volumeInfo.publishedDate !== undefined &&
+                  "publishedDate" in book.volumeInfo &&
+                  checkedYears.includes(
+                    +book.volumeInfo.publishedDate.match(/\d+/)[0]
+                  ) && (
+                    <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
+                      <NavLink to="#">
+                        <img
+                          src={book.volumeInfo.imageLinks.thumbnail}
+                          alt={`img_${k}`}
+                        />
+                      </NavLink>
+                      <p>{shopName}</p>
+                      <NavLink to="#">{book.volumeInfo.title}</NavLink>
+                      <p>{book.volumeInfo.pageCount} pages</p>
+                      <p>Published: {book.volumeInfo.publishedDate}</p>
+                      <p>
+                        {(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $
+                      </p>
+                    </div>
+                  )
+              )
+            ) : (
+              <NoBooksByFilter />
             )}
           </div>
         </>

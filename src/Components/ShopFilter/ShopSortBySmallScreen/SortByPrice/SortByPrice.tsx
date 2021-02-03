@@ -19,6 +19,8 @@ export interface ISortByPriceProps extends RouteComponentProps {
   getMaxPrice: typeof getMaxPrice;
   enableFilterByPrice: typeof enableFilterByPrice;
   toggleEnableFilter: typeof toggleEnableFilter;
+  filterPriceEnable: boolean;
+  filterYearEnable: boolean;
 }
 
 export interface ISortByPriceState {
@@ -51,10 +53,15 @@ class SortByPrice extends React.Component<
   };
 
   filteredBooksByPrice = () => {
-    const { maxPrice, minPrice } = this.props;
-    this.props.history.push("/filter-by-price");
+    const { maxPrice, minPrice ,filterPriceEnable,
+      filterYearEnable } = this.props;
     this.props.enableFilterByPrice(minPrice, maxPrice);
     this.props.toggleEnableFilter(true);
+    if (!filterYearEnable) {
+      this.props.history.push("/filter-by-price");
+    } else if (filterYearEnable) {
+      this.props.history.push("/filter-by-price-and-year");
+    }
   };
 
   public toggleFilter = () => {
@@ -105,6 +112,8 @@ const mapStateToProps = (state: IApplicationState) => ({
   shopID: state.shopContainer.shopID,
   minPrice: state.filterByPrice.minPrice,
   maxPrice: state.filterByPrice.maxPrice,
+  filterPriceEnable: state.filterByPrice.filterPriceEnable,
+  filterYearEnable: state.filterByYear.filterYearEnable,
 });
 
 const mapDispatchToProps = (dispatch: any) => {

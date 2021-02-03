@@ -16,7 +16,7 @@ const filterByPriceState: IFilterByPriceState = {
     max: 1000
   },
   filterName: "price",
-  filterEnable: false,
+  filterPriceEnable: false,
 };
 
 export const filterByPriceReducer = (
@@ -51,7 +51,7 @@ export const filterByPriceReducer = (
     case filterEnableTypes.FILTERENABLE: {
       return {
         ...state,
-       filterEnable:action.condition
+        filterPriceEnable:action.condition
       };
     }
       

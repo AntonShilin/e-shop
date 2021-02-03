@@ -19,9 +19,11 @@ export interface State {}
 class ClearFilterByYear extends React.Component<
   IClearFilterByYearProps,
   State
-> {
+  > {
+  
   render() {
     const { checkedYears, filterName } = this.props;
+
     return (
       <div className={cfy.clear_filter_by_year_bg}>
         {checkedYears.map((year, i) => (
@@ -50,7 +52,7 @@ const mapStateToProps = (state: IApplicationState) => ({
 const mapDispatchToProps = (dispatch: any) => {
   return {
     addYearToFilter: (year: number) => dispatch(addYearToFilter(year)),
-    deleteYearFromFilter: (year: number) => dispatch(deleteYearFromFilter(year)),
+    deleteYearFromFilter: (year: number) => dispatch(deleteYearFromFilter(year))
   };
 };
 

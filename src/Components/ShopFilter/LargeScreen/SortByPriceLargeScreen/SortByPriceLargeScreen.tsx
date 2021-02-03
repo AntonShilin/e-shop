@@ -18,6 +18,8 @@ export interface ISortByPriceLargeScreenProps extends RouteComponentProps {
   getMaxPrice: typeof getMaxPrice;
   enableFilterByPrice: typeof enableFilterByPrice;
   toggleEnableFilter: typeof toggleEnableFilter;
+  filterPriceEnable: boolean;
+  filterYearEnable: boolean;
 }
 
 export interface ISortByPriceLargeScreenState {
@@ -43,10 +45,15 @@ class SortByPriceLargeScreen extends React.Component<
   };
 
   filteredBooksByPrice = () => {
-    const { maxPrice, minPrice } = this.props;
-    this.props.history.push("/filter-by-price");
-    this.props.enableFilterByPrice(minPrice, maxPrice);
+    const { maxPrice, minPrice,filterPriceEnable,
+      filterYearEnable } = this.props;
+      this.props.enableFilterByPrice(minPrice, maxPrice);
     this.props.toggleEnableFilter(true);
+    if (!filterYearEnable) {
+      this.props.history.push("/filter-by-price");
+    } else if (filterYearEnable) {
+      this.props.history.push("/filter-by-price-and-year");
+    }
   };
 
   render() {
@@ -88,6 +95,8 @@ const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
   minPrice: state.filterByPrice.minPrice,
   maxPrice: state.filterByPrice.maxPrice,
+  filterPriceEnable: state.filterByPrice.filterPriceEnable,
+  filterYearEnable: state.filterByYear.filterYearEnable,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
