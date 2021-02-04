@@ -11,9 +11,6 @@ export interface INoBooksByFilterProps {
 export interface State {}
 
 class NoBooksByFilter extends React.Component<INoBooksByFilterProps, State> {
-  componentDidMount() {
-    this.props.offYearEnableFilter(false);
-  }
 
   render() {
     return (

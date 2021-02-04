@@ -3,10 +3,13 @@ import s from "./Slideshow.module.scss";
 import { IApplicationState } from "../../Store/Store";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { getShopID, selectShopName } from "../../Actions/ShopActions";
 
 export interface ISlideshowProps {
   genresName: string[];
   isHiddenContainer: boolean;
+  getShopID: typeof getShopID;
+  selectShopName: typeof selectShopName;
 }
 
 export interface ISlideshowState {
@@ -83,7 +86,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
     return (
       isHiddenContainer && (
         <>
-          <div className={`container-xl ${s.slider_empty}`}/>
+          <div className={`container-xl ${s.slider_empty}`} />
           <div className={`container-xl ${s.slider_bg}`}>
             <div className="row">
               <div className="col">
@@ -97,12 +100,22 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
                           return true;
                         }}
                       >
-                        <h1>{name} <span>books</span></h1>
+                        <h1>
+                          {name} <span>books</span>
+                        </h1>
                         <img
                           src={require(`../../Media/Images/${name}.png`)}
                           alt="name"
                         />
-                        <NavLink to="#">Shop now</NavLink>
+                        <NavLink
+                          to="/shop"
+                          onClick={() => {
+                            this.props.getShopID(k);
+                            this.props.selectShopName(name);
+                          }}
+                        >
+                          Shop now
+                        </NavLink>
                       </div>
                     )
                 )}
@@ -136,4 +149,11 @@ const mapStateToProps = (state: IApplicationState) => ({
   isHiddenContainer: state.shopContainer.isHiddenContainer,
 });
 
-export default connect(mapStateToProps, {})(Slideshow);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    getShopID: (id: number) => dispatch(getShopID(id)),
+    selectShopName: (name: string) => dispatch(selectShopName(name)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Slideshow);

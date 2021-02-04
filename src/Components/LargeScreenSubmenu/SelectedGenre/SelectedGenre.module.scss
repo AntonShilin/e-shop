@@ -16,19 +16,21 @@
       width: auto;
       right: -25%;
     }
-    h1 {
+    h2 {
       text-align: start;
-      width: 100%;
-      padding-left: 1.5rem;
+      padding-left: 1rem;
       padding-top: 30%;
-      text-transform: capitalize;
       font-weight: 400;
+      span {
+        text-transform: uppercase;
+      }
     }
     a {
       text-align: start;
-      padding-left: 1.5rem;
+      padding-left: 1rem;
       font-size: 1.25rem;
       text-transform: capitalize;
+      font-weight: 400;
       &:hover {
         text-decoration: underline;
         color: #323233 !important;

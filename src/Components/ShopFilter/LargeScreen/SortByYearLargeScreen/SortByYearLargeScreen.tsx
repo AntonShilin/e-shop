@@ -57,16 +57,16 @@ class SortByYearLargeScreen extends React.Component<
     this.setState({ uniqueYears: onlyYears });
   };
 
-  componentDidUpdate(prevProps: { allGenresData: string | any[] }) {
+  componentDidUpdate(prevProps: { shopID: number }) {
     const { allGenresData, shopID } = this.props;
-    if (allGenresData.length !== prevProps.allGenresData.length) {
+    if (shopID !== prevProps.shopID) {
       this.filterByUniqueYear(allGenresData[shopID].items);
     }
   }
 
   render() {
     const { uniqueYears } = this.state;
-    const { checkedYears, filterPriceEnable,filterYearEnable } = this.props;
+    const { checkedYears, filterPriceEnable, filterYearEnable } = this.props;
 
     return (
       <div className={large.sort_by_year_main_lg}>
@@ -85,12 +85,16 @@ class SortByYearLargeScreen extends React.Component<
                     this.props.onYearEnableFilter(true);
                     if (filterPriceEnable) {
                       this.props.history.push("/filter-by-price-and-year");
-                    } else if(!filterPriceEnable) {
+                    } else if (!filterPriceEnable) {
                       this.props.history.push("/filter-by-year");
                     }
                   }
                   if (e.target.checked === false) {
                     this.props.deleteYearFromFilter(+year);
+                    if (checkedYears.length === 1) {
+                      this.props.history.push("/filter-by-price");
+                      this.props.onYearEnableFilter(false);
+                    }
                   }
                 }}
               />

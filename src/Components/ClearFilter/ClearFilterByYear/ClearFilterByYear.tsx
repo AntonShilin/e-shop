@@ -1,17 +1,20 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import {
   addYearToFilter,
     deleteYearFromFilter,
+    onYearEnableFilter,
 } from "../../../Actions/FilterByYearActions";
 import { IApplicationState } from "../../../Store/Store";
 import cfy from "./ClearFilterByYear.module.scss";
 
-export interface IClearFilterByYearProps {
+export interface IClearFilterByYearProps extends RouteComponentProps{
   checkedYears: number[];
   filterName: string;
   addYearToFilter: typeof addYearToFilter;
   deleteYearFromFilter: typeof deleteYearFromFilter;
+  onYearEnableFilter: typeof onYearEnableFilter;
 }
 
 export interface State {}
@@ -31,6 +34,10 @@ class ClearFilterByYear extends React.Component<
             <span
               onClick={() => {
                 this.props.deleteYearFromFilter(year);
+                if (checkedYears.length === 1) {
+                  this.props.history.push("/filter-by-price");
+                  this.props.onYearEnableFilter(false);
+                }
               }}
             >
               <b>&#9587;</b>
@@ -52,8 +59,9 @@ const mapStateToProps = (state: IApplicationState) => ({
 const mapDispatchToProps = (dispatch: any) => {
   return {
     addYearToFilter: (year: number) => dispatch(addYearToFilter(year)),
-    deleteYearFromFilter: (year: number) => dispatch(deleteYearFromFilter(year))
+    deleteYearFromFilter: (year: number) => dispatch(deleteYearFromFilter(year)),
+    onYearEnableFilter: (value: boolean) => dispatch(onYearEnableFilter(value)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClearFilterByYear);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ClearFilterByYear));

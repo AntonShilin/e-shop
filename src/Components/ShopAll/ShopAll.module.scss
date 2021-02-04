@@ -4,14 +4,17 @@
   div {
     height: 50vh;
     div:nth-of-type(1) {
-      position: relative;
+      display: flex;
+      align-items: center;
       h1 {
-        text-transform: capitalize;
         text-align: center;
         color: #494949 !important;
         letter-spacing: 0.1rem;
-        padding-top: 28%;
         font-weight: 400;
+        span{
+          text-transform: uppercase;
+          margin-left: 0.5rem;
+        }
       }
     }
     div:nth-of-type(2) {
@@ -45,27 +48,23 @@
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 655px) {
   .shop_container_bg {
     div {
       div:nth-of-type(1) {
         h1 {
-          padding-top: 25%;
+          display: none;
         }
       }
     }
   }
 }
 
+
 @media screen and (max-width: 500px) {
   .shop_container_bg {
     div {
       height: 30vh !important;
-      div:nth-of-type(1) {
-        h1 {
-          display: none;
-        }
-      }
     }
   }
 }

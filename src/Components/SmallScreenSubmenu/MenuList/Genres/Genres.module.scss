@@ -30,7 +30,7 @@
     text-decoration: none;
     text-align: center;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-transform: uppercase;
     line-height: 6rem;
   }
@@ -53,16 +53,16 @@
       position: relative;
       left: 50%;
     }
-    span {
-      width: 100%;
-      display: block;
+    h3 {
       position: absolute;
       bottom: 45%;
       left: 5%;
       text-align: left;
-      font-size: 2rem;
       color: #494949;
-      font-weight: 500;
+      font-weight: 400;
+      span{
+        text-transform: uppercase;
+      }
     }
     a {
       width: 100%;
@@ -71,7 +71,7 @@
       bottom: 30%;
       left: 5%;
       text-align: left;
-      color: #393b3c;
+      color: #B2BBC4 !important;
       font-size: 1.3rem;
       text-decoration: none;
       &:hover {

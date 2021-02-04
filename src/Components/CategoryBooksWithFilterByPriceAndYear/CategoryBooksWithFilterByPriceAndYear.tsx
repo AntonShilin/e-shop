@@ -129,7 +129,7 @@ class CategoryBooksWithFilterByPriceAndYear extends React.Component<
 
   componentDidUpdate(prevProps: {
     filterByPriceOn: { min: number; max: number };
-    checkedYears: string | any[];
+    checkedYears: number[];
   }) {
     if (
       this.props.filterByPriceOn.min !== prevProps.filterByPriceOn.min ||
@@ -137,6 +137,7 @@ class CategoryBooksWithFilterByPriceAndYear extends React.Component<
       this.props.checkedYears.length !== prevProps.checkedYears.length
     ) {
       this.countingBooks();
+      console.log('componentDidUpdate')
     }
   }
 

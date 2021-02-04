@@ -69,7 +69,7 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
                   src={require(`../../../../Media/Images/${genresName[i]}.png`)}
                   alt="img"
                 />
-                <span>Shop {genresName[i]}</span>
+                <h3>Shop <span>{genresName[i]}</span></h3>
                 <NavLink
                   to="/shop"
                   onClick={() => {

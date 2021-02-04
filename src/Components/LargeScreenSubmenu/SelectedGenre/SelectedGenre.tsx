@@ -15,7 +15,7 @@ import sg from "./SelectedGenre.module.scss";
 export interface ISelectedGenreProps {
   allGenresData: null | any;
   genresName: string[];
-  id: number ;
+  id: number;
   isOpenSelectedGenre: boolean;
   closeSelectedGenre: typeof closeSelectedGenre;
   isOpenShop: typeof isOpenShop;
@@ -39,7 +39,9 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
                 src={require(`../../../Media/Images/${genresName[id]}.png`)}
                 alt="img"
               />
-              <h1>Shop {genresName[id]}</h1>
+              <h2>
+                Shop <span>{genresName[id]}</span>
+              </h2>
               <NavLink
                 to="/shop"
                 onClick={() => {
