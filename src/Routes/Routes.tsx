@@ -7,6 +7,7 @@ import ShopWithFilterByPrice from "../Components/Pages/ShopWithFilterByPrice/Sho
 import LoggedBoxSmDevices from "../Components/LoggedBoxSmDevices/LoggedBoxSmDevices";
 import ShopWithFilterByYear from "../Components/Pages/ShopWithFilterByYear/ShopWithFilterByYear";
 import ShopWithFilterByPriceAndYear from "../Components/Pages/ShopWithFilterByPriceAndYear/ShopWithFilterByPriceAndYear";
+import BookView from "../Components/Pages/BookView/BookView";
 
 class Routes extends React.Component {
   render() {
@@ -29,6 +30,11 @@ class Routes extends React.Component {
           exact={true}
           path="/filter-by-price-and-year"
           component={ShopWithFilterByPriceAndYear}
+        />
+        <Route
+          exact={true}
+          path="/book-view"
+          component={BookView}
         />
         <Route exact={true} path="/logged" component={LoggedBoxSmDevices} />
         <Route exact={true} component={NotFoundPage} />

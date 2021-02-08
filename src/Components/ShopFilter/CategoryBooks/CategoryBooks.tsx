@@ -107,14 +107,15 @@ class CategoryBooks extends React.Component<
           <div className={`row ${cb.book_info}`}>
             {allGenresData[shopID].items.map((book: any, k: number) => (
               <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
-                <NavLink to="#">
+                <NavLink to="/book-view">
                   <img
                     src={book.volumeInfo.imageLinks.thumbnail}
                     alt={`img_${k}`}
+                    id={book.id}
                   />
                 </NavLink>
                 <p>{shopName}</p>
-                <NavLink to="#">{book.volumeInfo.title}</NavLink>
+                <NavLink to="/book-view">{book.volumeInfo.title}</NavLink>
                 <p>{book.volumeInfo.pageCount} pages</p>
                 <p>Published: {book.volumeInfo.publishedDate}</p>
                 <p>{(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $</p>
