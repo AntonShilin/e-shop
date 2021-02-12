@@ -5,6 +5,7 @@ import {
   isOpenShopTypes,
   ShopIDTypes,
   shopNameTypes,
+  ViewBookIdTypes,
 } from "../Types/ShopTypes";
 
 /* open shopAllContainer*/
@@ -46,5 +47,11 @@ export const filterBySelectValue = (name:string) => ({
 /* get ShopID */
 export const getShopID = (id: number) => ({
   type: ShopIDTypes.SHOPID,
+  id
+})
+
+/* view bookID */
+export const viewBookID = (id: string) => ({
+  type: ViewBookIdTypes.VIEWBOOKID,
   id
 })

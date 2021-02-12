@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { viewBookID } from "../../../Actions/ShopActions";
 import { IApplicationState } from "../../../Store/Store";
 import SelectBox from "../SelectBox/SelectBox";
 import cb from "./CategoryBooks.module.scss";
@@ -10,6 +11,7 @@ export interface ICategoryBooksProps {
   allGenresData: any[];
   filterByValue: string;
   shopID: number;
+  viewBookID: typeof viewBookID;
 }
 
 export interface ICategoryBooksState {}
@@ -107,7 +109,10 @@ class CategoryBooks extends React.Component<
           <div className={`row ${cb.book_info}`}>
             {allGenresData[shopID].items.map((book: any, k: number) => (
               <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
-                <NavLink to="/book-view">
+                <NavLink
+                  to="/book-view"
+                  onClick={() => this.props.viewBookID(book.id)}
+                >
                   <img
                     src={book.volumeInfo.imageLinks.thumbnail}
                     alt={`img_${k}`}
@@ -115,7 +120,12 @@ class CategoryBooks extends React.Component<
                   />
                 </NavLink>
                 <p>{shopName}</p>
-                <NavLink to="/book-view">{book.volumeInfo.title}</NavLink>
+                <NavLink
+                  to="/book-view"
+                  onClick={() => this.props.viewBookID(book.id)}
+                >
+                  {book.volumeInfo.title}
+                </NavLink>
                 <p>{book.volumeInfo.pageCount} pages</p>
                 <p>Published: {book.volumeInfo.publishedDate}</p>
                 <p>{(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $</p>
@@ -136,7 +146,9 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    viewBookID: (id: string) => dispatch(viewBookID(id)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryBooks);

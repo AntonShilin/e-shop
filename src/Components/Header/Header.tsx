@@ -26,8 +26,15 @@ import {
 } from "../../Actions/MainStateActions";
 import { toggleLoggedBox } from "../../Actions/LoggedBoxActions";
 import LoggedBox from "../LoggedBox/LoggedBox";
-import { applyDefaultPrice, toggleEnableFilter } from "../../Actions/FilterByPriceActions";
-import { deleteAllYearFromFilter, offYearEnableFilter } from "../../Actions/FilterByYearActions";
+import {
+  applyDefaultPrice,
+  toggleEnableFilter,
+} from "../../Actions/FilterByPriceActions";
+import {
+  deleteAllYearFromFilter,
+  offYearEnableFilter,
+} from "../../Actions/FilterByYearActions";
+import { IBookInfo, ICartState } from "../../Types/CartTypes";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -49,6 +56,7 @@ export interface IHeaderProps {
   applyDefaultPrice: typeof applyDefaultPrice;
   offYearEnableFilter: typeof offYearEnableFilter;
   deleteAllYearFromFilter: typeof deleteAllYearFromFilter;
+  cart: IBookInfo[];
 }
 
 export interface IHeaderState {}
@@ -56,16 +64,16 @@ export interface IHeaderState {}
 class Header extends React.Component<IHeaderProps, IHeaderState> {
   componentDidMount() {
     this.props.getFableBooks();
-    // this.props.getBiographyBooks();
-    // this.props.getStoryBooks();
-    // this.props.getBestSellersBooks();
-    // this.props.getFictionBooks();
+    this.props.getBiographyBooks();
+    this.props.getStoryBooks();
+    this.props.getBestSellersBooks();
+    this.props.getFictionBooks();
     this.props.getArtBooks();
-    // this.props.getLifestyleBooks();
+    this.props.getLifestyleBooks();
   }
 
   render() {
-    const { isToggle } = this.props;
+    const { isToggle, cart } = this.props;
     return (
       <div
         className={`${header.main_menu_bg} ${
@@ -136,8 +144,9 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
               </NavLink>
             </div>
             <div className="col-2">
-              <NavLink to="#" className="d-block">
+              <NavLink to="/cart" className="d-block">
                 Cart
+              {cart.length > 0 && <span>{cart.length}</span>}
               </NavLink>
             </div>
           </nav>
@@ -153,6 +162,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
 
 const mapStateToProps = (state: IApplicationState) => ({
   isToggle: state.headerSearchPanel.isToggle,
+  cart: state.cartContainer.cart,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -174,8 +184,9 @@ const mapDispatchToProps = (dispatch: any) => {
     toggleLoggedBox: (value: boolean) => dispatch(toggleLoggedBox(value)),
     toggleEnableFilter: (value: boolean) => dispatch(toggleEnableFilter(value)),
     applyDefaultPrice: () => dispatch(applyDefaultPrice()),
-    offYearEnableFilter:(value:boolean)=>dispatch(offYearEnableFilter(value)),
-    deleteAllYearFromFilter:()=>dispatch(deleteAllYearFromFilter()),
+    offYearEnableFilter: (value: boolean) =>
+      dispatch(offYearEnableFilter(value)),
+    deleteAllYearFromFilter: () => dispatch(deleteAllYearFromFilter()),
   };
 };
 

@@ -8,6 +8,7 @@ import LoggedBoxSmDevices from "../Components/LoggedBoxSmDevices/LoggedBoxSmDevi
 import ShopWithFilterByYear from "../Components/Pages/ShopWithFilterByYear/ShopWithFilterByYear";
 import ShopWithFilterByPriceAndYear from "../Components/Pages/ShopWithFilterByPriceAndYear/ShopWithFilterByPriceAndYear";
 import BookView from "../Components/Pages/BookView/BookView";
+import CartPage from "../Components/Pages/CartPage/CartPage";
 
 class Routes extends React.Component {
   render() {
@@ -35,6 +36,11 @@ class Routes extends React.Component {
           exact={true}
           path="/book-view"
           component={BookView}
+        />
+        <Route
+          exact={true}
+          path="/cart"
+          component={CartPage}
         />
         <Route exact={true} path="/logged" component={LoggedBoxSmDevices} />
         <Route exact={true} component={NotFoundPage} />

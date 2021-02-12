@@ -26,7 +26,16 @@ export enum ShopIDTypes{
   SHOPID="SHOPID"
 }
 
+export enum ViewBookIdTypes{
+  VIEWBOOKID="VIEWBOOKID"
+}
+
 /* interfaces */
+export interface IViewBookIdAction {
+  type: ViewBookIdTypes.VIEWBOOKID
+  id: string;
+}
+
 export interface IShopIDAction {
   type: ShopIDTypes.SHOPID
   id: number;
@@ -63,6 +72,7 @@ export interface IHiddenContainerAction {
 }
 
 export type shopStateActions =
+  |IViewBookIdAction
   | IOpenShopAction
   | IHiddenContainerAction
   | IShowContainerAction
@@ -77,4 +87,5 @@ export interface IShopState {
   shopName: string;
   filterByValue: string;
   shopID: number;
+  viewBookID: string;
 }

@@ -20,90 +20,110 @@ $height-submenu: 3.4375rem;
 }
 
 /* Main menu */
-.fixed_menu{
-  position: fixed !important; 
-  top: 0 !important; 
+.fixed_menu {
+  position: fixed !important;
+  top: 0 !important;
 }
 
-.main_menu_bg{
+.main_menu_bg {
   position: absolute;
-  top:0rem;
+  top: 0rem;
   width: 100%;
   z-index: 1;
-  div{
-.main_menu {
-  height: $height-submenu;
-  background-color: #f7f7f8;
-  border-bottom: 2px solid #f4f4f6;
-  box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
-  -webkit-box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
-  -moz-box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
-  position: relative;
-  div:nth-of-type(1) {
-    a:nth-of-type(1) {
-      font-size: 2.2rem;
-      color: $main-menu-color;
-      text-decoration: none;
-      font-weight: 800;
-      color: black;
-    }
-    a:nth-of-type(2) {
-      font-size: 3rem;
-      line-height: 1.1;
-      color: $main-menu-color;
-      text-decoration: none;
-      font-weight: 800;
-      color: black;
-    }
-    svg {
-      position: absolute;
-      top: 1rem;
-      left: 4rem;
-      font-size: 1.5rem;
-      color: $color_grey;
-      cursor: pointer;
-      &:hover {
-        color: black;
-      }
-    }
-  }
-  div:nth-of-type(2) {
-    @include centered-item();
-    svg {
-      margin: 0 auto;
-      font-size: 1.5rem;
-      color: $color_grey;
-      cursor: pointer;
-      &:hover {
-        color: black;
-      }
-    }
-  }
-  div:nth-of-type(3) {
-    @include centered-item();
-    a:nth-of-type(1) {
-      color: $main-menu-color;
-      margin: 0 auto;
-    }
-    a:nth-of-type(2){
-      svg {
-        font-size: 1.5rem;
-        color: $color_grey;
-        margin: 0 auto;
-        cursor: pointer;
-        &:hover {
+  div {
+    .main_menu {
+      height: $height-submenu;
+      background-color: #f7f7f8;
+      border-bottom: 2px solid #f4f4f6;
+      box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
+      -webkit-box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
+      -moz-box-shadow: 0 6px 4px -2px rgba(0, 0, 0, 0.07);
+      position: relative;
+      div:nth-of-type(1) {
+        a:nth-of-type(1) {
+          font-size: 2.2rem;
+          color: $main-menu-color;
+          text-decoration: none;
+          font-weight: 800;
           color: black;
+        }
+        a:nth-of-type(2) {
+          font-size: 3rem;
+          line-height: 1.1;
+          color: $main-menu-color;
+          text-decoration: none;
+          font-weight: 800;
+          color: black;
+        }
+        svg {
+          position: absolute;
+          top: 1rem;
+          left: 4rem;
+          font-size: 1.5rem;
+          color: $color_grey;
+          cursor: pointer;
+          &:hover {
+            color: black;
+          }
+        }
+      }
+      div:nth-of-type(2) {
+        @include centered-item();
+        svg {
+          margin: 0 auto;
+          font-size: 1.5rem;
+          color: $color_grey;
+          cursor: pointer;
+          &:hover {
+            color: black;
+          }
+        }
+      }
+      div:nth-of-type(3) {
+        @include centered-item();
+        a:nth-of-type(1) {
+          color: $main-menu-color;
+          margin: 0 auto;
+        }
+        a:nth-of-type(2) {
+          svg {
+            font-size: 1.5rem;
+            color: $color_grey;
+            margin: 0 auto;
+            cursor: pointer;
+            &:hover {
+              color: black;
+            }
+          }
+        }
+      }
+      div:nth-of-type(4) {
+        @include centered-item();
+        a {
+          color: $main-menu-color;
+          margin: 0 auto;
+        }
+      }
+      div:nth-of-type(4) {
+        @include centered-item();
+        a {
+          position: relative;
+          color: $main-menu-color;
+          margin: 0 auto;
+          span {
+            position: absolute;
+            top: 0rem;
+            left: 2.2rem;
+            background-color: #494949;
+            color: #ffffff;
+            width: 1.5rem;
+            height: 1.5rem;
+            text-align: center;
+            border-radius: 50%;
+            font-size: .8rem;
+          }
         }
       }
     }
   }
-  div:nth-of-type(4) {
-    @include centered-item();
-    a {
-      color: $main-menu-color;
-      margin: 0 auto;
-    }
-  }
-}
-}
 }

@@ -8,6 +8,7 @@ import {
   shopNameTypes,
   shopStateActions,
   showContainerTypes,
+  ViewBookIdTypes,
 } from "../Types/ShopTypes";
 
 const shopState: IShopState = {
@@ -16,6 +17,7 @@ const shopState: IShopState = {
   shopName: "",
   filterByValue: "name",
   shopID: 0,
+  viewBookID:""
 };
 
 export const shopReducer = (
@@ -69,6 +71,13 @@ export const shopReducer = (
         return {
           ...state,
           shopID: action.id,
+        };
+    }
+      
+    case ViewBookIdTypes.VIEWBOOKID: {
+        return {
+          ...state,
+          viewBookID: action.id,
         };
     }
 

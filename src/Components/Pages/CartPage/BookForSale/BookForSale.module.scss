@@ -1,0 +1,41 @@
+.book_for_sale_item {
+  display: block;
+  padding: 0 !important;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border-bottom: 1px solid #b2bbc4;
+  border-top: 1px solid #b2bbc4;
+  min-height: 224px;
+  padding-bottom: 5% !important;
+  span:nth-of-type(1) {
+    display: block;
+    padding: 0 !important;
+    text-align: end;
+    cursor: pointer;
+    margin-right: 0.25rem;
+  }
+  div {
+    display: flex;
+    padding: 0 !important;
+    div:nth-of-type(1) {
+        width: 50%;
+      img {
+        width: 100%;
+      }
+    }
+    div:nth-of-type(2) {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+      span:nth-of-type(1) {
+        text-transform: uppercase;
+        color: #b2bbc4;
+        text-align: start;
+      }
+      span {
+        color: #494949;
+        font-size: 1rem;
+      }
+    }
+  }
+}
