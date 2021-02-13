@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { viewBookID } from "../../Actions/ShopActions";
 import { IApplicationState } from "../../Store/Store";
 import NoBooksByFilter from "../NoBooksByFilter/NoBooksByFilter";
 import SelectBox from "../ShopFilter/SelectBox/SelectBox";
@@ -13,6 +14,7 @@ export interface ICategoryBooksWithFilterProps {
   shopID: number;
   maxPrice: number;
   minPrice: number;
+  viewBookID: typeof viewBookID;
   filterByPriceOn: {
     max: number;
     min: number;
@@ -160,23 +162,34 @@ class CategoryBooksWithFilterByPrice extends React.Component<
             </div>
           </div>
           <div className={`row ${cbwf.book_info}`}>
-            {allGenresData[shopID].items.map((book: any, k: number) =>
-              book.saleInfo.retailPrice.amount / 28 < max &&
-              book.saleInfo.retailPrice.amount / 28 > min && (
-                <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
-                  <NavLink to="#">
-                    <img
-                      src={book.volumeInfo.imageLinks.thumbnail}
-                      alt={`img_${k}`}
-                    />
-                  </NavLink>
-                  <p>{shopName}</p>
-                  <NavLink to="#">{book.volumeInfo.title}</NavLink>
-                  <p>{book.volumeInfo.pageCount} pages</p>
-                  <p>Published: {book.volumeInfo.publishedDate}</p>
-                  <p>{(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $</p>
-                </div>
-              ) 
+            {allGenresData[shopID].items.map(
+              (book: any, k: number) =>
+                book.saleInfo.retailPrice.amount / 28 < max &&
+                book.saleInfo.retailPrice.amount / 28 > min && (
+                  <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
+                    <NavLink
+                      to="/book-view"
+                      onClick={() => this.props.viewBookID(book.id)}
+                    >
+                      <img
+                        src={book.volumeInfo.imageLinks.thumbnail}
+                        alt={`img_${k}`}
+                      />
+                    </NavLink>
+                    <p>{shopName}</p>
+                    <NavLink
+                      to="/book-view"
+                      onClick={() => this.props.viewBookID(book.id)}
+                    >
+                      {book.volumeInfo.title}
+                    </NavLink>
+                    <p>{book.volumeInfo.pageCount} pages</p>
+                    <p>Published: {book.volumeInfo.publishedDate}</p>
+                    <p>
+                      {(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $
+                    </p>
+                  </div>
+                )
             )}
           </div>
         </>
@@ -196,7 +209,9 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    viewBookID: (id: string) => dispatch(viewBookID(id)),
+  };
 };
 
 export default connect(

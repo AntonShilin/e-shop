@@ -80,7 +80,7 @@ class BookView extends React.Component<IBookViewProps, IBookViewState> {
                       <p>{shopName}</p>
                       <h3>{book.volumeInfo.title}</h3>
                       <p>
-                        $ {(book.saleInfo.retailPrice.amount / 28).toFixed(2)}
+                      Price: $ {(book.saleInfo.retailPrice.amount / 28).toFixed(2)}
                       </p>
                       <p>{book.volumeInfo.pageCount} pages</p>
                       <p>Published: {book.volumeInfo.publishedDate}</p>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { viewBookID } from "../../Actions/ShopActions";
 import { IApplicationState } from "../../Store/Store";
 import NoBooksByFilter from "../NoBooksByFilter/NoBooksByFilter";
 import SelectBox from "../ShopFilter/SelectBox/SelectBox";
@@ -18,6 +19,7 @@ export interface ICategoryBooksWithFilterProps {
     min: number;
   };
   checkedYears: number[];
+  viewBookID: typeof viewBookID;
 }
 
 export interface ICategoryBooksWithFilterState {
@@ -210,14 +212,20 @@ class CategoryBooksWithFilterByPriceAndYear extends React.Component<
           {filtered.length > 0 ? (
             filtered.map((book: any, k: number) => (
               <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
-                <NavLink to="#">
+                <NavLink
+                  to="/book-view"
+                  onClick={() => this.props.viewBookID(book.id)}
+                >
                   <img
                     src={book.volumeInfo.imageLinks.thumbnail}
                     alt={`img_${k}`}
                   />
                 </NavLink>
                 <p>{shopName}</p>
-                <NavLink to="#">{book.volumeInfo.title}</NavLink>
+                <NavLink
+                  to="/book-view"
+                  onClick={() => this.props.viewBookID(book.id)}
+                >{book.volumeInfo.title}</NavLink>
                 <p>{book.volumeInfo.pageCount} pages</p>
                 <p>Published: {book.volumeInfo.publishedDate}</p>
                 <p>{(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $</p>
@@ -244,7 +252,9 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    viewBookID: (id: string) => dispatch(viewBookID(id)),
+  };
 };
 
 export default connect(

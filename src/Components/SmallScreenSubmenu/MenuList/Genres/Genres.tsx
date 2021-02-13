@@ -10,6 +10,7 @@ import {
   hiddenContainer,
   isOpenShop,
   selectShopName,
+  viewBookID,
 } from "../../../../Actions/ShopActions";
 import {
   selectIdGenreInSubmenu,
@@ -26,6 +27,7 @@ export interface IGenresProps {
   hiddenContainer: typeof hiddenContainer;
   getShopID: typeof getShopID;
   selectIdGenreInSubmenu: typeof selectIdGenreInSubmenu;
+  viewBookID: typeof viewBookID;
 }
 
 export interface IGenresState {}
@@ -48,18 +50,14 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
     this.arrItem.push(node);
   };
 
-
   render() {
     const { allGenresData, genresName } = this.props;
 
     return (
       <>
         {genresName.map((item, i: number) => (
-          <div key={i} >
-            <div
-              className={b.item}
-              onClick={() => this.toggleGenreBooks(i)}
-            >
+          <div key={i}>
+            <div className={b.item} onClick={() => this.toggleGenreBooks(i)}>
               <Arrow />
               <NavLink to="#">{genresName[i]}</NavLink>
             </div>
@@ -69,7 +67,9 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
                   src={require(`../../../../Media/Images/${genresName[i]}.png`)}
                   alt="img"
                 />
-                <h3>Shop <span>{genresName[i]}</span></h3>
+                <h3>
+                  Shop <span>{genresName[i]}</span>
+                </h3>
                 <NavLink
                   to="/shop"
                   onClick={() => {
@@ -87,7 +87,17 @@ class Genres extends React.Component<IGenresProps, IGenresState> {
               <div className={b.item_more_info_list}>
                 {allGenresData[i] !== undefined &&
                   allGenresData[i].items.map((book: any, k: number) => (
-                    <span key={k}>{book.volumeInfo.title}</span>
+                    <NavLink key={k}
+                    to="/book-view"
+                      onClick={() => {
+                        this.props.getShopID(i);
+                        this.props.viewBookID(book.id);
+                        this.props.selectShopName(genresName[i]);
+                        this.props.toggleSmallScreenSubmenu(true);
+                      }}
+                    >
+                      {book.volumeInfo.title}
+                    </NavLink>
                   ))}
               </div>
             </div>
@@ -116,6 +126,7 @@ const mapDispatchToProps = (dispatch: any) => {
     hiddenContainer: () => dispatch(hiddenContainer()),
     getShopID: (id: number) => dispatch(getShopID(id)),
     selectIdGenreInSubmenu: (n: number) => dispatch(selectIdGenreInSubmenu(n)),
+    viewBookID: (id: string) => dispatch(viewBookID(id)),
   };
 };
 
