@@ -1,5 +1,6 @@
 import {
   addToCartTypes,
+  deleteFromCartTypes,
   IAddToCartAction,
 } from "../Types/CartTypes";
 
@@ -15,7 +16,17 @@ export const addBookToCart = (...arg: any[]): IAddToCartAction => {
       price:arg[3],
       pageCount:arg[4],
       publishedDate:arg[5],
-      quantityToPurchase:arg[6],
+      quantityToPurchase: arg[6],
+      totalPrice: arg[7],
+      id:arg[8]
     },
   };
 };
+
+/* delete selet book from cart */
+export const deleteBookFromCart = (id: string) => {
+  return {
+    type: deleteFromCartTypes.DELETEFROMCART,
+    id
+  }
+}

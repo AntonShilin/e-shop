@@ -108,6 +108,7 @@ class CategoryBooks extends React.Component<
           </div>
           <div className={`row ${cb.book_info}`}>
             {allGenresData[shopID].items.map((book: any, k: number) => (
+              "retailPrice" in book.saleInfo &&
               <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
                 <NavLink
                   to="/book-view"

@@ -2,14 +2,23 @@ export enum addToCartTypes {
   ADDTOCART = "ADDTOCART",
 }
 
+export enum deleteFromCartTypes{
+  DELETEFROMCART="DELETEFROMCART"
+}
+
 /* interfaces */
+
+export interface IDeleteFromCartAction{
+  type: deleteFromCartTypes.DELETEFROMCART,
+  id: string;
+}
 
 export interface IAddToCartAction {
   type: addToCartTypes.ADDTOCART;
   book: IBookInfo;
 }
 
-export type cartActions = IAddToCartAction;
+export type cartActions = IDeleteFromCartAction|IAddToCartAction;
 
 
 export interface ICartState {
@@ -23,5 +32,7 @@ export interface IBookInfo {
     price: string;
     pageCount: number;
     publishedDate: string;
-    quantityToPurchase: string;
+  quantityToPurchase: string;
+  totalPrice: string;
+  id: string;
 }

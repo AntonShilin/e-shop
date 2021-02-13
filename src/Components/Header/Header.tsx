@@ -34,7 +34,7 @@ import {
   deleteAllYearFromFilter,
   offYearEnableFilter,
 } from "../../Actions/FilterByYearActions";
-import { IBookInfo, ICartState } from "../../Types/CartTypes";
+import { IBookInfo } from "../../Types/CartTypes";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -146,7 +146,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
             <div className="col-2">
               <NavLink to="/cart" className="d-block">
                 Cart
-              {cart.length > 0 && <span>{cart.length}</span>}
+              {cart.length > 0 && <span className="cart_view">{cart.length}</span>}
               </NavLink>
             </div>
           </nav>

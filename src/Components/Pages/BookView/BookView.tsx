@@ -1,4 +1,5 @@
 import * as React from "react";
+import { FiArrowLeft } from "react-icons/fi";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { addBookToCart } from "../../../Actions/CartActions";
@@ -35,7 +36,6 @@ class BookView extends React.Component<IBookViewProps, IBookViewState> {
     }
   };
 
-
   render() {
     const { shopName, shopID, allGenresData, viewBookID } = this.props;
     const { quantityToPurchase } = this.state;
@@ -45,7 +45,10 @@ class BookView extends React.Component<IBookViewProps, IBookViewState> {
         <div className="row">
           <div className="col">
             <div>
-              <NavLink to="/shop">{shopName}</NavLink>
+              <NavLink to="/shop">
+                <FiArrowLeft />
+                {shopName.trim() === "" ? "Back to Shopping" : shopName}
+              </NavLink>
             </div>
           </div>
         </div>
@@ -92,13 +95,15 @@ class BookView extends React.Component<IBookViewProps, IBookViewState> {
                           this.props.addBookToCart(
                             book.volumeInfo.imageLinks.thumbnail,
                             shopName,
-                           book.volumeInfo.title,
-                            (
-                              book.saleInfo.retailPrice.amount / 28
-                            ).toFixed(2),
-                           book.volumeInfo.pageCount,
-                           book.volumeInfo.publishedDate,
+                            book.volumeInfo.title,
+                            (book.saleInfo.retailPrice.amount / 28).toFixed(2),
+                            book.volumeInfo.pageCount,
+                            book.volumeInfo.publishedDate,
                             this.state.quantityToPurchase,
+                            +(book.saleInfo.retailPrice.amount / 28).toFixed(
+                              2
+                            ) * this.state.quantityToPurchase,
+                            book.id
                           )
                         }
                       >

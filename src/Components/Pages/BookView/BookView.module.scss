@@ -12,7 +12,12 @@
         a {
           line-height: 48px;
           color: #ffffff;
-          text-transform: uppercase;
+          text-transform: capitalize;
+          svg {
+            color: #ffffff !important;
+            font-size: 1.5rem;
+            margin-bottom: 3px;
+          }
         }
       }
     }

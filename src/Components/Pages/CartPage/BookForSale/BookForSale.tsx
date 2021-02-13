@@ -1,11 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { deleteBookFromCart } from "../../../../Actions/CartActions";
 import { IApplicationState } from "../../../../Store/Store";
 import { IBookInfo } from "../../../../Types/CartTypes";
 import bfs from "./BookForSale.module.scss";
 
 export interface IBookForSaleProps {
   cart: IBookInfo[];
+  deleteBookFromCart: typeof deleteBookFromCart;
 }
 
 export interface IBookForSaleState {}
@@ -21,7 +23,9 @@ class BookForSale extends React.Component<
       cart.length > 0 &&
       cart.map((book, i) => (
         <div className={bfs.book_for_sale_item} key={i}>
-          <span>&#x2573;</span>
+          <span onClick={() => this.props.deleteBookFromCart(book.id)}>
+            &#x2573;
+          </span>
           <div>
             <div>
               <img src={book.url} alt={`img_${i}`} />
@@ -29,8 +33,15 @@ class BookForSale extends React.Component<
             <div>
               <span>{book.shopName}</span>
               <span>{book.title}</span>
-              <span>$ {book.price}</span>
               <span>{book.publishedDate}</span>
+              <span>{book.pageCount} pages</span>
+              <div>
+                <span>Qty</span>
+                <span>{book.quantityToPurchase}</span>
+              </div>
+            </div>
+            <div>
+              <span>$ {book.price}</span>
             </div>
           </div>
         </div>
@@ -44,7 +55,9 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    deleteBookFromCart: (id: string) => dispatch(deleteBookFromCart(id)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookForSale);

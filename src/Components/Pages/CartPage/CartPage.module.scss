@@ -1,23 +1,23 @@
 .cart_page_bg {
-    min-height: 75vh;
-    div:nth-of-type(1) {
-        div {
-            padding-top: 10%;
-            background-color: #f7f7f8;
-            div {
-                min-height: 6rem;
+  min-height: 75vh;
+  div:nth-of-type(1) {
+    div {
+      padding-top: 10%;
+      background-color: #f7f7f8;
+      div {
+        min-height: 6rem;
         padding: 3rem 17% 0;
         h2 {
-            color: #494949;
-            font-weight: 400;
-            font-size: 1.5rem;
+          color: #494949;
+          font-weight: 400;
+          font-size: 1.5rem;
         }
+      }
     }
-}
-}
-div:nth-of-type(2) {
+  }
+  div:nth-of-type(2) {
     div {
-        background-color: #b2bbc4;
+      background-color: #b2bbc4;
       a {
         display: block;
         width: 100%;
@@ -33,6 +33,15 @@ div:nth-of-type(2) {
           font-size: 1.5rem;
           margin-bottom: 3px;
         }
+      }
+    }
+  }
+  div:nth-of-type(3) {
+    div:nth-of-type(3) {
+      h2 {
+        padding-top: 10%;
+        text-align: center;
+        font-weight: 400;
       }
     }
   }
