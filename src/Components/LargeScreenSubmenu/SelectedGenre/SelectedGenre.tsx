@@ -2,12 +2,15 @@ import * as React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { closeSelectedGenre } from "../../../Actions/HeaderPanelActions";
+import {
+  closeSelectedGenre,
+} from "../../../Actions/HeaderPanelActions";
 import {
   getShopID,
   hiddenContainer,
   isOpenShop,
   selectShopName,
+  viewBookID,
 } from "../../../Actions/ShopActions";
 import { IApplicationState } from "../../../Store/Store";
 import sg from "./SelectedGenre.module.scss";
@@ -22,6 +25,7 @@ export interface ISelectedGenreProps {
   hiddenContainer: typeof hiddenContainer;
   selectShopName: typeof selectShopName;
   getShopID: typeof getShopID;
+  viewBookID: typeof viewBookID;
 }
 
 export interface State {}
@@ -48,7 +52,6 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
                   this.props.isOpenShop();
                   this.props.closeSelectedGenre(false);
                   this.props.hiddenContainer();
-                  this.props.hiddenContainer();
                   this.props.selectShopName(genresName[id]);
                   this.props.getShopID(id);
                 }}
@@ -58,8 +61,20 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
             </div>
             <div className="col-7">
               {allGenresData[id] !== undefined &&
-                allGenresData[id].items.map((book: any, k: number) => (
-                  <span key={k}>{book.volumeInfo.title}</span>
+                allGenresData[id].items.map((book: any, i: number) => (
+                  <NavLink
+                    key={i}
+                    to="/book-view"
+                    onClick={() => {
+                      this.props.closeSelectedGenre(false);
+                      this.props.hiddenContainer();
+                      this.props.viewBookID(book.id);
+                      this.props.selectShopName(genresName[id]);
+                      this.props.getShopID(id);
+                    }}
+                  >
+                    {book.volumeInfo.title}
+                  </NavLink>
                 ))}
             </div>
           </div>
@@ -89,6 +104,7 @@ const mapDispatchToProps = (dispatch: any) => {
     hiddenContainer: () => dispatch(hiddenContainer()),
     selectShopName: (name: string) => dispatch(selectShopName(name)),
     getShopID: (id: number) => dispatch(getShopID(id)),
+    viewBookID: (id: string) => dispatch(viewBookID(id)),
   };
 };
 

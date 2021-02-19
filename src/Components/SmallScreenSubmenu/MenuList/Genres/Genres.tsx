@@ -23,10 +23,10 @@ export interface IGenresProps {
   genresName: string[];
   selectShopName: typeof selectShopName;
   isOpenShop: typeof isOpenShop;
-  toggleSmallScreenSubmenu: typeof toggleSmallScreenSubmenu;
   hiddenContainer: typeof hiddenContainer;
   getShopID: typeof getShopID;
   selectIdGenreInSubmenu: typeof selectIdGenreInSubmenu;
+  toggleSmallScreenSubmenu: typeof toggleSmallScreenSubmenu;
   viewBookID: typeof viewBookID;
 }
 
@@ -121,11 +121,11 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     selectShopName: (name: string) => dispatch(selectShopName(name)),
     isOpenShop: () => dispatch(isOpenShop()),
-    toggleSmallScreenSubmenu: (value: boolean) =>
-      dispatch(toggleSmallScreenSubmenu(value)),
     hiddenContainer: () => dispatch(hiddenContainer()),
     getShopID: (id: number) => dispatch(getShopID(id)),
     selectIdGenreInSubmenu: (n: number) => dispatch(selectIdGenreInSubmenu(n)),
+    toggleSmallScreenSubmenu: (value: boolean) =>
+      dispatch(toggleSmallScreenSubmenu(value)),
     viewBookID: (id: string) => dispatch(viewBookID(id)),
   };
 };
