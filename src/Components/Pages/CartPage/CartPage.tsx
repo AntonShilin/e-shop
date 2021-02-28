@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft, FiMinus, FiPlus } from "react-icons/fi";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { IApplicationState } from "../../../Store/Store";
@@ -12,11 +12,25 @@ export interface ICartProps {
   cart: IBookInfo[];
 }
 
-export interface ICartState {}
+export interface ICartState {
+  isHidden: boolean;
+}
 
 class CartPage extends React.Component<ICartProps, ICartState> {
+  constructor(props: ICartProps) {
+    super(props);
+    this.state = {
+      isHidden: false,
+    };
+  }
+
+  toggleCartVisible = () => {
+    this.setState({ isHidden: !this.state.isHidden });
+  };
+
   render() {
     const { cart } = this.props;
+    const { isHidden } = this.state;
 
     return (
       <div className={`container-xl ${cp.cart_page_bg}`}>
@@ -35,12 +49,32 @@ class CartPage extends React.Component<ICartProps, ICartState> {
           </div>
         </div>
         <div className="row">
-          <div className="col-lg-6 col-md-6 col-sm-12">
+          <div className="col">
+            {cart.length > 0 && (
+              <div className={cp.btn_cart} onClick={this.toggleCartVisible}>
+                {isHidden ? <FiMinus /> : <FiPlus />}
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="row">
+          <div
+            className="col-lg-6 col-md-6 col-sm-12"
+            style={
+              isHidden
+                ? {
+                    height: "0rem",
+                  }
+                : {}
+            }
+          >
             <BookForSale />
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12">
             <OrderSummary />
           </div>
+        </div>
+        <div className="row">
           {cart.length === 0 && (
             <div className="col-12">
               <h2>Your cart is empty</h2>
