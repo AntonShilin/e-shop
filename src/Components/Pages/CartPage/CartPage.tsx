@@ -6,6 +6,7 @@ import { IApplicationState } from "../../../Store/Store";
 import { IBookInfo } from "../../../Types/CartTypes";
 import BookForSale from "./BookForSale/BookForSale";
 import cp from "./CartPage.module.scss";
+import Checkout from "./Checkout/Checkout";
 import OrderSummary from "./OrderSummary/OrderSummary";
 
 export interface ICartProps {
@@ -49,7 +50,18 @@ class CartPage extends React.Component<ICartProps, ICartState> {
           </div>
         </div>
         <div className="row">
-          <div className="col">
+          <div className="col-10">
+            {cart.length > 0 && (
+              <p>
+                {cart.reduce(
+                  (quantity, book) => quantity + +book.quantityToPurchase,
+                  0
+                )}{" "}
+                Item(s) in your cart
+              </p>
+            )}
+          </div>
+          <div className="col-2">
             {cart.length > 0 && (
               <div className={cp.btn_cart} onClick={this.toggleCartVisible}>
                 {isHidden ? <FiMinus /> : <FiPlus />}
@@ -72,6 +84,7 @@ class CartPage extends React.Component<ICartProps, ICartState> {
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12">
             <OrderSummary />
+            <Checkout />
           </div>
         </div>
         <div className="row">

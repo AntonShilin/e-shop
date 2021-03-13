@@ -1,0 +1,27 @@
+.checkout_btn {
+  display: block;
+  margin: 58px auto;
+  width: 60%;
+  height: 50px;
+  border: 1px solid #b2bbc4;
+  color: #b2bbc4;
+  line-height: 48px !important;
+  position: sticky;
+  top: 45%;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none !important;
+  &:focus {
+    outline: none !important;
+  }
+  &:hover {
+    color: #494949;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .checkout_btn {
+    width: 100% !important;
+    position: initial;
+  }
+}
