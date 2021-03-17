@@ -9,8 +9,14 @@ import {
   openSelectedGenre,
   selectIdGenreInSubmenu,
 } from "../../Actions/HeaderPanelActions";
-import { applyDefaultPrice, toggleEnableFilter } from "../../Actions/FilterByPriceActions";
-import { deleteAllYearFromFilter, offYearEnableFilter } from "../../Actions/FilterByYearActions";
+import {
+  applyDefaultPrice,
+  toggleEnableFilter,
+} from "../../Actions/FilterByPriceActions";
+import {
+  deleteAllYearFromFilter,
+  offYearEnableFilter,
+} from "../../Actions/FilterByYearActions";
 
 export interface ISubmenuProps {
   genresName: string[];
@@ -25,38 +31,37 @@ export interface ISubmenuProps {
 export interface State {}
 
 class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
-
   render() {
     const { genresName } = this.props;
 
     return (
-      <div className={`container-xl ${submenu.rootmenu} d-none d-lg-block`}>
-        <div className="row">
-          {genresName.map((name, i) => (
-            <div
-              className="col"
-              key={i}
-              onClick={() => {
-                this.props.selectIdGenreInSubmenu(i);
-                this.props.openSelectedGenre(true);
-                this.props.deleteAllYearFromFilter();
-                this.props.offYearEnableFilter(false);
-                this.props.applyDefaultPrice();
-                this.props.toggleEnableFilter(false);
-              }}
-            >
-              <NavLink to="#">{name}</NavLink>
+        <div className={`container-xl ${submenu.rootmenu} d-none d-lg-block`}>
+          <div className="row">
+            {genresName.map((name, i) => (
+              <div
+                className="col"
+                key={i}
+                onClick={() => {
+                  this.props.selectIdGenreInSubmenu(i);
+                  this.props.openSelectedGenre(true);
+                  this.props.deleteAllYearFromFilter();
+                  this.props.offYearEnableFilter(false);
+                  this.props.applyDefaultPrice();
+                  this.props.toggleEnableFilter(false);
+                }}
+              >
+                <NavLink to="#">{name}</NavLink>
+              </div>
+            ))}
+            <div className="col">
+              <NavLink to="#">shop all</NavLink>
             </div>
-          ))}
-          <div className="col">
-            <NavLink to="#">shop all</NavLink>
+            <div className="col">
+              <SearchPanel />
+            </div>
           </div>
-          <div className="col">
-            <SearchPanel />
-          </div>
+          <SelectedGenre />
         </div>
-        <SelectedGenre />
-      </div>
     );
   }
 }
@@ -71,8 +76,9 @@ const mapDispatchToProps = (dispatch: any) => {
     openSelectedGenre: (value: boolean) => dispatch(openSelectedGenre(value)),
     toggleEnableFilter: (value: boolean) => dispatch(toggleEnableFilter(value)),
     applyDefaultPrice: () => dispatch(applyDefaultPrice()),
-    offYearEnableFilter:(value:boolean)=>dispatch(offYearEnableFilter(value)),
-    deleteAllYearFromFilter:()=>dispatch(deleteAllYearFromFilter()),
+    offYearEnableFilter: (value: boolean) =>
+      dispatch(offYearEnableFilter(value)),
+    deleteAllYearFromFilter: () => dispatch(deleteAllYearFromFilter()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(LargeScreenSubmenu);

@@ -41,6 +41,7 @@
         font-size: 1.5rem;
         color: #b2bbc4;
         font-weight: 400;
+        margin-bottom: 1rem;
       }
       p:nth-of-type(2) {
         font-size: 1rem;
@@ -119,6 +120,6 @@
 
 @media screen and (max-width: 500px) {
   .book_view_bg {
-    margin-top: 14% !important;
+    margin-top: 15% !important;
   }
 }

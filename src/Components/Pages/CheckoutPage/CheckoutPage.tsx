@@ -19,24 +19,35 @@ class CheckoutPage extends React.Component<
     const { cart } = this.props;
 
     return (
-      <div className={`container-xl ${chp.checkout_page_bg}`}>
-        <div>
-          <hr />
+      <div className={chp.checkout_page_bg}>
+        <div className="container-xl">
           <div>
-            <span>1</span>
-            <p>your cart</p>
-            <p>
-              {cart.length > 0 &&
-                cart.reduce((quantity, book) => quantity + +book.totalPrice, 0)}
-            </p>
-          </div>
-          <div>
-            <span>2</span>
-            <p>shipping</p>
-          </div>
-          <div>
-            <span>3</span>
-            <p>payment</p>
+            <hr />
+            <div>
+              <span>1</span>
+              <p>your cart</p>
+              <p>
+                {cart.length > 0 && (
+                  <>
+                    $
+                    {cart
+                      .reduce(
+                        (quantity, book) => quantity + +book.totalPrice,
+                        0
+                      )
+                      .toFixed(2)}
+                  </>
+                )}
+              </p>
+            </div>
+            <div>
+              <span>2</span>
+              <p>shipping</p>
+            </div>
+            <div>
+              <span>3</span>
+              <p>payment</p>
+            </div>
           </div>
         </div>
       </div>

@@ -131,6 +131,7 @@ class CategoryBooksWithFilterByYear extends React.Component<
       this.filterByNewest();
     }
 
+
     return (
       allGenresData[shopID] !== undefined && (
         <>

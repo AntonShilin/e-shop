@@ -1,44 +1,59 @@
 .checkout_page_bg {
   min-height: 75vh;
-  padding-top: 16%;
+  padding-top: 10%;
   div {
-    position: sticky;
-    top: 10%;
-    max-width: 1366px !important;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    hr{
+    background-color: rgb(247, 247, 248);
+    padding-top: .5rem;
+    div {
+      position: sticky;
+      top: 10%;
+      max-width: 1366px !important;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      hr {
         position: absolute;
         top: 35%;
         color: green;
         width: 100%;
-    }
-    div {
-      background-color: white;
-      display: inline-block;
-      width: 70px;
-      text-align: center;
-      span {
-        width: 40px;
-        height: 40px;
-        border: 1px solid #b2bbc4;
-        border-radius: 20px;
-        -moz-border-radius: 20px;
-        -webkit-border-radius: 20px;
+      }
+      div {
         display: inline-block;
-        line-height: 40px;
-        color: #b2bbc4;
-        margin-bottom: 8px;
-        color: #ffffff;
-        background-color: #b2bbc4;
-      }
-      p:nth-of-type(1) {
-        margin-bottom: 4px;
-        font-size: 13px;
-        text-transform: uppercase;
-        color: #b2bbc4 !important;
+        width: 70px;
+        text-align: center;
+        span {
+          width: 40px;
+          height: 40px;
+          border: 1px solid #b2bbc4;
+          border-radius: 20px;
+          -moz-border-radius: 20px;
+          -webkit-border-radius: 20px;
+          display: inline-block;
+          line-height: 40px;
+          color: #b2bbc4;
+          margin-bottom: 8px;
+          color: #ffffff;
+          background-color: #b2bbc4;
+        }
+        p:nth-of-type(1) {
+          margin-bottom: 4px;
+          font-size: 13px;
+          text-transform: uppercase;
+          color: #b2bbc4 !important;
+        }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .checkout_page_bg{
+    padding-top: 12% !important;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .checkout_page_bg{
+    padding-top: 16% !important;
   }
 }

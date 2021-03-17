@@ -69,7 +69,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
     this.props.getBestSellersBooks();
     this.props.getFictionBooks();
     this.props.getArtBooks();
-    this.props.getLifestyleBooks();
+    this.props.getLifestyleBooks()
   }
 
   render() {
@@ -80,77 +80,79 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
           isToggle ? "" : header.fixed_menu
         }`}
       >
-        <div className="container-xl">
-          <nav
-            className={`row ${header.main_menu}`}
-            onClick={() => this.props.closeSelectedGenre(false)}
-          >
-            <div className="col-6">
-              <NavLink
-                to="/home"
-                className="d-none d-lg-block"
-                onClick={() => {
-                  this.props.showContainer();
-                  this.props.closeShop();
-                  this.props.toggleEnableFilter(false);
-                  this.props.applyDefaultPrice();
-                  this.props.offYearEnableFilter(false);
-                  this.props.deleteAllYearFromFilter();
-                }}
-              >
-                Books Store
-              </NavLink>
-              <NavLink
-                to="/home"
-                className="d-lg-none d-block"
-                onClick={() => {
-                  this.props.showContainer();
-                  this.props.closeShop();
-                  this.props.applyDefaultPrice();
-                  this.props.offYearEnableFilter(false);
-                  this.props.toggleEnableFilter(false);
-                  this.props.deleteAllYearFromFilter();
-                }}
-              >
-                B
-              </NavLink>
-              <FaBars
-                className="d-lg-none"
-                onClick={() => {
-                  this.props.toggleSmallScreenSubmenu(isToggle);
-                  this.props.applyDefaultPrice();
-                  this.props.offYearEnableFilter(false);
-                  this.props.toggleEnableFilter(false);
-                  this.props.deleteAllYearFromFilter();
-                }}
-              />
-            </div>
-            <div className="col-2">
-              <FiSearch
-                className="d-lg-none d-block"
-                onClick={this.props.openHeaderSearchPanel}
-              />
-            </div>
-            <div className="col-2">
-              <NavLink
-                to="#"
-                className="d-none d-lg-block"
-                onClick={() => this.props.toggleLoggedBox(true)}
-              >
-                Login | Sign Up
-              </NavLink>
-              <NavLink to="/logged">
-                <FaRegUserCircle className="d-lg-none d-block" />
-              </NavLink>
-            </div>
-            <div className="col-2">
-              <NavLink to="/cart" className="d-block">
-                Cart
-              {cart.length > 0 && <span className="cart_view">{cart.length}</span>}
-              </NavLink>
-            </div>
-          </nav>
-        </div>
+          <div className="container-xl">
+            <nav
+              className={`row ${header.main_menu}`}
+              onClick={() => this.props.closeSelectedGenre(false)}
+            >
+              <div className="col-6">
+                <NavLink
+                  to="/home"
+                  className="d-none d-lg-block"
+                  onClick={() => {
+                    this.props.showContainer();
+                    this.props.closeShop();
+                    this.props.toggleEnableFilter(false);
+                    this.props.applyDefaultPrice();
+                    this.props.offYearEnableFilter(false);
+                    this.props.deleteAllYearFromFilter();
+                  }}
+                >
+                  Books Store
+                </NavLink>
+                <NavLink
+                  to="/home"
+                  className="d-lg-none d-block"
+                  onClick={() => {
+                    this.props.showContainer();
+                    this.props.closeShop();
+                    this.props.applyDefaultPrice();
+                    this.props.offYearEnableFilter(false);
+                    this.props.toggleEnableFilter(false);
+                    this.props.deleteAllYearFromFilter();
+                  }}
+                >
+                  B
+                </NavLink>
+                <FaBars
+                  className="d-lg-none"
+                  onClick={() => {
+                    this.props.toggleSmallScreenSubmenu(isToggle);
+                    this.props.applyDefaultPrice();
+                    this.props.offYearEnableFilter(false);
+                    this.props.toggleEnableFilter(false);
+                    this.props.deleteAllYearFromFilter();
+                  }}
+                />
+              </div>
+              <div className="col-2">
+                <FiSearch
+                  className="d-lg-none d-block"
+                  onClick={this.props.openHeaderSearchPanel}
+                />
+              </div>
+              <div className="col-2">
+                <NavLink
+                  to="#"
+                  className="d-none d-lg-block"
+                  onClick={() => this.props.toggleLoggedBox(true)}
+                >
+                  Login | Sign Up
+                </NavLink>
+                <NavLink to="/logged">
+                  <FaRegUserCircle className="d-lg-none d-block" />
+                </NavLink>
+              </div>
+              <div className="col-2">
+                <NavLink to="/cart" className="d-block">
+                  Cart
+                  {cart.length > 0 && (
+                    <span className="cart_view">{cart.length}</span>
+                  )}
+                </NavLink>
+              </div>
+            </nav>
+          </div>
         <LoggedBox />
         <HeaderSearchPanel />
         <LargeScreenSubmenu />
