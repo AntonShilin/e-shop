@@ -77,7 +77,7 @@ class Slideshow extends React.Component<ISlideshowProps, ISlideshowState> {
   };
 
   componentDidMount() {
-    this.movingImages();
+    // this.movingImages();
   }
 
   render() {
