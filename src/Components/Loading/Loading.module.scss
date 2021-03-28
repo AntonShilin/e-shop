@@ -2,15 +2,15 @@
   position: fixed;
   padding: 0;
   z-index: 5;
-  background-color:#7a8ad530;
+  background-color: rgba(255, 255, 255, 0.377);
   width: 100%;
   height: 100vh;
   div {
+    background-color:#7a8bd59c;
     border-radius: 50%;
     margin: 35% auto 0%;
     height: 10rem;
     width: 10rem;
-    background-color: white;
     position: relative;
     div:nth-of-type(1) {
       -webkit-animation: moving 1s infinite linear;

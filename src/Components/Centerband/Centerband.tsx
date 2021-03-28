@@ -20,8 +20,8 @@ class Centerband extends React.Component<ICenterbandProps, State> {
     const { genresName, isHiddenContainer } = this.props;
     return (
       isHiddenContainer && (
-        <div className="container-xl">
-          <div className={`row ${c.center_band}`}>
+        <div className={`container-xl ${c.center_band}`}>
+          <div className="row">
             <div className="col-lg-5 col-md-5 col-sm-12">
               <h1>Find your book</h1>
             </div>

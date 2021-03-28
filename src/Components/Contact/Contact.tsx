@@ -14,8 +14,8 @@ class Contact extends React.Component<IContactProps, State> {
     const { isHiddenContainer } = this.props;
     return (
       isHiddenContainer&&
-      <div className="container-xl">
-        <div className={`row ${c.contact_item}`}>
+      <div className={`container-xl ${c.contact_item}`}>
+        <div className="row">
           <div className="col-lg-4 col-md-4 col-sm-12">
             <h1>Our store</h1>
           </div>

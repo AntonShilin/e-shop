@@ -1,8 +1,10 @@
 .slider_empty{
   height: 10rem;
+  max-width: 1500px;
 }
 
 .slider_bg {
+  max-width: 1500px;
   div {
     overflow: hidden;
     div {
@@ -209,7 +211,7 @@
   .slider_bg {
     div {
       div {
-        height: 45rem !important;
+        height: 46rem !important;
       }
     }
   }
@@ -219,7 +221,7 @@
   .slider_bg {
     div {
       div {
-        height: 42rem !important;
+        height: 43rem !important;
       }
     }
   }
@@ -243,7 +245,7 @@
   .slider_bg {
     div {
       div {
-        height: 33rem !important;
+        height: 34rem !important;
         div {
           img {
             max-width: 90% !important;
