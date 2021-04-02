@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { MdStar } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import f from "./Footer.module.scss";
 import SignUpForm from "./SignUpForm/SignUpForm";
@@ -16,7 +17,7 @@ class Footer extends React.Component<Props, State> {
           <div className="col-lg-4 col-md-4 col">
             <div className="row align-items-center">
               <div className="col-lg-6 col-md-6 col-sm-12">
-                <NavLink to="#">B</NavLink>
+                <NavLink to="#">B<MdStar/></NavLink>
               </div>
               <div className="col-lg-6 col-md-6 col-sm-12">
                 <NavLink to="#">Terms of Use</NavLink>

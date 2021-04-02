@@ -6,6 +6,7 @@ import { filterByYearReducer } from "../Reducers/FilterByYearReducer";
 import { headerPanelReducer } from "../Reducers/HeaderPanelReducer";
 import { loggedBoxReducer } from "../Reducers/LoggedBoxReducer";
 import { mainStateReducer } from "../Reducers/MainStateReducer";
+import { searchMenuReducer } from "../Reducers/SearchMenuReducer";
 import { shopReducer } from "../Reducers/ShopReducer";
 
 
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   loggedBox: loggedBoxReducer,
   filterByPrice: filterByPriceReducer,
   filterByYear: filterByYearReducer,
-  cartContainer: cartReducer
+  cartContainer: cartReducer,
+  searchMenu: searchMenuReducer
 });
 
 export type IApplicationState = ReturnType<typeof rootReducer>

@@ -35,33 +35,33 @@ class LargeScreenSubmenu extends React.Component<ISubmenuProps, State> {
     const { genresName } = this.props;
 
     return (
-        <div className={`container-xl ${submenu.rootmenu} d-none d-lg-block`}>
-          <div className="row">
-            {genresName.map((name, i) => (
-              <div
-                className="col"
-                key={i}
-                onClick={() => {
-                  this.props.selectIdGenreInSubmenu(i);
-                  this.props.openSelectedGenre(true);
-                  this.props.deleteAllYearFromFilter();
-                  this.props.offYearEnableFilter(false);
-                  this.props.applyDefaultPrice();
-                  this.props.toggleEnableFilter(false);
-                }}
-              >
-                <NavLink to="#">{name}</NavLink>
-              </div>
-            ))}
-            <div className="col">
-              <NavLink to="#">shop all</NavLink>
+      <div className={`container-xl ${submenu.rootmenu} d-none d-lg-block`}>
+        <div className="row">
+          {genresName.map((name, i) => (
+            <div
+              className="col"
+              key={i}
+              onClick={() => {
+                this.props.selectIdGenreInSubmenu(i);
+                this.props.openSelectedGenre(true);
+                this.props.deleteAllYearFromFilter();
+                this.props.offYearEnableFilter(false);
+                this.props.applyDefaultPrice();
+                this.props.toggleEnableFilter(false);
+              }}
+            >
+              <NavLink to="#">{name}</NavLink>
             </div>
-            <div className="col">
-              <SearchPanel />
-            </div>
+          ))}
+          <div className="col">
+            <NavLink to="#">shop all</NavLink>
           </div>
-          <SelectedGenre />
+          <div className="col">
+            <SearchPanel />
+          </div>
         </div>
+        <SelectedGenre />
+      </div>
     );
   }
 }
@@ -81,4 +81,5 @@ const mapDispatchToProps = (dispatch: any) => {
     deleteAllYearFromFilter: () => dispatch(deleteAllYearFromFilter()),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(LargeScreenSubmenu);
