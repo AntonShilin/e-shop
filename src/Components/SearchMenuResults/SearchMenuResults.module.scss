@@ -20,8 +20,11 @@
     font-weight: 400;
     cursor: pointer;
     line-height: 35px !important;
+    text-transform: capitalize !important;
+    font-size: 1rem !important;
     &:hover {
       background-color: rgb(45, 91, 161);
+      color: #f4f4f6 !important;
     }
   }
   &::-webkit-scrollbar {
@@ -59,7 +62,7 @@
   position: absolute;
   width: 75vw;
   right: 20%;
-  top: 203%;
+  top: 103%;
   overflow-y: scroll;
   background-color: rgb(73, 73, 73);
   max-height: 75vh;

@@ -10,6 +10,7 @@ import ShopWithFilterByPriceAndYear from "../Components/Pages/ShopWithFilterByPr
 import BookView from "../Components/Pages/BookView/BookView";
 import CartPage from "../Components/Pages/CartPage/CartPage";
 import CheckoutPage from "../Components/Pages/CheckoutPage/CheckoutPage";
+import SearchBookView from "../Components/Pages/SearchBookView/SearchBookView";
 
 class Routes extends React.Component {
   render() {
@@ -47,6 +48,11 @@ class Routes extends React.Component {
           exact={true}
           path="/checkout-page"
           component={CheckoutPage}
+        />
+        <Route
+          exact={true}
+          path="/search-book-view"
+          component={SearchBookView}
         />
         <Route exact={true} path="/logged" component={LoggedBoxSmDevices} />
         <Route exact={true} component={NotFoundPage} />

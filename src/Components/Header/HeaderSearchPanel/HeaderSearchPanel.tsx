@@ -5,6 +5,7 @@ import { IApplicationState } from "../../../Store/Store";
 import { connect } from "react-redux";
 import { closeHeaderSearchPanel } from "../../../Actions/HeaderPanelActions";
 import { getSearchValue } from "../../../Actions/SearchMenuActions";
+import SearchMenuResults from "../../SearchMenuResults/SearchMenuResults";
 
 export interface IHeaderSearchPanelProps {
   closeHeaderSearchPanel: typeof closeHeaderSearchPanel;
@@ -20,7 +21,7 @@ class HeaderSearchPanel extends React.Component<
   IHeaderSearchPanelState
 > {
   render() {
-    const { value,isOpen } = this.props;
+    const { value, isOpen } = this.props;
 
     return (
       isOpen && (
@@ -41,6 +42,7 @@ class HeaderSearchPanel extends React.Component<
               <MdClose />
             </span>
           </div>
+          <SearchMenuResults />
         </div>
       )
     );

@@ -1,6 +1,12 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { closeSearchPanelLarge } from "../../Actions/SearchMenuActions";
+import {
+  getShopID,
+  selectShopName,
+  viewBookID,
+} from "../../Actions/ShopActions";
 import { IApplicationState } from "../../Store/Store";
 import mr from "./SearchMenuResults.module.scss";
 
@@ -9,6 +15,10 @@ export interface ISeachMenuResultsProps {
   allGenresData: null | any;
   isOpenSearchPanelLarge: boolean;
   isOpenSearchPanelSmall: boolean;
+  getShopID: typeof getShopID;
+  selectShopName: typeof selectShopName;
+  viewBookID: typeof viewBookID;
+  closeSearchPanelLarge: typeof closeSearchPanelLarge;
 }
 
 export interface ISeachMenuResultsState {}
@@ -34,7 +44,13 @@ class SeachMenuResults extends React.Component<
               genre.items.map(
                 (book: any | null, k: number) =>
                   book.volumeInfo.title.match(patt) && (
-                    <NavLink to={`/shop`} key={k}>
+                    <NavLink
+                      to={`/search-book-view`}
+                      key={k}
+                      onClick={() => {
+                        this.props.viewBookID(book.id);
+                      }}
+                    >
                       {book.volumeInfo.title}
                     </NavLink>
                   )
@@ -48,7 +64,15 @@ class SeachMenuResults extends React.Component<
               genre.items.map(
                 (book: any | null, k: number) =>
                   book.volumeInfo.title.match(patt) && (
-                    <NavLink to={`/shop`} key={k}>{book.volumeInfo.title}</NavLink>
+                    <NavLink
+                      to={`/search-book-view`}
+                      key={k}
+                      onClick={() => {
+                        this.props.viewBookID(book.id);
+                      }}
+                    >
+                      {book.volumeInfo.title}
+                    </NavLink>
                   )
               )
             )}
@@ -67,7 +91,13 @@ const mapStateToProps = (state: IApplicationState) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {};
+  return {
+    selectShopName: (name: string) => dispatch(selectShopName(name)),
+    getShopID: (id: number) => dispatch(getShopID(id)),
+    viewBookID: (id: string) => dispatch(viewBookID(id)),
+    closeSearchPanelLarge: (value: boolean) =>
+    dispatch(closeSearchPanelLarge(value)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SeachMenuResults);
