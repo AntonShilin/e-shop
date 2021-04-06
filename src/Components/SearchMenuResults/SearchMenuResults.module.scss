@@ -3,17 +3,16 @@
   position: absolute;
   width: 28rem;
   right: 0%;
-  top: 103%;
+  top: 104%;
   overflow-y: scroll;
-  background-color: rgb(73, 73, 73);
   max-height: 75vh;
-  a:first-child {
-    padding-top: 0.5rem;
-  }
-  a:last-child {
-    padding-bottom: 0.5rem;
-  }
+  padding-right: 0.3rem;
   a {
+    border-radius: 10px !important;
+    background-color: rgb(73, 73, 73);
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
     color: #f4f4f6;
     text-align: left !important;
     padding-left: 1rem;
@@ -27,8 +26,9 @@
       color: #f4f4f6 !important;
     }
   }
+
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
 
   /* Track */
@@ -57,23 +57,22 @@
 
 /* small devices results search menu */
 .search_menu_small_results_bg {
+  padding-right: 0.3rem;
   display: none;
   border-radius: 5px;
   position: absolute;
-  width: 75vw;
+  width: 60vw;
   right: 20%;
-  top: 103%;
+  top: 105%;
+  max-height: 50vh;
   overflow-y: scroll;
-  background-color: rgb(73, 73, 73);
-  max-height: 75vh;
-  a:first-child {
-    padding-top: 0.5rem;
-  }
-  a:last-child {
-    padding-bottom: 0.5rem;
-  }
   a {
-    color: #f4f4f6 ;
+    border-radius: 10px !important;
+    background-color: rgb(73, 73, 73);
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+    color: #f4f4f6;
     display: block;
     text-align: left !important;
     padding-left: 1rem;
@@ -81,13 +80,14 @@
     cursor: pointer;
     line-height: 35px !important;
     text-decoration: none;
+    margin-bottom: 0.2rem;
     &:hover {
       background-color: rgb(45, 91, 161);
       color: white;
     }
   }
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
   }
 
   /* Track */

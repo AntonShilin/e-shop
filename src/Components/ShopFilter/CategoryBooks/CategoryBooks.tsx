@@ -14,12 +14,17 @@ export interface ICategoryBooksProps {
   viewBookID: typeof viewBookID;
 }
 
-export interface ICategoryBooksState {}
+export interface ICategoryBooksState {
+ 
+}
 
 class CategoryBooks extends React.Component<
   ICategoryBooksProps,
   ICategoryBooksState
 > {
+
+
+
   filteredByName = () => {
     const { shopID, allGenresData } = this.props;
     if (allGenresData[shopID] !== undefined) {

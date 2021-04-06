@@ -1,6 +1,7 @@
 import { closeSearchPanelLarge } from "../Actions/SearchMenuActions";
 import {
   closeSearchPanelLargeTypes,
+  getSearchPanelElementTypes,
   ISearchMenuState,
   openSearchPanelLargeTypes,
   searchMenuActions,
@@ -10,6 +11,7 @@ import {
 const searchMenuState: ISearchMenuState = {
   value: "",
   isOpenSearchPanelLarge: false,
+  node:  null,
 };
 
 export const searchMenuReducer = (
@@ -35,6 +37,13 @@ export const searchMenuReducer = (
       return {
         ...state,
         isOpenSearchPanelLarge: action.position,
+      };
+    }
+
+    case getSearchPanelElementTypes.GETSEARCHPANELELEMENT: {
+      return {
+        ...state,
+        node: action.node,
       };
     }
 

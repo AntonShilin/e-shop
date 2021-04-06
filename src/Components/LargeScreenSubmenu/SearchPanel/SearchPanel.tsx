@@ -6,6 +6,7 @@ import { IApplicationState } from "../../../Store/Store";
 import { connect } from "react-redux";
 import {
   closeSearchPanelLarge,
+  getSearchPanelElement,
   getSearchValue,
   openSearchPanelLarge,
 } from "../../../Actions/SearchMenuActions";
@@ -18,6 +19,7 @@ export interface ISearchPanelProps {
   isOpenSearchPanelLarge: boolean;
   openSearchPanelLarge: typeof openSearchPanelLarge;
   closeSearchPanelLarge: typeof closeSearchPanelLarge;
+  getSearchPanelElement: typeof getSearchPanelElement;
 }
 
 export interface ISearchPanelState {}
@@ -32,30 +34,12 @@ class SearchPanel extends React.Component<
     this.searchInput = React.createRef();
   }
 
-  private toggleSearchInput = (
-    elem: HTMLDivElement,
-    w: number,
-    color: string
-  ) => {
-    elem.style.transition = "width .7s";
-    elem.style.width = w + "rem";
-    if (color === "transparent") {
-      setTimeout(() => {
-        elem.style.backgroundColor = color;
-      }, 1000);
-    } else {
-      elem.style.backgroundColor = color;
-    }
-  };
+  componentDidMount() {
+    this.props.getSearchPanelElement(this.searchInput.current!)
+  }
 
-  public openSearchInput = () => {
-    this.toggleSearchInput(this.searchInput.current!, 28, "#494949");
-  };
-
-  public closeSearchInput = () => {
-    this.toggleSearchInput(this.searchInput.current!, 4, "transparent");
-  };
-
+ 
+  
   render() {
     const { value, isOpenSearchPanelLarge } = this.props;
 
@@ -64,25 +48,32 @@ class SearchPanel extends React.Component<
         <div className={searchpanel.search_sm_devices} ref={this.searchInput}>
           <span
             className={isOpenSearchPanelLarge ? "d-block" : "d-none"}
-            onClick={() => {
-              this.closeSearchInput();
+            onClick={(e) => {
+              console.log(e);
               this.props.getSearchValue("");
-              this.props.closeSearchPanelLarge(false);
+              this.props.closeSearchPanelLarge(
+                false,
+                this.searchInput.current!,
+                4,
+                "transparent"
+              );
             }}
           >
             <MdClose />
           </span>
           <input
             value={value}
-            autoFocus={true}
             type="text"
-            className="search_sm_devices_input"
             onChange={(e) => this.props.getSearchValue(e.currentTarget.value)}
           />
           <span
             onClick={() => {
-              this.openSearchInput();
-              this.props.openSearchPanelLarge(true);
+              this.props.openSearchPanelLarge(
+                true,
+                this.searchInput.current!,
+                28,
+                "#494949"
+              );
             }}
           >
             <FiSearch />
@@ -103,10 +94,19 @@ const mapStateToProps = (state: IApplicationState) => ({
 const mapDispatchToProps = (dispatch: any) => {
   return {
     getSearchValue: (name: string) => dispatch(getSearchValue(name)),
-    openSearchPanelLarge: (value: boolean) =>
-      dispatch(openSearchPanelLarge(value)),
-    closeSearchPanelLarge: (value: boolean) =>
-      dispatch(closeSearchPanelLarge(value)),
+    getSearchPanelElement: (node: HTMLDivElement) => dispatch(getSearchPanelElement(node)),
+    openSearchPanelLarge: (
+      value: boolean,
+      elem: HTMLDivElement,
+      width: number,
+      color: string
+    ) => dispatch(openSearchPanelLarge(value, elem, width, color)),
+    closeSearchPanelLarge: (
+      value: boolean,
+      elem: HTMLDivElement,
+      width: number,
+      color: string
+    ) => dispatch(closeSearchPanelLarge(value, elem, width, color)),
   };
 };
 

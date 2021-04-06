@@ -24,6 +24,7 @@ export enum CloseSelectedGenreTypes {
 
 
 /* action interfaces */
+
 export interface ICloseSelectedGenreAction{
   type: CloseSelectedGenreTypes.CLOSESELECTEDGENRE;
   value: boolean;

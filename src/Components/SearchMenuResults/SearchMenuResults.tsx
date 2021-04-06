@@ -1,7 +1,11 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { closeSearchPanelLarge } from "../../Actions/SearchMenuActions";
+import { closeHeaderSearchPanel } from "../../Actions/HeaderPanelActions";
+import {
+  closeSearchPanelLarge,
+  getSearchValue,
+} from "../../Actions/SearchMenuActions";
 import {
   getShopID,
   selectShopName,
@@ -19,6 +23,9 @@ export interface ISeachMenuResultsProps {
   selectShopName: typeof selectShopName;
   viewBookID: typeof viewBookID;
   closeSearchPanelLarge: typeof closeSearchPanelLarge;
+  closeHeaderSearchPanel: typeof closeHeaderSearchPanel;
+  getSearchValue: typeof getSearchValue;
+  node: HTMLDivElement | null;
 }
 
 export interface ISeachMenuResultsState {}
@@ -33,6 +40,7 @@ class SeachMenuResults extends React.Component<
       value,
       isOpenSearchPanelLarge,
       isOpenSearchPanelSmall,
+      node,
     } = this.props;
     const patt = new RegExp(value, "i");
 
@@ -49,6 +57,13 @@ class SeachMenuResults extends React.Component<
                       key={k}
                       onClick={() => {
                         this.props.viewBookID(book.id);
+                        this.props.getSearchValue("");
+                        this.props.closeSearchPanelLarge(
+                          false,
+                          node!,
+                          4,
+                          "transparent"
+                        );
                       }}
                     >
                       {book.volumeInfo.title}
@@ -69,6 +84,8 @@ class SeachMenuResults extends React.Component<
                       key={k}
                       onClick={() => {
                         this.props.viewBookID(book.id);
+                        this.props.closeHeaderSearchPanel();
+                        this.props.getSearchValue("");
                       }}
                     >
                       {book.volumeInfo.title}
@@ -88,6 +105,7 @@ const mapStateToProps = (state: IApplicationState) => ({
   allGenresData: state.data.allGenresData,
   isOpenSearchPanelLarge: state.searchMenu.isOpenSearchPanelLarge,
   isOpenSearchPanelSmall: state.headerSearchPanel.isOpen,
+  node: state.searchMenu.node,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -95,8 +113,14 @@ const mapDispatchToProps = (dispatch: any) => {
     selectShopName: (name: string) => dispatch(selectShopName(name)),
     getShopID: (id: number) => dispatch(getShopID(id)),
     viewBookID: (id: string) => dispatch(viewBookID(id)),
-    closeSearchPanelLarge: (value: boolean) =>
-    dispatch(closeSearchPanelLarge(value)),
+    closeSearchPanelLarge: (
+      value: boolean,
+      elem: HTMLDivElement,
+      width: number,
+      color: string
+    ) => dispatch(closeSearchPanelLarge(value, elem, width, color)),
+    closeHeaderSearchPanel: () => dispatch(closeHeaderSearchPanel()),
+    getSearchValue: (name: string) => dispatch(getSearchValue(name)),
   };
 };
 

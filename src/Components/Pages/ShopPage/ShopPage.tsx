@@ -1,4 +1,5 @@
 import * as React from "react";
+import { transpileModule } from "typescript";
 import Loading from "../../Loading/Loading";
 import ShopAll from "../../ShopAll/ShopAll";
 import ShopFilter from "../../ShopFilter/ShopFilter";
@@ -13,21 +14,22 @@ class ShopPage extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      isLoading: true,
+      isLoading: true
     };
   }
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 1500);
+      this.setState({ isLoading: false })
+    },1500)
   }
+
   render() {
     const { isLoading } = this.state;
 
     return (
       <>
-        {isLoading && <Loading />}
+        {isLoading&&<Loading/>}
         <ShopAll />
         <ShopFilter />
       </>
