@@ -98,11 +98,12 @@ class CategoryBooksWithFilterByPrice extends React.Component<
   };
 
   filterRange = (arrOfBooks: any[], max: number, min: number) => {
-    return arrOfBooks.filter(
-      (book) =>
-        book.saleInfo.retailPrice.amount / 28 < max &&
-        book.saleInfo.retailPrice.amount / 28 > min
-    );
+      return arrOfBooks.filter(
+        (book) =>
+        typeof book.saleInfo.retailPrice!==undefined &&
+            book.saleInfo.retailPrice.amount / 28 < max &&
+            book.saleInfo.retailPrice.amount / 28 > min
+      );
   };
 
   countingBooks = () => {
@@ -136,7 +137,7 @@ class CategoryBooksWithFilterByPrice extends React.Component<
 
   render() {
     const { filterByValue, shopName, shopID, allGenresData } = this.props;
-    const { min, max } = this.props.filterByPriceOn;
+    const { max, min } = this.props.filterByPriceOn;
     const { numbersOfBooks } = this.state;
 
     if (filterByValue === "name") {
@@ -163,7 +164,50 @@ class CategoryBooksWithFilterByPrice extends React.Component<
           </div>
           <div className={`row ${cbwf.book_info}`}>
             {allGenresData[shopID].items.map(
-              (book: any, k: number) =>
+              (
+                book: {
+                  saleInfo: { retailPrice: { amount: number } };
+                  id: string;
+                  volumeInfo: {
+                    imageLinks: { thumbnail: string | undefined };
+                    title:
+                      | boolean
+                      | React.ReactChild
+                      | React.ReactFragment
+                      | React.ReactPortal
+                      | null
+                      | undefined;
+                    pageCount:
+                      | string
+                      | number
+                      | boolean
+                      | {}
+                      | React.ReactElement<
+                          any,
+                          string | React.JSXElementConstructor<any>
+                        >
+                      | React.ReactNodeArray
+                      | React.ReactPortal
+                      | null
+                      | undefined;
+                    publishedDate:
+                      | string
+                      | number
+                      | boolean
+                      | {}
+                      | React.ReactElement<
+                          any,
+                          string | React.JSXElementConstructor<any>
+                        >
+                      | React.ReactNodeArray
+                      | React.ReactPortal
+                      | null
+                      | undefined;
+                  };
+                },
+                k: number
+              ) =>
+                typeof book.saleInfo.retailPrice !== "undefined" &&
                 book.saleInfo.retailPrice.amount / 28 < max &&
                 book.saleInfo.retailPrice.amount / 28 > min && (
                   <div className="col-lg-4 col-md-4 col-sm-6" key={k}>

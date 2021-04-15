@@ -1,0 +1,108 @@
+.slider {
+  max-height: 90vh;
+  max-width: 1500px;
+  margin-top: 10%;
+  overflow: hidden;
+  background-color: white;
+  background-image: url("../../Media/Images/letter.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  div {
+    div {
+      img {
+      }
+      h1 {
+        letter-spacing: 2px;
+        right: 15%;
+        bottom: 58%;
+        position: absolute;
+        text-align: center;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #494949;
+      }
+      a {
+        right: 17%;
+        bottom: 44%;
+        position: absolute;
+        display: block;
+        border: 1px solid #494949;
+        color: #494949;
+        font-size: 1rem;
+        height: 3.5rem;
+        width: 9.75rem;
+        line-height: 55px !important;
+        text-align: center;
+        font-weight: 500;
+        text-decoration: none;
+        text-transform: uppercase;
+        background-color: transparent;
+        &:hover {
+          color: white !important;
+          background-color: #494949 !important;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 955px) {
+  .slider {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    max-height: none !important;
+    div {
+      div {
+        h1 {
+          position: initial !important;
+        }
+        img {
+          margin: 0 auto;
+          display: block;
+        }
+        a {
+          position: initial !important;
+          margin: 1rem auto 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 840px) {
+  .slider {
+    div {
+      div {
+        h1 {
+        }
+        img {
+          width: 100%;
+        }
+        a {
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .slider {
+    div {
+      div {
+        h1 {
+        }
+        img {
+        }
+        a {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .slider {
+    margin-top: 7% !important;
+  }
+}

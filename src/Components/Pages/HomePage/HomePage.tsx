@@ -4,7 +4,7 @@ import { IApplicationState } from "../../../Store/Store";
 import Centerband from "../../Centerband/Centerband";
 import Contact from "../../Contact/Contact";
 import Loading from "../../Loading/Loading";
-import Slideshow from "../../Slideshow/Slideshow";
+import Slider from "../../Slider/Slider";
 
 export interface IHomePageProps {
   allGenresData: any[];
@@ -20,7 +20,7 @@ class HomePage extends React.Component<IHomePageProps, State> {
     return (
       <>
         {/* {allGenresData.length !== 7 && <Loading/>} */}
-        <Slideshow />
+        <Slider />
         <Centerband />
         <Contact />
         </>

@@ -17,7 +17,7 @@ class ShopAll extends React.Component<IShopAllProps, State> {
       <>
         <div className={`container-xl ${shop.shop_container_bg}`}>
           <div className="row">
-            <div className="col-4">
+            <div className={`col-4 ${shop.shop_name}`}>
               <h1>
                 Shop
                 <span>
@@ -25,7 +25,7 @@ class ShopAll extends React.Component<IShopAllProps, State> {
                 </span>
               </h1>
             </div>
-            <div className="col-8">
+            <div className={`col-8 ${shop.shop_image}`}>
               {shopName.trim().length > 0 ? (
                 <img
                   src={require(`../../Media/Images/${shopName}.png`)}

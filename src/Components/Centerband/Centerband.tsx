@@ -22,15 +22,19 @@ class Centerband extends React.Component<ICenterbandProps, State> {
       isHiddenContainer && (
         <div className={`container-xl ${c.center_band}`}>
           <div className="row">
-            <div className="col-lg-5 col-md-5 col-sm-12">
+            <div
+              className={`col-lg-5 col-md-5 col-sm-12 ${c.center_band_name}`}
+            >
               <h1>Find your book</h1>
             </div>
-            <div className="col-lg-7 col-md-7 col-sm-12">
+            <div
+              className={`col-lg-7 col-md-7 col-sm-12 ${c.center_band_content}`}
+            >
               <div className="row">
                 {genresName.map(
                   (name: any, k: number) =>
-                    k > 4 &&
-                    k < 7 && (
+                    k > 3 &&
+                    k < 6 && (
                       <div key={k} className="col-lg-6 col-md-6 col-sm-12">
                         <img
                           src={require(`../../Media/Images/${name}.png`)}
@@ -45,17 +49,17 @@ class Centerband extends React.Component<ICenterbandProps, State> {
                                 this.props.selectShopName(genresName[5]);
                               }}
                             >
-                              <FaLongArrowAltLeft /> {`Shop ${name}`}
+                              {`Shop ${name}`} <FaLongArrowAltRight />
                             </NavLink>
                           ) : (
                             <NavLink
                               to="/shop"
                               onClick={() => {
                                 this.props.getShopID(1);
-                                this.props.selectShopName(genresName[6]);
+                                this.props.selectShopName(genresName[4]);
                               }}
                             >
-                              {`Shop ${name}`} <FaLongArrowAltRight />
+                              <FaLongArrowAltLeft /> {`Shop ${name}`}
                             </NavLink>
                           )}
                         </>

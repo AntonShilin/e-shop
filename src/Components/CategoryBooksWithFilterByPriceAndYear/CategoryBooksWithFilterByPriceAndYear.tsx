@@ -106,6 +106,7 @@ class CategoryBooksWithFilterByPriceAndYear extends React.Component<
   ) => {
     return arrOfBooks.filter(
       (book) =>
+        typeof  book.saleInfo.retailPrice !== undefined &&
         book.saleInfo.retailPrice.amount / 28 < max &&
         book.saleInfo.retailPrice.amount / 28 > min &&
         book.volumeInfo.publishedDate !== undefined &&
@@ -158,6 +159,7 @@ class CategoryBooksWithFilterByPriceAndYear extends React.Component<
             | undefined;
         };
       }) =>
+      typeof  book.saleInfo.retailPrice !== undefined &&
         book.saleInfo.retailPrice.amount / 28 < max &&
         book.saleInfo.retailPrice.amount / 28 > min &&
         book.volumeInfo.publishedDate !== undefined &&

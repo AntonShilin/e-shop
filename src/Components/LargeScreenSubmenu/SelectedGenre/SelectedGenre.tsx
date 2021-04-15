@@ -2,9 +2,7 @@ import * as React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import {
-  closeSelectedGenre,
-} from "../../../Actions/HeaderPanelActions";
+import { closeSelectedGenre } from "../../../Actions/HeaderPanelActions";
 import {
   getShopID,
   hiddenContainer,
@@ -38,26 +36,30 @@ class SelectedGenre extends React.Component<ISelectedGenreProps, State> {
       isOpenSelectedGenre && (
         <>
           <div className={`row ${sg.selected_genre_bg}`}>
-            <div className="col-5">
-              <img
-                src={require(`../../../Media/Images/${genresName[id]}.png`)}
-                alt="img"
-              />
-              <h2>
-                Shop <span>{genresName[id]}</span>
-              </h2>
-              <NavLink
-                to="/shop"
-                onClick={() => {
-                  this.props.isOpenShop();
-                  this.props.closeSelectedGenre(false);
-                  this.props.hiddenContainer();
-                  this.props.selectShopName(genresName[id]);
-                  this.props.getShopID(id);
-                }}
-              >
-                Shop All <FiArrowRight />
-              </NavLink>
+            <div className={`col-5 ${sg.selected_genre_name}`}>
+              <div>
+                <h2>
+                  Shop <span>{genresName[id]}</span>
+                </h2>
+                <NavLink
+                  to="/shop"
+                  onClick={() => {
+                    this.props.isOpenShop();
+                    this.props.closeSelectedGenre(false);
+                    this.props.hiddenContainer();
+                    this.props.selectShopName(genresName[id]);
+                    this.props.getShopID(id);
+                  }}
+                >
+                  Shop All <FiArrowRight />
+                </NavLink>
+              </div>
+              <div>
+                <img
+                  src={require(`../../../Media/Images/${genresName[id]}.png`)}
+                  alt="img"
+                />
+              </div>
             </div>
             <div className="col-7">
               {allGenresData[id] !== undefined &&
