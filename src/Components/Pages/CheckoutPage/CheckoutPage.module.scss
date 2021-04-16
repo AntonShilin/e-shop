@@ -1,9 +1,11 @@
 .checkout_page_bg {
   min-height: 75vh;
-  padding-top: 10%;
+  max-width: 1500px;
+  margin: 6.5rem  auto 0 auto;
   div {
     background-color: rgb(247, 247, 248);
-    padding-top: .5rem;
+    padding-top: 0.5rem;
+    max-width: 100%;
     div {
       position: sticky;
       top: 10%;
@@ -46,14 +48,8 @@
   }
 }
 
-@media only screen and (max-width: 620px) {
-  .checkout_page_bg{
-    padding-top: 12% !important;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .checkout_page_bg{
-    padding-top: 16% !important;
+@media screen and (max-width: 991px) {
+  .checkout_page_bg {
+    margin-top: 3.9rem !important;
   }
 }

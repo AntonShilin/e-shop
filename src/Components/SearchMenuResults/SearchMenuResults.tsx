@@ -42,7 +42,7 @@ class SeachMenuResults extends React.Component<
       isOpenSearchPanelSmall,
       node,
     } = this.props;
-    const patt = new RegExp(value, "i");
+    const searchName = new RegExp("^" + value, "i");
 
     return (
       <>
@@ -51,7 +51,7 @@ class SeachMenuResults extends React.Component<
             {allGenresData.map((genre: any | null, i: number) =>
               genre.items.map(
                 (book: any | null, k: number) =>
-                  book.volumeInfo.title.match(patt) && (
+                  book.volumeInfo.title.match(searchName) && (
                     <NavLink
                       to={`/search-book-view`}
                       key={k}
@@ -78,7 +78,7 @@ class SeachMenuResults extends React.Component<
             {allGenresData.map((genre: any | null, i: number) =>
               genre.items.map(
                 (book: any | null, k: number) =>
-                  book.volumeInfo.title.match(patt) && (
+                  book.volumeInfo.title.match(searchName) && (
                     <NavLink
                       to={`/search-book-view`}
                       key={k}

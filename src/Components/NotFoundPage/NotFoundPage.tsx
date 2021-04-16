@@ -13,8 +13,10 @@ class NotFoundPage extends React.Component<Props, State> {
       <div className={`container-xl ${nf.not_found_page_bg}`}>
         <div className="row">
           <div className="col">
+            <Link to="/">
+              <FiArrowLeft /> Back to Shopping
+            </Link>
             <div className={`${nf.not_found_page}`}>
-              <Link to="/"> <FiArrowLeft/> Back to Shopping</Link>
               <h1>Oops! That page doesn't exists</h1>
             </div>
           </div>

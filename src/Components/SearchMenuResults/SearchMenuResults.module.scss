@@ -1,5 +1,4 @@
 .search_menu_large_results_bg {
-  border-radius: 5px;
   position: absolute;
   width: 28rem;
   right: 7%;
@@ -8,8 +7,8 @@
   max-height: 75vh;
   padding: 0.3rem;
   background-color: rgba(255, 255, 255, 0.5);
+  z-index:1;
   a {
-    border-radius: 10px !important;
     background-color: rgb(73, 73, 73);
     text-overflow: ellipsis;
     overflow: hidden;
@@ -56,7 +55,6 @@
 /* small devices results search menu */
 .search_menu_small_results_bg {
   display: none;
-  border-radius: 5px;
   position: absolute;
   width: 90vw;
   left: 1%;
@@ -66,7 +64,6 @@
   background-color: rgba(255, 255, 255, 0.5);
   padding: 0.3rem;
   a {
-    border-radius: 10px !important;
     background-color: rgb(73, 73, 73);
     text-overflow: ellipsis;
     overflow-x: hidden;
