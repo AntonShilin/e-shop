@@ -1,0 +1,12 @@
+.my_account_bg {
+  max-width: 1500px;
+  margin-top: 6.5rem;
+  min-height: 75vh;
+
+}
+
+@media screen and (max-width: 991px) {
+  .my_account_bg {
+    margin-top: 4rem !important;
+  }
+}

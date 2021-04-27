@@ -5,6 +5,19 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import configureStore from "./Store/Store";
+import firebase from "firebase";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyACSIrEvstJMadoYCa1rhEyypwaL8IM3c8",
+  authDomain: "eshop-1f1ea.firebaseapp.com",
+  databaseURL: "https://eshop-1f1ea.firebaseio.com",
+  projectId: "eshop-1f1ea",
+  storageBucket: "eshop-1f1ea.appspot.com",
+  messagingSenderId: "980209311766",
+  appId: "1:980209311766:web:c8df2601bdd827603a1537",
+};
+
+firebase.initializeApp(firebaseConfig);
 
 const store = configureStore();
 

@@ -11,6 +11,8 @@ import BookView from "../Components/Pages/BookView/BookView";
 import CartPage from "../Components/Pages/CartPage/CartPage";
 import CheckoutPage from "../Components/Pages/CheckoutPage/CheckoutPage";
 import SearchBookView from "../Components/Pages/SearchBookView/SearchBookView";
+import CreateAccount from "../Components/Pages/CreateAccount/CreateAccount";
+import MyAccount from "../Components/Pages/MyAccount/MyAccount";
 
 class Routes extends React.Component {
   render() {
@@ -55,6 +57,8 @@ class Routes extends React.Component {
           component={SearchBookView}
         />
         <Route exact={true} path="/logged" component={LoggedBoxSmDevices} />
+        <Route exact={true} path="/create" component={CreateAccount} />
+        <Route exact={true} path="/my-account" component={MyAccount} />
         <Route exact={true} component={NotFoundPage} />
       </Switch>
     );

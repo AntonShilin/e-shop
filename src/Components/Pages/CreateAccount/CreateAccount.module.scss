@@ -1,0 +1,57 @@
+.create_user_bg {
+  max-width: 1500px;
+  margin-top: 6.5rem;
+  min-height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  div {
+    width: 50%;
+    padding: 1rem;
+    h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #494949;
+    }
+    input {
+      border: 1px solid #b2bbc4;
+      width: 100%;
+      height: 3.5rem;
+      padding: 0 10px;
+      color: #b2bbc4;
+    }
+    p {
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      color: red;
+    }
+    a {
+      display: block;
+      width: 100%;
+      height: 3.5rem;
+      text-align: center;
+      padding-top: 1rem;
+      background-color: #f7f7f8;
+      color: #b2bbc4;
+      &:hover {
+        text-decoration: none;
+        background-color: #9b9ba0;
+        color: honeydew;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .create_user_bg {
+    margin-top: 4rem !important;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .create_user_bg {
+    div {
+      width: 100% !important;
+    }
+  }
+}

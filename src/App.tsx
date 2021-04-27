@@ -6,9 +6,12 @@ import { BrowserRouter } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Routes from "./Routes/Routes";
 
+
 export interface IAppProps {}
 
-export interface State {}
+export interface State { }
+
+
 
 class App extends React.Component<IAppProps, State> {
 
