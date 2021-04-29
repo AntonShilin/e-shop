@@ -10,6 +10,7 @@ export interface State {
   email: string;
   error: boolean;
   createUser: boolean;
+  profileName: string;
 }
 
 class CreateAccount extends React.Component<Props, State> {
@@ -20,66 +21,97 @@ class CreateAccount extends React.Component<Props, State> {
       email: "",
       error: false,
       createUser: false,
+      profileName: "",
     };
   }
 
-  componentDidMount() {
-    const db = firebase.database();
-    console.log(db);
-  }
-
-  handleChangeEmail = (e: React.FormEvent<HTMLInputElement>) => {
+  handleCreateEmail = (e: React.FormEvent<HTMLInputElement>) => {
     const newEmail = e.currentTarget.value;
     this.setState({
       email: newEmail,
     });
   };
 
-  handleChangePassword = (e: React.FormEvent<HTMLInputElement>) => {
+  handleCreatePassword = (e: React.FormEvent<HTMLInputElement>) => {
     const newPassword = e.currentTarget.value;
     this.setState({
       password: newPassword,
     });
   };
 
-  createAccout = () => {
+  handleCreateProfileName = (e: React.FormEvent<HTMLInputElement>) => {
+    const newName = e.currentTarget.value;
+    this.setState({
+      profileName: newName,
+    });
+  };
+
+  createAccount = () => {
     const { email, password } = this.state;
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => this.setState({ createUser: true }))
+      .then((userCredential) => {
+        const user = userCredential.user;
+        this.setState({ createUser: true });
+        this.updateUserProfile();
+      })
       .catch((error) => {
         this.setState({ error: true });
-        console.log(error);
       });
+  };
+
+   updateUserProfile = () => {
+    const user = firebase.auth().currentUser;
+    if (user !== null) {
+      user
+        .updateProfile({
+          displayName: this.state.profileName,
+        })
+        .then(() => {
+          console.log("Update successful");
+        })
+        .catch((error) => {
+          console.log("Update error");
+        });
+    }
   };
 
   render() {
     const { error, createUser } = this.state;
 
-    return createUser ? (
-      <Redirect to="/my-account" />
-    ) : (
+    if (createUser) {
+      return <Redirect to="/my-account" />;
+    }
+
+    return (
       <div className={cra.create_user_bg}>
         <div>
           <h3>Welcome !</h3>
           <input
             type="email"
             placeholder="Enter your email"
-            onChange={this.handleChangeEmail}
+            onChange={this.handleCreateEmail}
           />
-          <p>{error && "Please enter valid email"}</p>
+          <p>{error && "Please enter valid email for example data17@ya.com"}</p>
+          <input
+            type="text"
+            className={cra.first_name}
+            onChange={this.handleCreateProfileName}
+            placeholder="Enter name"
+          />
+          <p>{error && "Please enter name"}</p>
           <input
             type="password"
             placeholder="Password"
-            onChange={this.handleChangePassword}
+            onChange={this.handleCreatePassword}
           />
           <p>
             {error &&
               "Please enter 6 or more numbers, an uppercase letter and an\
               lowercase letter"}
           </p>
-          <NavLink to="#" onClick={this.createAccout}>
+          <NavLink to="#" onClick={this.createAccount}>
             Create Account
           </NavLink>
         </div>

@@ -1,57 +1,79 @@
 .logged_box_bg {
-  background-color: #eaefe700;
-  width: 98vw;
-  height: 100vh;
-  z-index: 12;
-  position: absolute;
-  left: 0%;
-  top: 0%;
-  cursor: pointer;
+  // background-color: #eaefe700;
+  // width: 98vw;
+  // height: 100vh;
+  // z-index: 12;
+  // position: absolute;
+  // left: 0%;
+  // top: 0%;
+  // cursor: pointer;
   div {
     width: 15rem;
     height: auto;
     padding: 1rem 1rem !important;
     background-color: #fbfbfb;
     border: solid 1px #cccccc;
-    position: relative;
-    top: 10%;
+    position: absolute;
+    top: 70%;
     left: 65%;
-    form {
-      input {
-        width: 100%;
-        font-size: 16px;
-        height: 56px !important;
-        color: #494949;
-        padding: 0 10px !important;
-        border: 1px solid #b2bbc4;
-        border-radius: 0rem !important;
-        &:focus{
-          outline: none;
-        }
+    z-index: 10;
+    input {
+      width: 100%;
+      font-size: 16px;
+      height: 56px !important;
+      color: #494949;
+      padding: 0 10px !important;
+      border: 1px solid #b2bbc4;
+      border-radius: 0rem !important;
+      &:focus {
+        outline: none;
       }
-      button {
-        margin-top: 2.5rem;
-        width: 100%;
-        height: 56px;
-        background-color: #f7f7f8;
-        color: #b2bbc4;
-        border: none;
-        &:hover {
-          background-color: #b2bbc4;
-          color: white;
-        }
-        &:focus{
-          outline: none;
-        }
+    }
+    p {
+      color: red;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+    }
+    button {
+      width: 100%;
+      height: 56px;
+      background-color: #f7f7f8;
+      color: #b2bbc4;
+      border: none;
+      &:hover {
+        background-color: #b2bbc4;
+        color: white;
+      }
+      &:focus {
+        outline: none;
+        background-color: #b2bbc4;
+        color: white;
+      }
+    }
+    a{
+    display: block;
+      width: 100%;
+      background-color: #f7f7f8;
+      color: #b2bbc4;
+      border: none;
+      text-align: center;
+      padding: 17px 0px;
+      &:hover {
+        background-color: #b2bbc4;
+        color: white;
+      }
+      &:focus {
+        outline: none;
+        background-color: #b2bbc4;
+        color: white;
       }
     }
   }
 }
 
-
 @media screen and (max-width: 750px) {
   .logged_box_bg {
-    div{
+    div {
       left: 50% !important;
     }
   }
@@ -59,7 +81,7 @@
 
 @media screen and (max-width: 530px) {
   .logged_box_bg {
-    div{
+    div {
       left: 23% !important;
     }
   }

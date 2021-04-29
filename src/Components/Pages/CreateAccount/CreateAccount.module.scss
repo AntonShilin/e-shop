@@ -19,6 +19,9 @@
       height: 3.5rem;
       padding: 0 10px;
       color: #b2bbc4;
+      &:focus{
+        outline: none;
+      }
     }
     p {
       margin-bottom: 1rem;
@@ -35,6 +38,11 @@
       color: #b2bbc4;
       &:hover {
         text-decoration: none;
+        background-color: #9b9ba0;
+        color: honeydew;
+      }
+      &:focus{
+        outline: none;
         background-color: #9b9ba0;
         color: honeydew;
       }
