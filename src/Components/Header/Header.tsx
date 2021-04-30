@@ -36,6 +36,7 @@ import {
 } from "../../Actions/FilterByYearActions";
 import { IBookInfo } from "../../Types/CartTypes";
 import { MdStar } from "react-icons/md";
+import firebase from "firebase";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -58,11 +59,24 @@ export interface IHeaderProps {
   offYearEnableFilter: typeof offYearEnableFilter;
   deleteAllYearFromFilter: typeof deleteAllYearFromFilter;
   cart: IBookInfo[];
+  isAccountCreated: boolean;
+  isLoggedBoxOpen: boolean;
 }
 
-export interface IHeaderState {}
+export interface IHeaderState {
+  isSignIn: boolean;
+  userName: string | null;
+}
 
 class Header extends React.Component<IHeaderProps, IHeaderState> {
+  constructor(props: IHeaderProps) {
+    super(props);
+    this.state = {
+      isSignIn: false,
+      userName: null,
+    };
+  }
+
   componentDidMount() {
     this.props.getFableBooks();
     // this.props.getBiographyBooks();
@@ -70,69 +84,90 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
     // this.props.getBestSellersBooks();
     // this.props.getFictionBooks();
     // this.props.getArtBooks();
-    this.props.getLifestyleBooks()
+    this.props.getLifestyleBooks();
+
+    firebase.auth().onAuthStateChanged((profile) => {
+      if (profile) {
+        console.log("profile", profile);
+        this.setState({
+          isSignIn: true,
+          userName: profile.displayName,
+        });
+      }
+    });
   }
 
   render() {
-    const { isToggle, cart } = this.props;
+    const { isToggle, cart, isAccountCreated, isLoggedBoxOpen } = this.props;
+    const { isSignIn, userName } = this.state;
+
     return (
       <div
         className={`${header.main_menu_bg} ${
           isToggle ? "" : header.fixed_menu
         }`}
       >
-          <div className="container-xl">
-            <nav
-              className={`row ${header.main_menu}`}
-              onClick={() => this.props.closeSelectedGenre(false)}
-            >
-              <div className="col-6">
+        <div className="container-xl">
+          <nav
+            className={`row ${header.main_menu}`}
+            onClick={() => this.props.closeSelectedGenre(false)}
+          >
+            <div className="col-6">
+              <NavLink
+                to="/home"
+                className="d-none d-lg-block"
+                onClick={() => {
+                  this.props.showContainer();
+                  this.props.closeShop();
+                  this.props.toggleEnableFilter(false);
+                  this.props.applyDefaultPrice();
+                  this.props.offYearEnableFilter(false);
+                  this.props.deleteAllYearFromFilter();
+                }}
+              >
+                Books Store <MdStar />
+              </NavLink>
+              <NavLink
+                to="/home"
+                className="d-lg-none d-block"
+                onClick={() => {
+                  this.props.showContainer();
+                  this.props.closeShop();
+                  this.props.applyDefaultPrice();
+                  this.props.offYearEnableFilter(false);
+                  this.props.toggleEnableFilter(false);
+                  this.props.deleteAllYearFromFilter();
+                }}
+              >
+                B <MdStar />
+              </NavLink>
+              <FaBars
+                className="d-lg-none"
+                onClick={() => {
+                  this.props.toggleSmallScreenSubmenu(isToggle);
+                  this.props.applyDefaultPrice();
+                  this.props.offYearEnableFilter(false);
+                  this.props.toggleEnableFilter(false);
+                  this.props.deleteAllYearFromFilter();
+                }}
+              />
+            </div>
+            <div className="col-2">
+              <FiSearch
+                className="d-lg-none d-block"
+                onClick={this.props.openHeaderSearchPanel}
+              />
+            </div>
+            <div className="col-2">
+              {isSignIn ? (
                 <NavLink
-                  to="/home"
+                  to="/my-account"
                   className="d-none d-lg-block"
-                  onClick={() => {
-                    this.props.showContainer();
-                    this.props.closeShop();
-                    this.props.toggleEnableFilter(false);
-                    this.props.applyDefaultPrice();
-                    this.props.offYearEnableFilter(false);
-                    this.props.deleteAllYearFromFilter();
-                  }}
+                  onClick={() => this.props.toggleLoggedBox(false)}
                 >
-                  Books Store <MdStar/>
+                  {`Welcome, ${userName}`}
                 </NavLink>
-                <NavLink
-                  to="/home"
-                  className="d-lg-none d-block"
-                  onClick={() => {
-                    this.props.showContainer();
-                    this.props.closeShop();
-                    this.props.applyDefaultPrice();
-                    this.props.offYearEnableFilter(false);
-                    this.props.toggleEnableFilter(false);
-                    this.props.deleteAllYearFromFilter();
-                  }}
-                >
-                  B <MdStar/>
-                </NavLink>
-                <FaBars
-                  className="d-lg-none"
-                  onClick={() => {
-                    this.props.toggleSmallScreenSubmenu(isToggle);
-                    this.props.applyDefaultPrice();
-                    this.props.offYearEnableFilter(false);
-                    this.props.toggleEnableFilter(false);
-                    this.props.deleteAllYearFromFilter();
-                  }}
-                />
-              </div>
-              <div className="col-2">
-                <FiSearch
-                  className="d-lg-none d-block"
-                  onClick={this.props.openHeaderSearchPanel}
-                />
-              </div>
-              <div className="col-2">
+              ) : (
                 <NavLink
                   to="#"
                   className="d-none d-lg-block"
@@ -140,20 +175,21 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                 >
                   Login | Sign Up
                 </NavLink>
-                <NavLink to="/logged">
-                  <FaRegUserCircle className="d-lg-none d-block" />
-                </NavLink>
-              </div>
-              <div className="col-2">
-                <NavLink to="/cart" className="d-block">
-                  Cart
-                  {cart.length > 0 && (
-                    <span className="cart_view">{cart.length}</span>
-                  )}
-                </NavLink>
-              </div>
-            </nav>
-          </div>
+              )}
+              <NavLink to={isSignIn ? `/my-account` : `/login`}>
+                <FaRegUserCircle className="d-lg-none d-block" />
+              </NavLink>
+            </div>
+            <div className="col-2">
+              <NavLink to="/cart" className="d-block">
+                Cart
+                {cart.length > 0 && (
+                  <span className="cart_view">{cart.length}</span>
+                )}
+              </NavLink>
+            </div>
+          </nav>
+        </div>
         <LoggedBox />
         <HeaderSearchPanel />
         <LargeScreenSubmenu />
@@ -166,6 +202,8 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
 const mapStateToProps = (state: IApplicationState) => ({
   isToggle: state.headerSearchPanel.isToggle,
   cart: state.cartContainer.cart,
+  isAccountCreated: state.loggedBox.isAccountCreated,
+  isLoggedBoxOpen: state.loggedBox.isLoggedBoxOpen,
 });
 
 const mapDispatchToProps = (dispatch: any) => {

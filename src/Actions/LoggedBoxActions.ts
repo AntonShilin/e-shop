@@ -1,4 +1,4 @@
-import { LoggedBoxToggleTypes } from "../Types/LoggedBoxTypes";
+import { AccountCreatedTypes, LoggedBoxToggleTypes } from "../Types/LoggedBoxTypes";
 
 
 
@@ -6,4 +6,10 @@ import { LoggedBoxToggleTypes } from "../Types/LoggedBoxTypes";
 export const toggleLoggedBox = (value: boolean) => ({
     type: LoggedBoxToggleTypes.LOGGEDBOXTOGGLE,
     value
-  })
+})
+  
+/* set account created position */
+export const setAccountCreatePosition = (value: boolean) => ({
+  type: AccountCreatedTypes.ACCOUNTCREATED,
+  value
+})

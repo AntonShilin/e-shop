@@ -2,8 +2,11 @@ import * as React from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import cra from "./CreateAccount.module.scss";
 import firebase from "firebase";
+import { IApplicationState } from "../../../Store/Store";
+import { connect } from "react-redux";
 
-export interface Props {}
+export interface Props {
+}
 
 export interface State {
   password: string;
@@ -48,6 +51,7 @@ class CreateAccount extends React.Component<Props, State> {
 
   createAccount = () => {
     const { email, password } = this.state;
+
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -61,7 +65,7 @@ class CreateAccount extends React.Component<Props, State> {
       });
   };
 
-   updateUserProfile = () => {
+  updateUserProfile = () => {
     const user = firebase.auth().currentUser;
     if (user !== null) {
       user
@@ -120,4 +124,14 @@ class CreateAccount extends React.Component<Props, State> {
   }
 }
 
-export default CreateAccount;
+const mapStateToProps = (state: IApplicationState) => ({
+  
+});
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);

@@ -56,7 +56,7 @@ class Routes extends React.Component {
           path="/search-book-view"
           component={SearchBookView}
         />
-        <Route exact={true} path="/logged" component={LoggedBoxSmDevices} />
+        <Route exact={true} path="/login" component={LoggedBoxSmDevices} />
         <Route exact={true} path="/create" component={CreateAccount} />
         <Route exact={true} path="/my-account" component={MyAccount} />
         <Route exact={true} component={NotFoundPage} />
