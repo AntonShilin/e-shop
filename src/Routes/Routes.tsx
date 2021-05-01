@@ -11,8 +11,9 @@ import BookView from "../Components/Pages/BookView/BookView";
 import CartPage from "../Components/Pages/CartPage/CartPage";
 import CheckoutPage from "../Components/Pages/CheckoutPage/CheckoutPage";
 import SearchBookView from "../Components/Pages/SearchBookView/SearchBookView";
-import CreateAccount from "../Components/Pages/CreateAccount/CreateAccount";
-import MyAccount from "../Components/Pages/MyAccount/MyAccount";
+import CreateAccount from "../Components/Account/CreateAccount/CreateAccount";
+import MyAccount from "../Components/Account/MyAccount/MyAccount";
+import MyAccountItems from "../Components/Account/MyAccountItems/MyAccountItems";
 
 class Routes extends React.Component {
   render() {
@@ -36,21 +37,9 @@ class Routes extends React.Component {
           path="/filter-by-price-and-year"
           component={ShopWithFilterByPriceAndYear}
         />
-        <Route
-          exact={true}
-          path="/book-view"
-          component={BookView}
-        />
-        <Route
-          exact={true}
-          path="/cart"
-          component={CartPage}
-        />
-        <Route
-          exact={true}
-          path="/checkout-page"
-          component={CheckoutPage}
-        />
+        <Route exact={true} path="/book-view" component={BookView} />
+        <Route exact={true} path="/cart" component={CartPage} />
+        <Route exact={true} path="/checkout-page" component={CheckoutPage} />
         <Route
           exact={true}
           path="/search-book-view"
@@ -59,6 +48,7 @@ class Routes extends React.Component {
         <Route exact={true} path="/login" component={LoggedBoxSmDevices} />
         <Route exact={true} path="/create" component={CreateAccount} />
         <Route exact={true} path="/my-account" component={MyAccount} />
+        <Route exact={true} path="/items" component={MyAccountItems} />
         <Route exact={true} component={NotFoundPage} />
       </Switch>
     );

@@ -1,0 +1,52 @@
+.navigation_bg {
+  div {
+    height: 9rem;
+    background-color: #494949;
+    padding-top: 2rem;
+    svg {
+      display: block;
+      font-size: 3rem;
+      margin: 0 auto;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: white;
+      text-align: center;
+      margin: 0;
+    }
+  }
+  nav {
+    a {
+      display: block;
+      width: 100%;
+      color: #494949;
+      text-transform: capitalize;
+      line-height: 24px;
+      display: block;
+      padding: 22px 25px 22px 25px;
+      text-decoration: none;
+      margin-bottom: 0.1rem;
+      &:hover {
+        background-color: #b2bbc4;
+        color: white;
+      }
+    }
+  }
+}
+.active {
+  background-color: #b2bbc4;
+  color: white !important;
+}
+
+@media screen and (max-width: 500px) {
+  .navigation_bg {
+    div {
+      height: 6rem !important;
+      padding-top: 0.5rem !important;
+      svg {
+        margin-bottom: 0rem !important;
+      }
+    }
+  }
+}

@@ -2,8 +2,6 @@ import * as React from "react";
 import { NavLink, Redirect } from "react-router-dom";
 import cra from "./CreateAccount.module.scss";
 import firebase from "firebase";
-import { IApplicationState } from "../../../Store/Store";
-import { connect } from "react-redux";
 
 export interface Props {
 }
@@ -124,14 +122,5 @@ class CreateAccount extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: IApplicationState) => ({
-  
-});
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);
+export default CreateAccount;

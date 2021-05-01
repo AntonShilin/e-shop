@@ -1,0 +1,68 @@
+.account_setting_bg {
+  div:nth-of-type(1) {
+    background-color: #f7f7f8;
+    height: 9rem;
+    padding-top: 3.5rem;
+    padding-left: 10%;
+    padding-right: 10%;
+    position: relative;
+    margin-bottom: 2rem;
+    a {
+      position: absolute;
+      right: 1rem;
+      top: 0rem;
+      font-size: 1.5rem;
+      color: #000000;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    h3 {
+      color: #494949;
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+  }
+  div:nth-of-type(2) {
+    padding-left: 10%;
+    padding-right: 10%;
+    span {
+      padding: 9px 0;
+      width: 244px;
+      border-bottom: 1px solid #b2bbc4;
+      margin-bottom: 22px;
+      color: #b2bbc4;
+      font-size: 1.3rem;
+      display: block;
+      letter-spacing: 2px;
+    }
+    input {
+      width: 100%;
+      font-size: 1rem;
+      height: 56px;
+      color: #494949;
+      padding: 0 10px;
+      border: 1px solid #b2bbc4;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .account_setting_bg {
+    padding-left: 0 !important;
+    div:nth-of-type(1) {
+      height: 4rem !important;
+      padding-top: 1rem !important;
+      margin-bottom: 1rem !important;
+      padding-left: 5% !important;
+    }
+    div:nth-of-type(2){
+      padding: 0 !important;
+      span{
+        margin-left: 5%;
+      }
+
+    }
+  }
+}
