@@ -46,7 +46,6 @@ class LoggedBoxSmDevices extends React.Component<Props, State> {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         this.setState({ signIn: true });
-        console.log(userCredential);
       })
       .catch((err) => {
         const errorCode = err.code;

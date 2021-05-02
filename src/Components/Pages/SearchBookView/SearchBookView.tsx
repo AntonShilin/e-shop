@@ -39,77 +39,107 @@ class SearchBookView extends React.Component<
     }
   };
 
-  
+  saveInLocalStorage(book: {
+    url?: any;
+    shopName?: string;
+    title?: any;
+    price?: string;
+    pageCount?: any;
+    publishedDate?: any;
+    quantityToPurchase?: number;
+    total?: number;
+    id: any;
+  }) {
+    localStorage.setItem(book.id, JSON.stringify(book));
+  }
+
   render() {
     const { shopName, allGenresData, viewBookID } = this.props;
     const { quantityToPurchase } = this.state;
 
     return (
-        <div className={`container-xl ${sbw.search_book_view_bg}`}>
-          <div className="row">
-            <div className="col">
-              <div>
-                <NavLink to="/">
-                  <FiArrowLeft />
-                  Back to Menu
-                </NavLink>
-              </div>
+      <div className={`container-xl ${sbw.search_book_view_bg}`}>
+        <div className="row">
+          <div className="col">
+            <div>
+              <NavLink to="/">
+                <FiArrowLeft />
+                Back to Menu
+              </NavLink>
             </div>
           </div>
-          {allGenresData !== undefined &&
-            allGenresData.map((genre: any, i: number) =>
-              genre.items.map(
-                (book: any, k: number) =>
-                  book.id === viewBookID && (
-                    <div className="row" key={k}>
-                      <div className="col-lg-7 col-md-7 col-sm-12">
-                        <img
-                          src={book.volumeInfo.imageLinks.thumbnail}
-                          alt="img"
-                        />
+        </div>
+        {allGenresData !== undefined &&
+          allGenresData.map((genre: any, i: number) =>
+            genre.items.map(
+              (book: any, k: number) =>
+                book.id === viewBookID && (
+                  <div className="row" key={k}>
+                    <div className="col-lg-7 col-md-7 col-sm-12">
+                      <img
+                        src={book.volumeInfo.imageLinks.thumbnail}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="col-lg-5 col-md-5 col-sm-12">
+                      <p>{shopName}</p>
+                      <h3>{book.volumeInfo.title}</h3>
+                      <p>
+                        Price: ${" "}
+                        {(book.saleInfo.retailPrice.amount / 28).toFixed(2)}
+                      </p>
+                      <p>{book.volumeInfo.pageCount} pages</p>
+                      <p>Published: {book.volumeInfo.publishedDate}</p>
+                      <div>
+                        <span>Qty</span>
+                        <span onClick={this.decrement}>-</span>
+                        <span>{quantityToPurchase}</span>
+                        <span onClick={this.increment}>+</span>
                       </div>
-                      <div className="col-lg-5 col-md-5 col-sm-12">
-                        <p>{shopName}</p>
-                        <h3>{book.volumeInfo.title}</h3>
-                        <p>
-                          Price: ${" "}
-                          {(book.saleInfo.retailPrice.amount / 28).toFixed(2)}
-                        </p>
-                        <p>{book.volumeInfo.pageCount} pages</p>
-                        <p>Published: {book.volumeInfo.publishedDate}</p>
-                        <div>
-                          <span>Qty</span>
-                          <span onClick={this.decrement}>-</span>
-                          <span>{quantityToPurchase}</span>
-                          <span onClick={this.increment}>+</span>
-                        </div>
-                        <button
-                          onClick={() =>
-                            this.props.addBookToCart(
-                              book.volumeInfo.imageLinks.thumbnail,
-                              shopName,
-                              book.volumeInfo.title,
-                              (book.saleInfo.retailPrice.amount / 28).toFixed(
-                                2
-                              ),
-                              book.volumeInfo.pageCount,
-                              book.volumeInfo.publishedDate,
-                              this.state.quantityToPurchase,
+                      <button
+                        onClick={() => {
+                          this.props.addBookToCart({
+                            url: book.volumeInfo.imageLinks.thumbnail,
+                            shopName,
+                            title: book.volumeInfo.title,
+                            price: (
+                              book.saleInfo.retailPrice.amount / 28
+                            ).toFixed(2),
+                            pageCount: book.volumeInfo.pageCount,
+                            publishedDate: book.volumeInfo.publishedDate,
+                            quantityToPurchase: this.state.quantityToPurchase,
+                            total:
                               +(book.saleInfo.retailPrice.amount / 28).toFixed(
                                 2
                               ) * this.state.quantityToPurchase,
-                              book.id
-                            )
-                          }
-                        >
-                          Add to Cart
-                        </button>
-                      </div>
+                            id: book.id,
+                          });
+                          this.saveInLocalStorage({
+                            url: book.volumeInfo.imageLinks.thumbnail,
+                            shopName,
+                            title: book.volumeInfo.title,
+                            price: (
+                              book.saleInfo.retailPrice.amount / 28
+                            ).toFixed(2),
+                            pageCount: book.volumeInfo.pageCount,
+                            publishedDate: book.volumeInfo.publishedDate,
+                            quantityToPurchase: this.state.quantityToPurchase,
+                            total:
+                              +(book.saleInfo.retailPrice.amount / 28).toFixed(
+                                2
+                              ) * this.state.quantityToPurchase,
+                            id: book.id,
+                          });
+                        }}
+                      >
+                        Add to Cart
+                      </button>
                     </div>
-                  )
-              )
-            )}
-        </div>
+                  </div>
+                )
+            )
+          )}
+      </div>
     );
   }
 }
@@ -122,7 +152,7 @@ const mapStateToProps = (state: IApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    addBookToCart: (...arg: any) => dispatch(addBookToCart(...arg)),
+    addBookToCart: (book: any) => dispatch(addBookToCart(book)),
   };
 };
 

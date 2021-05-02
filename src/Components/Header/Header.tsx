@@ -36,7 +36,7 @@ import {
 } from "../../Actions/FilterByYearActions";
 import { IBookInfo } from "../../Types/CartTypes";
 import { MdStar } from "react-icons/md";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 export interface IHeaderProps {
   isToggle: boolean;
@@ -88,7 +88,6 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
 
     firebase.auth().onAuthStateChanged((profile) => {
       if (profile) {
-        console.log("profile", profile);
         this.setState({
           isSignIn: true,
           userName: profile.displayName,
@@ -171,7 +170,11 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                 <NavLink
                   to="#"
                   className="d-none d-lg-block"
-                  onClick={() => this.props.toggleLoggedBox(true)}
+                  onClick={() => {
+                    isLoggedBoxOpen
+                      ? this.props.toggleLoggedBox(false)
+                      : this.props.toggleLoggedBox(true);
+                  }}
                 >
                   Login | Sign Up
                 </NavLink>

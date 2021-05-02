@@ -98,12 +98,13 @@ class CategoryBooksWithFilterByPrice extends React.Component<
   };
 
   filterRange = (arrOfBooks: any[], max: number, min: number) => {
-      return arrOfBooks.filter(
-        (book) =>
-        typeof book.saleInfo.retailPrice!==undefined &&
-            book.saleInfo.retailPrice.amount / 28 < max &&
-            book.saleInfo.retailPrice.amount / 28 > min
-      );
+    return arrOfBooks.filter(
+      (book) =>
+        "retailPrice" in book.saleInfo &&
+        book.saleInfo.retailPrice !== undefined &&
+        book.saleInfo.retailPrice.amount / 28 < max &&
+        book.saleInfo.retailPrice.amount / 28 > min
+    );
   };
 
   countingBooks = () => {

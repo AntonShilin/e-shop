@@ -30,8 +30,9 @@ export interface IBookInfo {
   title: string;
   price: string;
   pageCount: number;
-  publishedDate: string;
-  quantityToPurchase: string;
-  totalPrice: string;
+  publishedDate: number;
+  quantityToPurchase: number;
+  total: number;
   id: string;
+  totalPrice: number;
 }

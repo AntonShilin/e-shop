@@ -8,14 +8,12 @@ export interface IOrderSummaryProps {
   cart: IBookInfo[];
 }
 
-export interface IOrderSummaryState {
-}
+export interface IOrderSummaryState {}
 
 class OrderSummary extends React.Component<
   IOrderSummaryProps,
   IOrderSummaryState
 > {
-
   render() {
     const { cart } = this.props;
 
@@ -28,7 +26,10 @@ class OrderSummary extends React.Component<
           <div>
             <span>Subtotal</span>
             <span>
-              $ {cart.reduce((total, book) => total + +book.totalPrice, 0).toFixed(2)}
+              ${" "}
+              {cart.reduce((total, amount) =>
+                total + +amount.total, 0
+              ).toFixed(2)}
             </span>
           </div>
         </div>

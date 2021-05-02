@@ -44,6 +44,7 @@
       padding: 0 10px;
       border: 1px solid #b2bbc4;
       margin-bottom: 1rem;
+      border-radius: 0 !important;
     }
   }
 }
@@ -53,16 +54,19 @@
     padding-left: 0 !important;
     div:nth-of-type(1) {
       height: 4rem !important;
-      padding-top: 1rem !important;
+      padding-top: 1.3rem !important;
       margin-bottom: 1rem !important;
       padding-left: 5% !important;
+      h3{
+        font-size: 1.1rem !important;
+      }
     }
     div:nth-of-type(2){
       padding: 0 !important;
       span{
         margin-left: 5%;
+        font-size: 1.1rem !important;
       }
-
     }
   }
 }

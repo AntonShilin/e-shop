@@ -73,7 +73,6 @@ class LoggedBox extends React.Component<ILoggedBoxProps, ILoggedBoxState> {
       isLoggedBoxOpen && (
         <div
           className={`${lb.logged_box_bg}`}
-          // onClick={()=>this.props.toggleLoggedBox(false)}
         >
           <div>
             <input

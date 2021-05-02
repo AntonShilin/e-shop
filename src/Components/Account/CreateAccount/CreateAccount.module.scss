@@ -12,6 +12,7 @@
       text-align: center;
       margin-bottom: 2rem;
       color: #494949;
+      letter-spacing: 2px;
     }
     input {
       border: 1px solid #b2bbc4;
@@ -19,6 +20,7 @@
       height: 3.5rem;
       padding: 0 10px;
       color: #b2bbc4;
+      border-radius: 0 !important;
       &:focus{
         outline: none;
       }

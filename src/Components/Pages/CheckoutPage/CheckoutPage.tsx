@@ -27,17 +27,14 @@ class CheckoutPage extends React.Component<
               <span>1</span>
               <p>your cart</p>
               <p>
-                {cart.length > 0 && (
-                  <>
-                    $
-                    {cart
+                {cart.length > 0 &&
+                  "$ " +
+                    cart
                       .reduce(
-                        (quantity, book) => quantity + +book.totalPrice,
+                        (quantity, book) => quantity + +book.total,
                         0
                       )
                       .toFixed(2)}
-                  </>
-                )}
               </p>
             </div>
             <div>
