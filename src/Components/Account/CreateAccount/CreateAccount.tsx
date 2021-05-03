@@ -3,15 +3,14 @@ import { NavLink, Redirect } from "react-router-dom";
 import cra from "./CreateAccount.module.scss";
 import firebase from "firebase";
 
-export interface Props {
-}
+export interface Props {}
 
 export interface State {
   password: string;
   email: string;
   error: boolean;
-  createUser: boolean;
-  profileName: string;
+  createAccount: boolean;
+  firstName: string;
 }
 
 class CreateAccount extends React.Component<Props, State> {
@@ -21,8 +20,8 @@ class CreateAccount extends React.Component<Props, State> {
       password: "",
       email: "",
       error: false,
-      createUser: false,
-      profileName: "",
+      createAccount: false,
+      firstName: "",
     };
   }
 
@@ -43,7 +42,7 @@ class CreateAccount extends React.Component<Props, State> {
   handleCreateProfileName = (e: React.FormEvent<HTMLInputElement>) => {
     const newName = e.currentTarget.value;
     this.setState({
-      profileName: newName,
+      firstName: newName,
     });
   };
 
@@ -55,7 +54,7 @@ class CreateAccount extends React.Component<Props, State> {
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        this.setState({ createUser: true });
+        this.setState({ createAccount: true });
         this.updateUserProfile();
       })
       .catch((error) => {
@@ -68,7 +67,7 @@ class CreateAccount extends React.Component<Props, State> {
     if (user !== null) {
       user
         .updateProfile({
-          displayName: this.state.profileName,
+          displayName: this.state.firstName,
         })
         .then(() => {
           console.log("Update successful");
@@ -80,9 +79,9 @@ class CreateAccount extends React.Component<Props, State> {
   };
 
   render() {
-    const { error, createUser } = this.state;
+    const { error, createAccount } = this.state;
 
-    if (createUser) {
+    if (createAccount) {
       return <Redirect to="/my-account" />;
     }
 
@@ -121,6 +120,5 @@ class CreateAccount extends React.Component<Props, State> {
     );
   }
 }
-
 
 export default CreateAccount;

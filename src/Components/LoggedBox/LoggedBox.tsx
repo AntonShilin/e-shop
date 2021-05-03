@@ -2,20 +2,21 @@ import firebase from "firebase";
 import * as React from "react";
 import { connect } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
-import { toggleLoggedBox } from "../../Actions/LoggedBoxActions";
+import { setAccountSignIn, toggleLoggedBox } from "../../Actions/LoggedBoxActions";
 import { IApplicationState } from "../../Store/Store";
 import lb from "./LoggedBox.module.scss";
 
 export interface ILoggedBoxProps {
   isLoggedBoxOpen: boolean;
   toggleLoggedBox: typeof toggleLoggedBox;
+  isAccountSignIn: boolean;
+  setAccountSignIn: typeof setAccountSignIn;
 }
 
 export interface ILoggedBoxState {
   password: string;
   email: string;
   error: boolean;
-  signIn: boolean;
   errorMessage: string;
 }
 
@@ -26,7 +27,6 @@ class LoggedBox extends React.Component<ILoggedBoxProps, ILoggedBoxState> {
       password: "",
       email: "",
       error: false,
-      signIn: false,
       errorMessage: "",
     };
   }
@@ -46,26 +46,26 @@ class LoggedBox extends React.Component<ILoggedBoxProps, ILoggedBoxState> {
   };
 
   handleSignIn = () => {
-    const { email, password, error, signIn } = this.state;
+    const { email, password } = this.state;
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        this.setState({ signIn: true });
-        console.log(userCredential);
+        this.props.setAccountSignIn(true);
       })
       .catch((err) => {
         const errorCode = err.code;
         const errorMessage = err.message;
-        this.setState({ signIn: false, errorMessage });
+        this.props.setAccountSignIn(false);
+        this.setState({  errorMessage });
       });
   };
 
   render() {
-    const { isLoggedBoxOpen } = this.props;
-    const { email, password, error, signIn, errorMessage } = this.state;
+    const { isLoggedBoxOpen , isAccountSignIn} = this.props;
+    const { email, password, error, errorMessage } = this.state;
 
-    if (signIn) {
+    if (isAccountSignIn) {
       return <Redirect to="/my-account" />;
     }
 
@@ -116,11 +116,13 @@ class LoggedBox extends React.Component<ILoggedBoxProps, ILoggedBoxState> {
 
 const mapStateToProps = (state: IApplicationState) => ({
   isLoggedBoxOpen: state.loggedBox.isLoggedBoxOpen,
+  isAccountSignIn: state.loggedBox.isAccountSignIn
 });
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     toggleLoggedBox: (value: boolean) => dispatch(toggleLoggedBox(value)),
+    setAccountSignIn:(value:boolean)=>dispatch(setAccountSignIn(value)),
   };
 };
 

@@ -1,15 +1,20 @@
 import firebase from "firebase";
 import * as React from "react";
+import { connect } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
+import { setAccountSignIn } from "../../Actions/LoggedBoxActions";
+import { IApplicationState } from "../../Store/Store";
 import logbox from "./LoggedBoxSmDevices.module.scss";
 
-export interface Props {}
+export interface Props {
+  isAccountSignIn: boolean;
+  setAccountSignIn: typeof setAccountSignIn;
+}
 
 export interface State {
   password: string;
   email: string;
   error: boolean;
-  signIn: boolean;
   errorMessage: string;
 }
 
@@ -20,7 +25,6 @@ class LoggedBoxSmDevices extends React.Component<Props, State> {
       password: "",
       email: "",
       error: false,
-      signIn: false,
       errorMessage: "",
     };
   }
@@ -40,23 +44,27 @@ class LoggedBoxSmDevices extends React.Component<Props, State> {
   };
 
   handleSignIn = () => {
-    const { email, password, error, signIn } = this.state;
+    const { email, password } = this.state;
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        this.setState({ signIn: true });
+        this.props.setAccountSignIn(true);
       })
       .catch((err) => {
         const errorCode = err.code;
         const errorMessage = err.message;
-        this.setState({ signIn: false, errorMessage });
+        this.props.setAccountSignIn(false);
+        this.setState({ errorMessage });
       });
   };
-  render() {
-    const { email, password, error, signIn, errorMessage } = this.state;
 
-    if (signIn) {
+  render() {
+    const { email, password, error, errorMessage } = this.state;
+    const { isAccountSignIn } = this.props;
+
+    if (isAccountSignIn) {
       return <Redirect to="/my-account" />;
     }
     return (
@@ -98,4 +106,14 @@ class LoggedBoxSmDevices extends React.Component<Props, State> {
   }
 }
 
-export default LoggedBoxSmDevices;
+const mapStateToProps = (state: IApplicationState) => ({
+  isAccountSignIn: state.loggedBox.isAccountSignIn
+});
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setAccountSignIn:(value:boolean)=>dispatch(setAccountSignIn(value))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoggedBoxSmDevices);

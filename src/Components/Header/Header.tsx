@@ -24,7 +24,11 @@ import {
   getLifestyleBooks,
   getStoryBooks,
 } from "../../Actions/MainStateActions";
-import { toggleLoggedBox } from "../../Actions/LoggedBoxActions";
+import {
+  setAccountSignIn,
+  setUserAccountName,
+  toggleLoggedBox,
+} from "../../Actions/LoggedBoxActions";
 import LoggedBox from "../LoggedBox/LoggedBox";
 import {
   applyDefaultPrice,
@@ -58,47 +62,44 @@ export interface IHeaderProps {
   applyDefaultPrice: typeof applyDefaultPrice;
   offYearEnableFilter: typeof offYearEnableFilter;
   deleteAllYearFromFilter: typeof deleteAllYearFromFilter;
+  setUserAccountName: typeof setUserAccountName;
+  setAccountSignIn: typeof setAccountSignIn;
   cart: IBookInfo[];
-  isAccountCreated: boolean;
   isLoggedBoxOpen: boolean;
+  userName: string;
+  isAccountSignIn: boolean;
 }
 
 export interface IHeaderState {
-  isSignIn: boolean;
-  userName: string | null;
 }
 
 class Header extends React.Component<IHeaderProps, IHeaderState> {
-  constructor(props: IHeaderProps) {
-    super(props);
-    this.state = {
-      isSignIn: false,
-      userName: null,
-    };
-  }
 
   componentDidMount() {
     this.props.getFableBooks();
-    this.props.getBiographyBooks();
-    this.props.getStoryBooks();
-    this.props.getBestSellersBooks();
-    this.props.getFictionBooks();
-    this.props.getArtBooks();
+    // this.props.getBiographyBooks();
+    // this.props.getStoryBooks();
+    // this.props.getBestSellersBooks();
+    // this.props.getFictionBooks();
+    // this.props.getArtBooks();
     this.props.getLifestyleBooks();
 
     firebase.auth().onAuthStateChanged((profile) => {
       if (profile) {
-        this.setState({
-          isSignIn: true,
-          userName: profile.displayName,
-        });
+        this.props.setUserAccountName(profile.displayName!);
+        this.props.setAccountSignIn(true);
       }
     });
   }
 
   render() {
-    const { isToggle, cart, isAccountCreated, isLoggedBoxOpen } = this.props;
-    const { isSignIn, userName } = this.state;
+    const {
+      isToggle,
+      cart,
+      isLoggedBoxOpen,
+      userName,
+      isAccountSignIn,
+    } = this.props;
 
     return (
       <div
@@ -158,13 +159,13 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
               />
             </div>
             <div className="col-2">
-              {isSignIn ? (
+              {isAccountSignIn ? (
                 <NavLink
                   to="/my-account"
                   className="d-none d-lg-block"
                   onClick={() => this.props.toggleLoggedBox(false)}
                 >
-                  {`Welcome, ${userName}`}
+                  {`Welcome, ${userName} !`}
                 </NavLink>
               ) : (
                 <NavLink
@@ -179,7 +180,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                   Login | Sign Up
                 </NavLink>
               )}
-              <NavLink to={isSignIn ? `/my-account` : `/login`}>
+              <NavLink to={isAccountSignIn ? `/my-account` : `/login`}>
                 <FaRegUserCircle className="d-lg-none d-block" />
               </NavLink>
             </div>
@@ -205,8 +206,9 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
 const mapStateToProps = (state: IApplicationState) => ({
   isToggle: state.headerSearchPanel.isToggle,
   cart: state.cartContainer.cart,
-  isAccountCreated: state.loggedBox.isAccountCreated,
   isLoggedBoxOpen: state.loggedBox.isLoggedBoxOpen,
+  userName: state.loggedBox.userName,
+  isAccountSignIn: state.loggedBox.isAccountSignIn
 });
 
 const mapDispatchToProps = (dispatch: any) => {
@@ -231,6 +233,8 @@ const mapDispatchToProps = (dispatch: any) => {
     offYearEnableFilter: (value: boolean) =>
       dispatch(offYearEnableFilter(value)),
     deleteAllYearFromFilter: () => dispatch(deleteAllYearFromFilter()),
+    setUserAccountName: (name: string) => dispatch(setUserAccountName(name)),
+    setAccountSignIn: (value: boolean) => dispatch(setAccountSignIn(value)),
   };
 };
 

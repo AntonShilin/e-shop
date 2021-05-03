@@ -1,4 +1,8 @@
 import {
+  AccountSignInTypes,
+  SetUserAccountNameTypes,
+} from "./../Types/LoggedBoxTypes";
+import {
   AccountCreatedTypes,
   ILoggedBoxState,
   loggedBoxStateActions,
@@ -8,6 +12,8 @@ import {
 const loggedBoxState: ILoggedBoxState = {
   isLoggedBoxOpen: false,
   isAccountCreated: false,
+  userName: "",
+  isAccountSignIn: false,
 };
 
 export const loggedBoxReducer = (
@@ -26,6 +32,20 @@ export const loggedBoxReducer = (
       return {
         ...state,
         isAccountCreated: action.value,
+      };
+    }
+
+    case SetUserAccountNameTypes.SETUSERACCOUNTNAME: {
+      return {
+        ...state,
+        userName: action.name,
+      };
+    }
+
+    case AccountSignInTypes.ACCOUNTSIGNIN: {
+      return {
+        ...state,
+        isAccountSignIn: action.value,
       };
     }
 

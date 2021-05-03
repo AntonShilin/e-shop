@@ -1,40 +1,32 @@
 import firebase from "firebase";
 import * as React from "react";
 import { MdAccountCircle } from "react-icons/md";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import {
+  setAccountSignIn,
+  setUserAccountName,
+} from "../../../Actions/LoggedBoxActions";
+import { IApplicationState } from "../../../Store/Store";
 import n from "./Navigation.module.scss";
 
-export interface Props {}
-
-export interface State {
-  profileName: string;
+export interface Props {
+  userName: string;
+  setUserAccountName: typeof setUserAccountName;
+  setAccountSignIn: typeof setAccountSignIn;
 }
 
+export interface State {}
+
 class Navigation extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      profileName: "",
-    };
-  }
-
-  componentDidMount() {
-    firebase.auth().onAuthStateChanged((profile: any) => {
-      if (profile) {
-        this.setState({
-          profileName: profile.displayName,
-        });
-      }
-    });
-  }
-
   signOut = () => {
     firebase
       .auth()
       .signOut()
       .then(
         () => {
-          console.log("Signed Out");
+          this.props.setUserAccountName("");
+          this.props.setAccountSignIn(false);
         },
         (error) => {
           console.error("Sign Out Error", error);
@@ -43,17 +35,21 @@ class Navigation extends React.Component<Props, State> {
   };
 
   render() {
-    const { profileName } = this.state;
+    const { userName } = this.props;
 
     return (
       <div className={n.navigation_bg}>
         <div>
           <MdAccountCircle />
-          <p>{profileName}</p>
+          <p>{userName}</p>
         </div>
         <nav>
-          <NavLink activeClassName={n.active} to="/my-account">Account Setting</NavLink>
-          <NavLink activeClassName={n.active} to="/items">My Items</NavLink>
+          <NavLink activeClassName={n.active} to="/my-account">
+            Account Setting
+          </NavLink>
+          <NavLink activeClassName={n.active} to="/items">
+            My Items
+          </NavLink>
           <NavLink to="/home" onClick={this.signOut}>
             Go Out
           </NavLink>
@@ -63,4 +59,15 @@ class Navigation extends React.Component<Props, State> {
   }
 }
 
-export default Navigation;
+const mapStateToProps = (state: IApplicationState) => ({
+  userName: state.loggedBox.userName,
+});
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    setUserAccountName: (name: string) => dispatch(setUserAccountName(name)),
+    setAccountSignIn: (value: boolean) => dispatch(setAccountSignIn(value)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
