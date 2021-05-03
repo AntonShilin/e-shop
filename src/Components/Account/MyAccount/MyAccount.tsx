@@ -13,7 +13,6 @@ export interface State {
 class MyAccount extends React.Component<Props, State> {
 
   render() {
-
     return (
       <div className={`container-xl ${myac.my_account_bg}`}>
         <div className="row">

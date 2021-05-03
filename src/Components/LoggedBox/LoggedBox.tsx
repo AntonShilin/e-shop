@@ -1,12 +1,20 @@
 import firebase from "firebase";
 import * as React from "react";
 import { connect } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
-import { setAccountSignIn, toggleLoggedBox } from "../../Actions/LoggedBoxActions";
+import {
+  NavLink,
+  Redirect,
+  RouteComponentProps,
+  withRouter,
+} from "react-router-dom";
+import {
+  setAccountSignIn,
+  toggleLoggedBox,
+} from "../../Actions/LoggedBoxActions";
 import { IApplicationState } from "../../Store/Store";
 import lb from "./LoggedBox.module.scss";
 
-export interface ILoggedBoxProps {
+export interface ILoggedBoxProps extends RouteComponentProps {
   isLoggedBoxOpen: boolean;
   toggleLoggedBox: typeof toggleLoggedBox;
   isAccountSignIn: boolean;
@@ -52,28 +60,24 @@ class LoggedBox extends React.Component<ILoggedBoxProps, ILoggedBoxState> {
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         this.props.setAccountSignIn(true);
+        this.props.history.push("/my-account")
+        this.props.toggleLoggedBox(false);
       })
       .catch((err) => {
         const errorCode = err.code;
         const errorMessage = err.message;
         this.props.setAccountSignIn(false);
-        this.setState({  errorMessage });
+        this.setState({ errorMessage });
       });
   };
 
   render() {
-    const { isLoggedBoxOpen , isAccountSignIn} = this.props;
+    const { isLoggedBoxOpen, isAccountSignIn } = this.props;
     const { email, password, error, errorMessage } = this.state;
-
-    if (isAccountSignIn) {
-      return <Redirect to="/my-account" />;
-    }
 
     return (
       isLoggedBoxOpen && (
-        <div
-          className={`${lb.logged_box_bg}`}
-        >
+        <div className={`${lb.logged_box_bg}`}>
           <div>
             <input
               type="text"
@@ -116,14 +120,16 @@ class LoggedBox extends React.Component<ILoggedBoxProps, ILoggedBoxState> {
 
 const mapStateToProps = (state: IApplicationState) => ({
   isLoggedBoxOpen: state.loggedBox.isLoggedBoxOpen,
-  isAccountSignIn: state.loggedBox.isAccountSignIn
+  isAccountSignIn: state.loggedBox.isAccountSignIn,
 });
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     toggleLoggedBox: (value: boolean) => dispatch(toggleLoggedBox(value)),
-    setAccountSignIn:(value:boolean)=>dispatch(setAccountSignIn(value)),
+    setAccountSignIn: (value: boolean) => dispatch(setAccountSignIn(value)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoggedBox);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(LoggedBox)
+);

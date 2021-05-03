@@ -67,6 +67,7 @@ class LoggedBoxSmDevices extends React.Component<Props, State> {
     if (isAccountSignIn) {
       return <Redirect to="/my-account" />;
     }
+    
     return (
       <div className="container-xl">
         <div className="row">

@@ -2,7 +2,7 @@ import firebase from "firebase";
 import * as React from "react";
 import { MdAccountCircle } from "react-icons/md";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import {
   setAccountSignIn,
   setUserAccountName,
@@ -14,6 +14,7 @@ export interface Props {
   userName: string;
   setUserAccountName: typeof setUserAccountName;
   setAccountSignIn: typeof setAccountSignIn;
+  isAccountSignIn: boolean;
 }
 
 export interface State {}
@@ -35,7 +36,11 @@ class Navigation extends React.Component<Props, State> {
   };
 
   render() {
-    const { userName } = this.props;
+    const { userName, isAccountSignIn } = this.props;
+    
+    if (!isAccountSignIn) {
+      return <Redirect to="/login"/>
+    }
 
     return (
       <div className={n.navigation_bg}>
@@ -50,7 +55,7 @@ class Navigation extends React.Component<Props, State> {
           <NavLink activeClassName={n.active} to="/items">
             My Items
           </NavLink>
-          <NavLink to="/home" onClick={this.signOut}>
+          <NavLink to="#" onClick={this.signOut}>
             Go Out
           </NavLink>
         </nav>
@@ -61,6 +66,7 @@ class Navigation extends React.Component<Props, State> {
 
 const mapStateToProps = (state: IApplicationState) => ({
   userName: state.loggedBox.userName,
+  isAccountSignIn: state.loggedBox.isAccountSignIn
 });
 
 const mapDispatchToProps = (dispatch: any) => {
