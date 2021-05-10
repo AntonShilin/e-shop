@@ -16,6 +16,7 @@ export interface IBookViewProps {
 
 export interface IBookViewState {
   quantityToPurchase: number;
+  isLoadedImg: boolean;
 }
 
 class BookView extends React.Component<IBookViewProps, IBookViewState> {
@@ -23,6 +24,7 @@ class BookView extends React.Component<IBookViewProps, IBookViewState> {
     super(props);
     this.state = {
       quantityToPurchase: 1,
+      isLoadedImg: false,
     };
   }
 
@@ -52,7 +54,7 @@ class BookView extends React.Component<IBookViewProps, IBookViewState> {
 
   render() {
     const { shopName, shopID, allGenresData, viewBookID } = this.props;
-    const { quantityToPurchase } = this.state;
+    const { quantityToPurchase, isLoadedImg } = this.state;
 
     return (
       <div className={`container-xl ${pw.book_view_bg}`}>
@@ -86,8 +88,10 @@ class BookView extends React.Component<IBookViewProps, IBookViewState> {
                   <div className="row" key={i}>
                     <div className="col-lg-7 col-md-7 col-sm-12">
                       <img
+                        className={isLoadedImg ? "" : pw.not_loaded}
                         src={book.volumeInfo.imageLinks.thumbnail}
-                        alt="img"
+                        alt={book.id}
+                        onLoad={() => this.setState({ isLoadedImg: true })}
                       />
                     </div>
                     <div className="col-lg-5 col-md-5 col-sm-12">

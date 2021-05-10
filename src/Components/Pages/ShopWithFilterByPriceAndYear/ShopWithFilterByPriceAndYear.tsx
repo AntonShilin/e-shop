@@ -4,7 +4,7 @@ import ShopAll from "../../ShopAll/ShopAll";
 import ShopSortByLargeScreen from "../../ShopFilter/LargeScreen/ShopSortByLargeScreen/ShopSortByLargeScreen";
 import ShopSortBy from "../../ShopFilter/ShopSortBySmallScreen/ShopSortBySmallScreen";
 import ShopViewCategory from "../../ShopFilter/ShopViewCategory/ShopViewCategory";
-import sfbpy from "./ShopWithFilterByPriceAndYear.module.scss";
+import sfbpae from "./ShopWithFilterByPriceAndYear.module.scss";
 
 export interface Props {}
 
@@ -15,8 +15,8 @@ class ShopWithFilterByPriceAndYear extends React.Component<Props, State> {
     return (
       <>
         <ShopAll />
-        <div className={`container-xl ${sfbpy.shop_filter_bg}`}>
-          <div className={`row ${sfbpy.filter_large_screen}`}>
+        <div className={`container-xl ${sfbpae.shop_filter_bg}`}>
+          <div className={`row ${sfbpae.filter_large_screen}`}>
             <div className="col-4">
               <ShopSortByLargeScreen />
             </div>
@@ -25,7 +25,7 @@ class ShopWithFilterByPriceAndYear extends React.Component<Props, State> {
               <CategoryBooksWithFilterByPriceAndYear />
             </div>
           </div>
-          <div className={`row ${sfbpy.filter_small_screen}`}>
+          <div className={`row ${sfbpae.filter_small_screen}`}>
             <div className="col-12">
               <ShopSortBy />
             </div>

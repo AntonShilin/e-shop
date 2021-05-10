@@ -1,6 +1,4 @@
 import * as React from "react";
-import { transpileModule } from "typescript";
-import Loading from "../../Loading/Loading";
 import ShopAll from "../../ShopAll/ShopAll";
 import ShopFilter from "../../ShopFilter/ShopFilter";
 
@@ -29,7 +27,6 @@ class ShopPage extends React.Component<Props, State> {
 
     return (
       <>
-        {isLoading&&<Loading/>}
         <ShopAll />
         <ShopFilter />
       </>
