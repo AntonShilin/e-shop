@@ -58,7 +58,16 @@ class CategoryBooksWithFilterByYear extends React.Component<
         (
           a: { saleInfo: { listPrice: { amount: number } } },
           b: { saleInfo: { listPrice: { amount: number } } }
-        ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
+        ) => {
+          if ("listPrice" in a.saleInfo && "listPrice" in b.saleInfo) {
+            if (
+              "amount" in a.saleInfo.listPrice &&
+              "amount" in b.saleInfo.listPrice
+            ) {
+              return a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount;
+            }
+          }
+        }
       );
     }
   };

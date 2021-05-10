@@ -14,17 +14,13 @@ export interface ICategoryBooksProps {
   viewBookID: typeof viewBookID;
 }
 
-export interface ICategoryBooksState {
- 
-}
+export interface ICategoryBooksState {}
 
 class CategoryBooks extends React.Component<
   ICategoryBooksProps,
   ICategoryBooksState
 > {
-
-
-
+  
   filteredByName = () => {
     const { shopID, allGenresData } = this.props;
     if (allGenresData[shopID] !== undefined) {
@@ -46,7 +42,16 @@ class CategoryBooks extends React.Component<
         (
           a: { saleInfo: { listPrice: { amount: number } } },
           b: { saleInfo: { listPrice: { amount: number } } }
-        ) => a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount
+        ) => {
+          if ("listPrice" in a.saleInfo && "listPrice" in b.saleInfo) {
+            if (
+              "amount" in a.saleInfo.listPrice &&
+              "amount" in b.saleInfo.listPrice
+            ) {
+              return a.saleInfo.listPrice.amount - b.saleInfo.listPrice.amount;
+            }
+          }
+        }
       );
     }
   };
@@ -112,31 +117,35 @@ class CategoryBooks extends React.Component<
             </div>
           </div>
           <div className={`row ${cb.book_info}`}>
-            {allGenresData[shopID].items.map((book: any, k: number) => (
-              "retailPrice" in book.saleInfo &&
-              <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
-                <NavLink
-                  to="/book-view"
-                  onClick={() => this.props.viewBookID(book.id)}
-                >
-                  <img
-                    src={book.volumeInfo.imageLinks.thumbnail}
-                    alt={`img_${k}`}
-                    id={book.id}
-                  />
-                </NavLink>
-                <p>{shopName}</p>
-                <NavLink
-                  to="/book-view"
-                  onClick={() => this.props.viewBookID(book.id)}
-                >
-                  {book.volumeInfo.title}
-                </NavLink>
-                <p>{book.volumeInfo.pageCount} pages</p>
-                <p>Published: {book.volumeInfo.publishedDate}</p>
-                <p>{(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $</p>
-              </div>
-            ))}
+            {allGenresData[shopID].items.map(
+              (book: any, k: number) =>
+                "retailPrice" in book.saleInfo && (
+                  <div className="col-lg-4 col-md-4 col-sm-6" key={k}>
+                    <NavLink
+                      to="/book-view"
+                      onClick={() => this.props.viewBookID(book.id)}
+                    >
+                      <img
+                        src={book.volumeInfo.imageLinks.thumbnail}
+                        alt={`img_${k}`}
+                        id={book.id}
+                      />
+                    </NavLink>
+                    <p>{shopName}</p>
+                    <NavLink
+                      to="/book-view"
+                      onClick={() => this.props.viewBookID(book.id)}
+                    >
+                      {book.volumeInfo.title}
+                    </NavLink>
+                    <p>{book.volumeInfo.pageCount} pages</p>
+                    <p>Published: {book.volumeInfo.publishedDate}</p>
+                    <p>
+                      {(book.saleInfo.retailPrice.amount / 28).toFixed(2)} $
+                    </p>
+                  </div>
+                )
+            )}
           </div>
         </>
       )

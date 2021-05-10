@@ -77,11 +77,11 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
 
   componentDidMount() {
     this.props.getFableBooks();
-    this.props.getBiographyBooks();
-    this.props.getStoryBooks();
-    this.props.getBestSellersBooks();
-    this.props.getFictionBooks();
-    this.props.getArtBooks();
+    // this.props.getBiographyBooks();
+    // this.props.getStoryBooks();
+    // this.props.getBestSellersBooks();
+    // this.props.getFictionBooks();
+    // this.props.getArtBooks();
     this.props.getLifestyleBooks();
 
     firebase.auth().onAuthStateChanged((profile) => {
